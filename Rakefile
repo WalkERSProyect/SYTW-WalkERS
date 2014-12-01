@@ -1,4 +1,4 @@
-task :default => :server
+task :default => :test
 
 desc "Run the WalkERS server"
 task :server do
