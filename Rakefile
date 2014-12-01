@@ -7,7 +7,7 @@ end
 
 desc "run test examples"
 task :test do
-  sh "bundle exec rspec -I. test/test.rb"
+  sh "ruby ./test/test.rb"
 end
 
 #desc "make a non Ajax request via curl"
