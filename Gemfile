@@ -9,10 +9,11 @@ gem 'omniauth'
 gem 'omniauth-google-oauth2'
 gem 'pry'
 gem 'erubis'
+gem "rspec", ">= 1.2.1"
 
 #Gemas estadistica
-#gem 'rest-client'
-#gem 'xml-simple'
+gem 'rest-client'
+gem 'xml-simple'
 #gem 'chartkick'
 
 
