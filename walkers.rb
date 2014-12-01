@@ -8,7 +8,7 @@ set :session_secret, '*&(^#234a)'
 get '/' do
   #Comprobamos si el usuario no se ha registrado.
   if (!session[:user])
-    erb :signup
+    erb :welcome
   else
     erb :index
   end
