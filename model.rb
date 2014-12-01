@@ -1,3 +1,6 @@
+require 'restclient'
+require 'xmlsimple'
+
 class Usuarios
   include DataMapper::Resource
 

@@ -5,6 +5,11 @@ task :server do
   sh "bundle exec ruby walkers.rb"
 end
 
+desc "run test examples"
+task :test do
+  sh "bundle exec rspec -I. test/test.rb"
+end
+
 #desc "make a non Ajax request via curl"
 #task :noajax do
 #  sh "curl -v http://localhost:4567/update"
