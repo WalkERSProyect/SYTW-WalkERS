@@ -1,6 +1,6 @@
 require 'sinatra' 
 require 'sinatra/reloader' if development?
-#require 'uri'
+require 'uri'
 require 'data_mapper'
 
 # Configuracion en local
@@ -34,6 +34,14 @@ get '/' do
   else
     erb :index
   end
+end
+
+get '/signup' do
+  erb :signup
+end
+
+get '/login' do
+  erb :login
 end
 
 get '/logout' do
