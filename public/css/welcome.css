@@ -24,3 +24,12 @@ body {
   height: 100%;
   margin: 0 auto;
 }
+
+
+
+.botones:hover {
+  background: #00992A;
+  color:white;
+  -webkit-transition:all 1s linear;
+          transition:all 1s linear;
+}
