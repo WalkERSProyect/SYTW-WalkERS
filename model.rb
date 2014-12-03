@@ -3,8 +3,8 @@ require 'xmlsimple'
 
 class Usuarios
   include DataMapper::Resource
-  
-  property :username,   Text
+
+  property :username,   Serial
   property :password,   String
   property :nombre,     Text
   property :apellidos,  Text
