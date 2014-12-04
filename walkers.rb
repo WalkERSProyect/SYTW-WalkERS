@@ -1,7 +1,10 @@
 require 'sinatra' 
 require 'sinatra/reloader' if development?
-#require 'uri'
+require 'uri'
 require 'data_mapper'
+require 'pp'
+require 'rubygems'
+
 
 # Configuracion en local
 configure :development, :test do
@@ -34,6 +37,26 @@ get '/' do
   else
     erb :index
   end
+end
+
+
+
+get '/signup' do
+  puts "inside get '/': #{params}"
+  erb :signup
+end
+
+post '/' do
+  #puts "Esto es /"
+  puts "inside post '/': #{params}"
+
+  @objeto = Usuarios.first_or_create(:username => params[:username], :nombre => params[:nombre], :apellidos => params[:apellidos], :email => params[:email], :password => params[:pass1])
+
+  redirect '/'
+end
+
+get '/login' do
+  erb :login
 end
 
 get '/logout' do
