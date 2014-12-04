@@ -47,31 +47,11 @@ get '/signup' do
 end
 
 post '/' do
-  puts "Esto es / barroncia"
+  #puts "Esto es /"
   puts "inside post '/': #{params}"
-  nom = URI::parse(params[:nombre])
-  #ap = URI::parse(params[:apellidos])
-  #em = URI::parse(params[:email])
-  #username = URI::parse(params[:user])
-  
-  #if (params[:pass1] == params[:pass2]) then
-  #password = URI::parse(params[:pass1])
-  #end
-  puts "Este es el nombre #{nom}"
-  if uri.is_a? URI::HTTP or uri.is_a? URI::HTTPS then
-    puts "hola"
-    begin
-      @objeto = Usuario.first_or_create(:username => params[:username], :nombre => params[:nombre])#, :apellidos => params[:apellidos], :email => params[:email], :password => params [:pass1])
-      puts "Este es el nombre #{nom}"
-      puts "Este es el objeto guardado #{objeto}"
-    rescue Exception => e
-      puts "EXCEPTION!!!!!!!!!!!!!!!!!!!"
-      pp @objeto
-      puts e.message
-    end
-  else
-    logger.info "Error! <#{params[:url]}> is not a valid URL"
-  end
+
+  @objeto = Usuarios.first_or_create(:username => params[:username], :nombre => params[:nombre], :apellidos => params[:apellidos], :email => params[:email], :password => params[:pass1])
+
   redirect '/'
 end
 
