@@ -39,24 +39,43 @@ get '/' do
   end
 end
 
-
-
 get '/signup' do
-  puts "inside get '/': #{params}"
-  erb :signup
+  if (!session[:user])
+    erb :signup
+  else
+    redirect '/'
+  end
 end
 
-post '/' do
+post '/signup' do
   #puts "Esto es /"
   puts "inside post '/': #{params}"
-
-  @objeto = Usuarios.first_or_create(:username => params[:username], :nombre => params[:nombre], :apellidos => params[:apellidos], :email => params[:email], :password => params[:pass1])
-
+  begin
+    @objeto = Usuarios.first_or_create(:username => params[:user], :nombre => params[:nombre], :apellidos => params[:apellidos], :email => params[:email], :password => params[:pass1])
+    session[:user] = params[:nombre]
+  rescue Exception => e
+    puts e.message
+  end
   redirect '/'
 end
 
 get '/login' do
-  erb :login
+  if (!session[:user])
+    erb :login
+  else
+    redirect '/'
+  end 
+end
+
+post '/login' do
+  begin
+    @user = Usuarios.first(:username => params[:user], :password => params[:pass1])
+    puts @user
+    session[:user] = params[:nombre]
+  rescue Exception => e
+    puts e.message
+  end
+  redirect '/'
 end
 
 get '/logout' do

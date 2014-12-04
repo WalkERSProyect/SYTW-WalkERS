@@ -1,12 +1,22 @@
 html,
 body {
   height: 100%;
-  background-color: #fff;
+  background-color: #66A523;
 }
 body {
-  color: #00992A;
+  font-family: 'Rajdhani', sans-serif;
+  color: black;
   text-align: center;
-  text-shadow: 0 1px 3px rgba(0,0,0,.5);
+  /*text-shadow: 0 1px 3px rgba(0,0,0,.5);*/
+}
+
+h1 {
+  font-weight: 400;
+  font-size: 60px;
+}
+
+h3, h4, a {
+  font-family: 'Open Sans Condensed', sans-serif;
 }
 
 /* Extra markup and styles for table-esque vertical and horizontal centering */
@@ -15,21 +25,46 @@ body {
   width: 100%;
   height: 100%; /* For at least Firefox */
   min-height: 100%;
-  -webkit-box-shadow: inset 0 0 100px rgba(0,153,42,.5);
-          box-shadow: inset 0 0 100px rgba(0,153,42,.5);
+  /*-webkit-box-shadow: inset 0 0 100px rgba(255,255,255,.5);
+          box-shadow: inset 0 0 100px rgba(255,255,255,.5);*/
 }
 
 #texto {
-  max-width: 60%;
+  max-width: 80%;
   height: 100%;
   margin: 0 auto;
+  color: #FFFFFF;
 }
 
+#logo {
+  height: auto;
+  width: 100%;
+}
 
+#contenedor-logo {
+  border: 4px solid #fff;
+  border-radius:100%;
+  width: 150px;
+  height: 150px;
+  margin: 0 auto;
+  margin-top: 5%;
+}
 
 .botones:hover {
-  background: #00992A;
-  color:white;
+  background: white;
+  /*color:white;*/
   -webkit-transition:all 1s linear;
           transition:all 1s linear;
 }
+
+.botones {
+  border-color:#00992A;
+  background: #d0f4a9;
+}
+
+
+
+/* TABLET */
+
+
+/* MOVIL */
