@@ -78,6 +78,14 @@ post '/login' do
   redirect '/'
 end
 
+get '/rutas' do
+  if (!session[:user])
+    erb :rutas
+  else
+    redirect '/'
+  end 
+end
+
 get '/logout' do
   session.clear
   redirect '/'
