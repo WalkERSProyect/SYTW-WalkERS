@@ -30,6 +30,16 @@ describe 'Tests de app.rb' do
     assert last_response.ok?
   end
 
+  it "Comprobar que va a la signup" do
+    get '/signup'
+    assert last_response.ok?
+  end
+
+  it "Comprobar que va a la signup" do
+    get '/login'
+    assert last_response.ok?
+  end
+
   it "Comprobar texto correcto" do
     get '/'
     assert_match 'WalkERS', last_response.body
