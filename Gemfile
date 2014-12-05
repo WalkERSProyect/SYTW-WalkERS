@@ -9,7 +9,7 @@ gem 'omniauth'
 gem 'omniauth-google-oauth2'
 gem 'pry'
 gem 'erubis'
-gem "rspec", ">= 1.2.1"
+#gem "rspec", ">= 1.2.1"
 
 #Gemas estadistica
 gem 'rest-client'
@@ -31,3 +31,4 @@ group :test do
 	gem "rack-test"
 	gem "rake"
 end
+
