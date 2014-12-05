@@ -4,7 +4,8 @@ require 'xmlsimple'
 class Usuarios
   include DataMapper::Resource
 
-  property :username,   Serial
+  property :id,   		Serial
+  property :username,   Text
   property :password,   String
   property :nombre,     Text
   property :apellidos,  Text
