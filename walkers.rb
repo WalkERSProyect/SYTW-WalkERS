@@ -70,6 +70,7 @@ end
 post '/login' do
   begin
     @user = Usuarios.first(:username => params[:user], :password => params[:pass1])
+    puts "Usuario"
     puts @user
     session[:user] = params[:nombre]
   rescue Exception => e
