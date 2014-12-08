@@ -1,5 +1,5 @@
 
-alert ("dhhslfhs");
+//alert ("dhhslfhs");
 
 /*$(document).ready(cmpPass());
 

@@ -27,6 +27,7 @@ group :production do
     gem "dm-postgres-adapter"
 end
 
+<<<<<<< HEAD
 group :development, :test do
   gem 'sinatra-contrib'
   gem "rspec", ">= 1.2.1"
@@ -36,5 +37,15 @@ group :development, :test do
   gem "rack-test"
   gem "rake"
   gem 'coveralls', require: false
+=======
+group :test do
+    gem 'sinatra-contrib'	
+	gem "rack-test"
+	gem "rake"
+  	gem "capybara", ">= 1.1.2"
+  	gem "selenium-webdriver"	
+ 	gem 'coveralls', require: false	
+  	gem "poltergeist" 	
+>>>>>>> master
 end
 
