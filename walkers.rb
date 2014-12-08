@@ -48,7 +48,6 @@ get '/signup' do
 end
 
 post '/signup' do
-  #puts "Esto es /"
   puts "inside post '/': #{params}"
   begin
     @objeto = Usuarios.first_or_create(:username => params[:user], :nombre => params[:nombre], :apellidos => params[:apellidos], :email => params[:email], :password => params[:pass1])
@@ -71,16 +70,26 @@ post '/login' do
   begin
     #@user = Usuarios.first(:username => params[:usuario], :password => params[:password])
     #@user = Usuarios.all(:fields => [:nombre,:username,:email])
+    #@user = Usuarios.first(:username => params[:user], :password => params[:pass1])
     @user = Usuarios.all(:conditions => {:username => params[:usuario]})
     puts "El contenido de la variable es:"
     puts @user.username
-    session[:user]
     puts "El valor de la sesion es:"
-    puts session[:user]
+    puts "Usuario"
+    puts @user
+    #session[:user] = params[:nombre]
   rescue Exception => e
     puts e.message
   end
   redirect '/'
+end
+
+get '/rutas' do
+  if (!session[:user])
+    erb :rutas
+  else
+    redirect '/'
+  end 
 end
 
 get '/logout' do
