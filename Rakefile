@@ -12,7 +12,7 @@ end
 
 desc "run test examples"
 task :selenium do
-  sh "ruby ./test/selenium.rb"
+  sh "bundle exec rspec -I. test/selenium.rb"
 end
 
 

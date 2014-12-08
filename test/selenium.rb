@@ -1,10 +1,10 @@
 require 'capybara' # loading capybara
 require 'capybara/dsl'
 require 'rack/test'
-#require 'coveralls'
+require 'coveralls'
 require 'rspec'
 
-#Coveralls.wear!
+Coveralls.wear!
 
 Capybara.default_driver = :selenium 
 
@@ -18,12 +18,12 @@ RSpec.configure do |config|
 end
 
 
-urlHer = 'http://localhost:4567/'
+url = 'http://localhost:4567/'
 
 describe 'make API call to load path', :type => :feature do 
   it "should load the home page" do
-    visit "#{urlHer/signup}"
-    expect(page).to have_content("walkERS")
+    visit "#{url}"
+    expect(page).to have_content("WalkERS")
   end
 end
 
