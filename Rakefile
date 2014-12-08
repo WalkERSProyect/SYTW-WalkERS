@@ -10,6 +10,12 @@ task :test do
   sh "ruby ./test/test.rb"
 end
 
+desc "run test examples"
+task :selenium do
+  sh "ruby ./test/selenium.rb"
+end
+
+
 #desc "make a non Ajax request via curl"
 #task :noajax do
 #  sh "curl -v http://localhost:4567/update"
