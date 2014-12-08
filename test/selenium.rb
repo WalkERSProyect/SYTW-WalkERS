@@ -27,4 +27,12 @@ describe 'make API call to load path', :type => :feature do
   end
 end
 
-   
+describe 'make API sign in whith a specific name' do
+  it 'user login' do
+    visit "#{url}"
+    click_on('Regístrate')   
+    fill_in 'user', :with => 'Sergio'
+    click_on('Click para registrarte.')       
+    expect(page).to have_content("Sergio")     
+  end
+end
