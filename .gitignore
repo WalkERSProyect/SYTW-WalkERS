@@ -1,7 +1,4 @@
 .DS_Store
 Gemfile.lock
-<<<<<<< HEAD
 my_walkers.db
-=======
-my_walkers.db
->>>>>>> master
+
