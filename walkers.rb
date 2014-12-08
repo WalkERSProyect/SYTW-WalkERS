@@ -68,16 +68,8 @@ end
 
 post '/login' do
   begin
-    #@user = Usuarios.first(:username => params[:usuario], :password => params[:password])
-    #@user = Usuarios.all(:fields => [:nombre,:username,:email])
-    #@user = Usuarios.first(:username => params[:user], :password => params[:pass1])
-    @user = Usuarios.all(:conditions => {:username => params[:usuario]})
-    puts "El contenido de la variable es:"
-    puts @user.username
-    puts "El valor de la sesion es:"
-    puts "Usuario"
-    puts @user
-    #session[:user] = params[:nombre]
+    @user = Usuarios.first(:username => params[:usuario])
+    session[:user] = @user.nombre
   rescue Exception => e
     puts e.message
   end
@@ -86,9 +78,9 @@ end
 
 get '/rutas' do
   if (!session[:user])
-    erb :rutas
-  else
     redirect '/'
+  else
+    erb :rutas
   end 
 end
 
