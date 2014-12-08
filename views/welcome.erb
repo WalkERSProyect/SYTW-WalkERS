@@ -2,12 +2,20 @@
 <html>
   <head>
     <title>WalkERS - Welcome</title>
+    <script type='text/javascript' src='http://ajax.googleapis.com/ajax/libs/jquery/1.4.2/jquery.min.js'></script>
+   <script type="text/javascript">
+         function  efecto()
+         {
+            $('#contenidoWeb').fadeIn(2000); /*Para mostrar la pagina de bienvenida con efecto*/
+        }
+    </script>
     <link href='http://fonts.googleapis.com/css?family=Rajdhani:400, YOpen+Sans+Condensed:300italic,300&subset=latin,latin-ext' rel='stylesheet' type='text/css'>
     <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.1/css/bootstrap.min.css">
     <link rel="stylesheet" href="./css/welcome.css">
     <link rel="icon" type="image/ico" href="img/logo.ico" />
   </head>
-  <body>
+  <body onload ="efecto();">
+      <div id="contenidoWeb" style="display:none;">
     <div id="contenedor">
       <div id="contenedor-logo">
         <img id="logo" src="img/logo.png"/>
@@ -18,7 +26,9 @@
         <h4>Comienza la aventura...</h4>
     	  <a href="/signup"><button type="button" class="btn btn-default btn-lg botones">Regístrate</button></a>
     	  <a href="/login"><button type="button" class="btn btn-default btn-lg botones">Login</button></a>
+        <a href="/rutas"><button type="button" class="btn btn-default btn-lg botones">Rutas</button></a>
 	    </div>
+    </div>
     </div>
 	  <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.1/js/bootstrap.min.js"></script>
   </body>

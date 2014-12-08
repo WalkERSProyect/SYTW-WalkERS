@@ -28,7 +28,12 @@ group :production do
 end
 
 group :test do
+    gem 'sinatra-contrib'	
 	gem "rack-test"
 	gem "rake"
+  	gem "capybara", ">= 1.1.2"
+  	gem "selenium-webdriver"	
+ 	gem 'coveralls', require: false	
+  	gem "poltergeist" 	
 end
 
