@@ -69,9 +69,14 @@ end
 
 post '/login' do
   begin
-    @user = Usuarios.first(:username => params[:user], :password => params[:pass1])
-    puts @user
-    session[:user] = params[:nombre]
+    #@user = Usuarios.first(:username => params[:usuario], :password => params[:password])
+    #@user = Usuarios.all(:fields => [:nombre,:username,:email])
+    @user = Usuarios.all(:conditions => {:username => params[:usuario]})
+    puts "El contenido de la variable es:"
+    puts @user.username
+    session[:user]
+    puts "El valor de la sesion es:"
+    puts session[:user]
   rescue Exception => e
     puts e.message
   end

@@ -5,11 +5,11 @@ class Usuarios
   include DataMapper::Resource
 
   property :id,   		Serial
-  property :username,   Text
+  property :username,   String
   property :password,   String
-  property :nombre,     Text
-  property :apellidos,  Text
-  property :email,      Text
+  property :nombre,     String
+  property :apellidos,  String
+  property :email,      String
   property :created_at, DateTime
 
 end
