@@ -41,9 +41,10 @@ end
 
 describe 'make API login whith a specific name' do
   it 'user login' do
+  	click_on('Salir')
     visit "#{url}/login"
-    fill_in 'usuario', :with => 'Eduardo'
+    fill_in 'usuario', :with => 'Ser'
     click_on('Login')       
-    expect(page).to have_content("Eduardo")     
+    expect(page).to have_content("Ser")     
   end
 end

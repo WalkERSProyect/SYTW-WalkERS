@@ -4,6 +4,9 @@ require 'rack/test'
 require 'test/unit'
 require_relative '../walkers.rb'
 require_relative '../model.rb'
+require 'coveralls'
+Coveralls.wear!
+
 
 include Test::Unit::Assertions
 
@@ -25,6 +28,11 @@ describe 'Tests de walkers.rb' do
     assert last_response.ok?
   end
 
+  it "Comprobar texto correcto" do
+    get '/rutas'
+    assert last_response.ok?
+  end
+
   it "Comprobar que va a la signup" do
     get '/login'
     assert last_response.ok?
@@ -34,6 +42,9 @@ describe 'Tests de walkers.rb' do
     get '/'
     assert_match 'WalkERS', last_response.body
   end
+
+
+
 end
 
 describe 'Tests de la tabla Usuario' do
