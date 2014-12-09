@@ -4,7 +4,9 @@
 	<title>WalkERS - Registro</title>
 	<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.1/css/bootstrap.min.css">
   	<link rel="stylesheet" type="text/css" href="./css/login.css">
-	<script type="text/javascript" src="../js/walkers.js"></script> <!-- MIRARRRR!!!! -->
+	<script src="https://ajax.googleapis.com/ajax/libs/jquery/1.11.1/jquery.min.js"></script>
+  	<script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.1/js/bootstrap.min.js"></script>
+  	<script type="text/javascript" src="../js/walkers.js"></script> <!-- MIRARRRR!!!! -->
   </head>
   <body>
     <!--<h1>Registro</h1>-->
@@ -15,8 +17,8 @@
               <div class="panel-title"><a href="./">WalkERS</a></div>
 	        </div>     
 	        <div class="panel-body" >
-	      	  <div style="display:none" id="login-alert" class="alert alert-danger col-sm-12"></div>
-			  <form class="form-horizontal" role="form" action="/signup" method="POST" name="form-signup">
+	      	  <div id="mensaje-pass" class="alert alert-danger col-sm-12"></div>
+			  <form class="form-horizontal" role="form" action="/signup" method="POST" name="form-signup" id="form-signup">
 			    <h2 class="form-signin-heading">Registro</h2>
 			    <div class="form-group">
     			  <label for="nombre" class="col-sm-2 control-label">Nombre</label>
@@ -56,7 +58,7 @@
        			</div>
        			<div class="form-group">
        			  <div class="col-sm-offset-2 col-sm-10">
-			        <button class="btn btn-lg btn-success btn-block" type="submit">Registro</button>
+			        <button class="btn btn-lg btn-success btn-block" type="submit" id="btn-submit" onclick="enviar()">Registro</button>
 			      </div>
 			    </div>
 		        <div id="signup-msg">
@@ -69,7 +71,5 @@
 		</div>
 	  </div>
     </div> <!-- /container -->
-    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.1/js/bootstrap.min.js"></script>
-    <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.11.1/jquery.min.js"></script>
   </body>
 </html>
