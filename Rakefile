@@ -12,10 +12,8 @@ end
 
 desc "run test examples"
 task :selenium do
-  sh "ruby ./test/selenium.rb"
+  sh "bundle exec rspec -I. test/selenium.rb"
 end
-
-
 #desc "make a non Ajax request via curl"
 #task :noajax do
 #  sh "curl -v http://localhost:4567/update"
@@ -31,10 +29,7 @@ end
 #  sh "open https://github.com/crguezl/chat-blazee"
 #end
 
-#desc "run selenium-capybara examples"
-#task :selenium do
-#  sh "bundle exec rspec -I. test/test.rb"
-#end
+
 
 #desc "run spec examples"
 #task :spec do
