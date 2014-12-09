@@ -51,7 +51,7 @@ end
 post '/signup' do
   puts "inside post '/': #{params}"
   begin
-    @objeto = Usuarios.first_or_create(:username => params[:user], :nombre => params[:nombre], :apellidos => params[:apellidos], :email => params[:email], :password => params[:pass1])
+    @objeto = Usuarios.first_or_create(:username => params[:usuario], :nombre => params[:nombre], :apellidos => params[:apellidos], :email => params[:email], :password => params[:pass1])
     session[:user] = params[:nombre]
   rescue Exception => e
     puts e.message
@@ -76,7 +76,6 @@ post '/login' do
     puts e.message
   end
   redirect './login'
-  # Añadir un mensaje cuando el login no haya sido correcto.
 end
 
 get '/rutas' do
