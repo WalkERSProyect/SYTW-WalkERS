@@ -68,12 +68,13 @@ end
 
 post '/login' do
   begin
-    @user = Usuarios.first(:username => params[:usuario])
+    @user = Usuarios.first(:username => params[:usuario], :password => params[:password])
     session[:user] = @user.nombre
   rescue Exception => e
     puts e.message
   end
   redirect '/'
+  # Añadir un mensaje cuando el login no haya sido correcto.
 end
 
 get '/rutas' do

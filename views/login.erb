@@ -1,30 +1,47 @@
 <!DOCTYPE html>
 <html>
   <head>
-    <meta http-equiv="content-type" content="text/html; charset=ISO-8859-1" />
-    <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
-    <!--Titulo Pagina -->
+  	<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.1/css/bootstrap.min.css">
+  	<link rel="stylesheet" type="text/css" href="./css/login.css">
     <title>WalkERS - Login</title>
   </head>
   <body>
-  <h1>Logueo</h1>
-  <!--Formulario Registrar-->
-          <fieldset>
-          <legend>Datos de conexion</legend>
-			<form action="/login" method="POST" name="form-login" role="form">
-			   <div class="form-group">
-				  <label for="name"></label>
-				  Usuario: <input id="usuario" name="usuario" type ="text" class = "form-control" placeholder="Usuario" autofocus> </input>
-				  <br> <br>
-				  Contrase&ntilde;a:<input id="password" name="password" type="password" class="form-control" placeholder="Contrase&ntilde;a"></input>
-				  <br> <br>
-				  <a href="#">Olvidastes la contrase&ntilde;a?</a>
-				  <!-- Boton Enviar -->
-				  <br> <br>
-			   </div>  
-			   <input class="btn btn-info" id="enter" type="submit"value="Login"> </input>
-			</form>	  
-			</fieldset>
-	</body>
+    <!--<h1>Logueo</h1>-->
+    <div class="container">
+      	<div id="loginbox" class="mainbox col-md-6 col-md-offset-3 col-sm-8 col-sm-offset-2">
+      	  <div class="panel panel-info">
+            <div class="panel-heading">
+              <div class="panel-title"><a href="./">WalkERS</a></div>
+	          <div id="pass-msg">
+	            <a href="#">¿Olvidaste la contraseña?</a>
+	          </div>
+	        </div>     
+	        <div class="panel-body" >
+	      	  <div style="display:none" id="login-alert" class="alert alert-danger col-sm-12"></div>
+			  <form class="form-signin" role="form" action="/login" method="POST" name="form-login">
+			    <h2 class="form-signin-heading">Logueo</h2>
+			    <label for="inputEmail" class="sr-only">Usuario</label>
+			    <input type="text" id="usuario" name="usuario" class="form-control" placeholder="Usuario" required autofocus>
+			    <label for="inputPassword" class="sr-only">Contraseña</label>
+			    <input type="password" id="password" name="password" class="form-control" placeholder="Contraseña" required>
+			    <div class="checkbox">
+			      <label>
+		            <input type="checkbox" value="remember-me"> Recordar mis datos
+	   			  </label>
+			    </div>
+			    <button class="btn btn-lg btn-success btn-block" type="submit">Login</button>
+		        <div id="signup-msg">
+		          ¿No tiene una cuenta?
+		          <!--<a href="#" onClick="$('#loginbox').hide(); $('#signupbox').show()">Regístrate aquí</a>-->
+		          <a href="./signup">Regístrate aquí</a>
+		        </div>
+		      </form>
+		  </div>
+		</div>
+	  </div>
+    </div> <!-- /container -->
+    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.1/js/bootstrap.min.js"></script>
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.11.1/jquery.min.js"></script>
+  </body>
 </html>
 
