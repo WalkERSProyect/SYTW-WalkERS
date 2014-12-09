@@ -1,15 +1,24 @@
-
-//alert ("dhhslfhs");
-
-/*$(document).ready(cmpPass());
-
-function cmpPass(){
-	var pass1 = $(#pass1).val();
-	var pass2 = $(#pass2).val();
-	alert (pass1);
-	alert (pass2);
-	if (pass1 =! pass2){
-		alert ("Contraseñas no coinciden");
+$(document).ready(function() {
+  $("#mensaje-pass").hide();
+  $("#pass2").keyup(function() {
+    pass1 = $("#pass1").val();
+    pass2 = $("#pass2").val();
+    $("#mensaje-pass").show();
+	if (pass2 == pass1) {
+	  $("#mensaje-pass").hide();
+	  //$("#mensaje-pass").html("Ok. Las contraseñas coinciden.");	
 	}
+	else {
+	  $("#mensaje-pass").html("Las contraseñas deben coincidir.");
+	}
+  });
 
-}*/
+  $("#form-signup").submit(function() {
+  	if ($("#pass1").val() != $("#pass2").val()) {
+  	  return false;
+  	}
+  	else
+  		return true;
+  });
+
+});

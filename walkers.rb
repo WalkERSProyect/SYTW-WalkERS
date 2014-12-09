@@ -4,6 +4,7 @@ require 'uri'
 require 'data_mapper'
 require 'pp'
 require 'rubygems'
+require 'sinatra/flash'
 
 
 # Configuracion en local
@@ -50,7 +51,7 @@ end
 post '/signup' do
   puts "inside post '/': #{params}"
   begin
-    @objeto = Usuarios.first_or_create(:username => params[:user], :nombre => params[:nombre], :apellidos => params[:apellidos], :email => params[:email], :password => params[:pass1])
+    @objeto = Usuarios.first_or_create(:username => params[:usuario], :nombre => params[:nombre], :apellidos => params[:apellidos], :email => params[:email], :password => params[:pass1])
     session[:user] = params[:nombre]
   rescue Exception => e
     puts e.message
@@ -68,12 +69,13 @@ end
 
 post '/login' do
   begin
-    @user = Usuarios.first(:username => params[:usuario])
+    @user = Usuarios.first(:username => params[:usuario], :password => params[:password])
     session[:user] = @user.nombre
   rescue Exception => e
+    flash[:mensaje] = "<p>El nombre de usuario y/o contraseña no son correctos.</p>"
     puts e.message
   end
-  redirect '/'
+  redirect './login'
 end
 
 get '/rutas' do

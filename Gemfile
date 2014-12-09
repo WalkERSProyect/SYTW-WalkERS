@@ -16,6 +16,8 @@ gem 'rest-client'
 gem 'xml-simple'
 #gem 'chartkick'
 
+gem 'sinatra-flash'
+
 
 group :development do
 	gem 'sqlite3'
