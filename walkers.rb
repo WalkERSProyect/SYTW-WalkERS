@@ -86,6 +86,14 @@ get '/rutas' do
   end 
 end
 
+get '/ultimas' do
+  if (!session[:user])
+    redirect '/'
+  else
+    erb :ultimas
+  end 
+end
+
 get '/logout' do
   session.clear
   redirect '/'
