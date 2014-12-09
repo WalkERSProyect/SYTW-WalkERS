@@ -27,7 +27,6 @@ group :production do
     gem "dm-postgres-adapter"
 end
 
-
 group :development, :test do
   gem 'sinatra-contrib'
   gem "rspec", ">= 1.2.1"
