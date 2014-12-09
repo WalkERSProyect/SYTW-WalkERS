@@ -1,13 +1,18 @@
+BODY {  }
+
+
 html,
 body {
   height: 100%;
-  background-color: #66A523;
+  /*background-color: #66A523;*/
 }
 body {
   font-family: 'Rajdhani', sans-serif;
   color: black;
   text-align: center;
   /*text-shadow: 0 1px 3px rgba(0,0,0,.5);*/
+  background: green url(../img/wallpaper2.jpg);
+  background-attachment: fixed;
 }
 
 h1 {
