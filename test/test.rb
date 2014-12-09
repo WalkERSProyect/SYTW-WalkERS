@@ -28,10 +28,10 @@ describe 'Tests de walkers.rb' do
     assert last_response.ok?
   end
 
-  it "Comprobar texto correcto" do
-    get '/rutas'
-    assert last_response.ok?
-  end
+  #it "Comprobar que entra a rutas" do
+  #  get '/rutas'
+  #  assert last_response.ok?
+  #end
 
   it "Comprobar que va a la signup" do
     get '/login'
