@@ -4,6 +4,7 @@ require 'uri'
 require 'data_mapper'
 require 'pp'
 require 'rubygems'
+require 'sinatra/flash'
 
 
 # Configuracion en local
@@ -71,9 +72,10 @@ post '/login' do
     @user = Usuarios.first(:username => params[:usuario], :password => params[:password])
     session[:user] = @user.nombre
   rescue Exception => e
+    flash[:mensaje] = "<p>El nombre de usuario y/o contraseña no son correctos.</p>"
     puts e.message
   end
-  redirect '/'
+  redirect './login'
   # Añadir un mensaje cuando el login no haya sido correcto.
 end
 

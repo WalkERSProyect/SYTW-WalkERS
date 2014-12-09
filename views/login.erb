@@ -17,7 +17,9 @@
 	          </div>
 	        </div>     
 	        <div class="panel-body" >
-	      	  <div style="display:none" id="login-alert" class="alert alert-danger col-sm-12"></div>
+	          <% if (flash[:mensaje]) %>
+	      	    <div id="login-alert" class="alert alert-danger col-sm-12"><%= flash[:mensaje]; %></div>
+	      	  <% end %>
 			  <form class="form-signin" role="form" action="/login" method="POST" name="form-login">
 			    <h2 class="form-signin-heading">Logueo</h2>
 			    <label for="inputEmail" class="sr-only">Usuario</label>
