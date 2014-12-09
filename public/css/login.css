@@ -4,7 +4,7 @@ body {
   /*background-color: #eee;*/
   background: green url(../img/wallpaper2.jpg);
   background-attachment: fixed;
-  color: white;
+  /*color: white;*/
 }
 
 .form-signin {
@@ -42,10 +42,32 @@ body {
   border-top-right-radius: 0;
 }
 
-#contenedor {
+/*#contenedor {
   background: rgba(255, 255, 255, 0.2);
   max-width: 50%;
   height: auto;
   margin: 0 auto;
   border-radius: 25px;
+}*/
+
+.panel {
+  background: rgba(255, 255, 255, 0.5);
+}
+
+#loginbox {
+  margin-top:50px;
+}
+
+#pass-msg {
+  float:right;
+  font-size: 80%;
+  position: relative;
+  top:-10px;
+}
+
+#signup-msg {
+  border-top: 1px solid#888;
+  margin-top:10px;
+  padding-top:5px;
+  font-size:85%;
 }

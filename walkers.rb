@@ -74,6 +74,7 @@ post '/login' do
     puts e.message
   end
   redirect '/'
+  # Añadir un mensaje cuando el login no haya sido correcto.
 end
 
 get '/rutas' do
