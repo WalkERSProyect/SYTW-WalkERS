@@ -64,7 +64,10 @@ h3, h4, a {
 
 .botones {
   border-color:#00992A;
-  background: #d0f4a9;
+  /*background:transparent;*/
+  color:#fff;
+  /*background: #d0f4a9;*/
+  background: rgba(208, 244, 169, 0.3);
   /*background: yellow;*/
 }
 

@@ -1,0 +1,29 @@
+html,
+body {
+  height: 100%;
+  background-color: #66A523;
+}
+
+/*#contenedor{
+        background-color:#F4ABF2;
+        border:5px solid blue;
+}*/     
+#cabecera{
+        /*background-color:#66A523;*/
+        height:20%;
+}
+
+
+#texto {
+  max-width: 80%;
+  height: 100%;
+  margin: 0 auto;
+  color: #FFFFFF;
+}
+
+
+h1 {
+  font-weight: 400;
+  font-size: 60px;
+  text-align:center;
+}
