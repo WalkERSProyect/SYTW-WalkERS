@@ -87,6 +87,10 @@ get '/rutas' do
   end 
 end
 
+get '/ruta/:num' do
+
+end
+
 get '/ultimas' do
   if (!session[:user])
     redirect '/'
