@@ -13,9 +13,6 @@ use OmniAuth::Builder do
   provider :google_oauth2, config['identifier'], config['secret']
 end
 
-enable :sessions
-set :session_secret, '*&(^#234a)'
-#***********************
 
 get '/auth/:name/callback' do
   session[:auth] = @auth = request.env['omniauth.auth']
