@@ -14,20 +14,16 @@
       	  <div class="panel panel-info">
             <div class="panel-heading">
               <div class="panel-title"><a href="./">WalkERS</a></div>
-	          <div id="pass-msg">
-	            <a href="#">¿Olvidaste la contraseña?</a>
-	          </div>
 	        </div>     
 	        <div class="panel-body" >
+	          <% if (flash[:mensaje]) %>
+	      	    <div id="login-alert" class="alert alert-danger col-sm-12"><p><%= flash[:mensaje] %></p></div>
+	      	  <% end %>
 			  <form class="form-signin" role="form" action="/login" method="POST" name="form-login">
-			    <h2 class="form-signin-heading">IncluirUsuario</h2>
+			    <h2 class="form-signin-heading">Regístro</h2>
 			    <label for="inputEmail" class="sr-only">Usuario</label>
-			    <div class="checkbox">
-			      <label>
-		            <input type="checkbox" value="remember-me"> Recordar mis datos
-	   			  </label>
-			    </div>
-			    <button class="btn btn-lg btn-success btn-block" type="submit">Login</button>
+			    <input type="text" id="usuario" name="usuario" class="form-control" placeholder="Usuario" required autofocus>
+			    <button class="btn btn-lg btn-success btn-block" type="submit">Registrar</button>
 		      </form>
 		  </div>
 		</div>
