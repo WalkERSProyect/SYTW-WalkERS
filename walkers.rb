@@ -56,6 +56,7 @@ post '/signup' do
     if (!@usuario)
       @objeto = Usuarios.first_or_create(:username => params[:usuario], :nombre => params[:nombre], :apellidos => params[:apellidos], :email => params[:email], :password => params[:pass1])
       session[:user] = params[:nombre]
+      flash[:mensaje] = "¡Enhorabuena! Se ha registrado correctamente."
     else
       flash[:mensaje] = "El nombre de usuario ya existe. Por favor, elija otro."
       redirect '/signup'

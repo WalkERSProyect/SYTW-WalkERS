@@ -45,6 +45,10 @@
 	    </form>
 	  </div>
 	</nav>
+	<% if (flash[:mensaje]) %>
+	  <div class="alert alert-success" role="alert"><%= flash[:mensaje] %></div>
+	<% end %>
+
 </div>
     <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.1/js/bootstrap.min.js"></script>
   </body>
