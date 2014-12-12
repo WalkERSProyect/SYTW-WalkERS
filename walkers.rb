@@ -5,6 +5,7 @@ require 'data_mapper'
 require 'pp'
 require 'rubygems'
 require 'sinatra/flash'
+require './auth.rb'
 
 
 # Configuracion en local
