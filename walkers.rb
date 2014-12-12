@@ -83,12 +83,19 @@ get '/rutas' do
   if (!session[:user])
     redirect '/'
   else
+    # Obtengo las rutas almacenadas
+    @rutas = Rutas.all()
+    #puts "Esta es la info de rutas"
+    #puts @rutas[0].nombre
     erb :rutas
   end 
 end
 
 get '/ruta/:num' do
-
+  #puts "Estamos en la ruta con id:"
+  #puts params[:num]
+  @ruta = Rutas.first(:id_rut => params[:num])
+  erb :ruta
 end
 
 get '/ultimas' do
