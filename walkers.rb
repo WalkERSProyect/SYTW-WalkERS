@@ -73,7 +73,7 @@ post '/login' do
     @user = Usuarios.first(:username => params[:usuario], :password => params[:password])
     session[:user] = @user.nombre
   rescue Exception => e
-    flash[:mensaje] = "<p>El nombre de usuario y/o contraseña no son correctos.</p>"
+    flash[:mensaje] = "El nombre de usuario y/o contraseña no son correctos."
     puts e.message
   end
   redirect './login'

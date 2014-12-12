@@ -20,7 +20,7 @@
 	        </div>     
 	        <div class="panel-body" >
 	          <% if (flash[:mensaje]) %>
-	      	    <div id="login-alert" class="alert alert-danger col-sm-12"><%= flash[:mensaje] %></div>
+	      	    <div id="login-alert" class="alert alert-danger col-sm-12"><p><%= flash[:mensaje] %></p></div>
 	      	  <% end %>
 			  <form class="form-signin" role="form" action="/login" method="POST" name="form-login">
 			    <h2 class="form-signin-heading">Logueo</h2>
