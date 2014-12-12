@@ -99,6 +99,17 @@ get '/ultimas' do
   end 
 end
 
+get '/amigos' do
+   if (!session[:user])
+    redirect '/'
+  else
+    @amigos = Usuarios.all()
+    puts @amigos[0].username
+    erb :amigos
+  end
+end  
+
+
 get '/logout' do
   session.clear
   redirect '/'
