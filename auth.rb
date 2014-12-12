@@ -22,6 +22,13 @@ get '/auth/:name/callback' do
   session[:email] = @auth['info'].email
   session[:logs] = ''
 
+
+  puts ":Name= "+session[:name]
+  #puts ":Auth= "+session[:auth]
+  puts ":image= "+session[:image]
+  puts ":url= "+session[:url]
+  puts ":email"+session[:email]
+  puts ":logs"+session[:logs]
   #flash[:notice] =
     #{}%Q{<div class="chuchu">Autenticado como #{@a...uth['info'].name}.</div>}
    #{}%Q{<div class="chuchu">Autenticado como #{@a...uth['info'].name}.</div>}
@@ -32,7 +39,7 @@ get '/auth/:name/callback' do
   #  u.save
   #end
 
-  redirect '/'
+  redirect '/getUser'
 end
 
 get '/auth/failure' do

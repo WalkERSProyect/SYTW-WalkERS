@@ -50,11 +50,29 @@ get '/signup' do
 end
 
 get'/getUser' do
+  "Esto es name"+session[:name]
+  "Esto es email"+session[:email]
+  begin
+   @objeto = Usuarios.first_or_create(:username => session[:name], :nombre => params[:nombre], :apellidos => params[:apellidos], :email => params[:email], :password => params[:pass1]) 
+  end
   erb :loginUser
+end
+
+post '/getUser' do
+  "Esto es name en el post"+session[:name]
+  "Esto es email en el post"+session[:email]
+  begin
+    @objeto = Usuarios.first_or_create(:username => params[:usuario], :nombre => session[:name], :email => session[:email])
+  rescue Exception => e
+    puts e.message
+  end
+  redirect '/'
 end
 
 post '/signup' do
   puts "inside post '/': #{params}"
+  "Esto es name en el get"+session[:name]
+  "Esto es email en el get"+session[:email]
   begin
     @objeto = Usuarios.first_or_create(:username => params[:usuario], :nombre => params[:nombre], :apellidos => params[:apellidos], :email => params[:email], :password => params[:pass1])
     session[:user] = params[:nombre]
