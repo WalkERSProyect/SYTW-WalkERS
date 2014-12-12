@@ -23,12 +23,12 @@ get '/auth/:name/callback' do
   session[:logs] = ''
 
 
-  puts ":Name= "+session[:name]
+  #puts ":Name= "+session[:name]
   #puts ":Auth= "+session[:auth]
-  puts ":image= "+session[:image]
-  puts ":url= "+session[:url]
-  puts ":email"+session[:email]
-  puts ":logs"+session[:logs]
+  #puts ":image= "+session[:image]
+  #puts ":url= "+session[:url]
+  #puts ":email"+session[:email]
+  #puts ":logs"+session[:logs]
   #flash[:notice] =
     #{}%Q{<div class="chuchu">Autenticado como #{@a...uth['info'].name}.</div>}
    #{}%Q{<div class="chuchu">Autenticado como #{@a...uth['info'].name}.</div>}

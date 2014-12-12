@@ -50,12 +50,30 @@ get '/signup' do
 end
 
 get'/getUser' do
-  erb :loginUser
+  begin
+    puts "eyyyyyy"
+    @email = Usuarios.first(:email => session[:email])
+    #puts "Este es el email de la sesion "+session[:email]+" y de la variable @email "+@email.email
+    #puts "Este debiera ser el nombre del que usa el email"+@email.nombre
+    #puts ", y estas es la sesion del name"+session[:name]
+    if (!@email)
+      puts "en el if"
+      erb :loginUser
+    else
+      puts "en el else"
+      session[:user] = session[:name]
+      redirect '/'
+    end 
+    rescue Exception => e
+      flash[:mensaje] = "El nombre de usuario y/o contraseña no son correctos."
+       puts e.message  
+  end
 end
 
 post '/getUser' do
   begin
     @objeto = Usuarios.first_or_create(:username => params[:usuario], :nombre => session[:name], :email => session[:email])
+    session[:user] = session[:name]
   rescue Exception => e
     puts e.message
   end
