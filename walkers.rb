@@ -49,6 +49,10 @@ get '/signup' do
   end
 end
 
+get'/getUser' do
+  erb :loginUser
+end
+
 post '/signup' do
   puts "inside post '/': #{params}"
   begin

@@ -1,0 +1,39 @@
+<!DOCTYPE html>
+<html>
+  <head>
+  	<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.1/css/bootstrap.min.css">
+  	<link rel="stylesheet" type="text/css" href="./css/login.css">
+  	<script src="https://ajax.googleapis.com/ajax/libs/jquery/1.11.1/jquery.min.js"></script>
+  	<script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.1/js/bootstrap.min.js"></script>
+    <title>WalkERS - Login</title>
+  </head>
+  <body>
+    <!--<h1>Logueo</h1>-->
+    <div class="container">
+      	<div id="loginbox" class="mainbox col-md-6 col-md-offset-3 col-sm-8 col-sm-offset-2">
+      	  <div class="panel panel-info">
+            <div class="panel-heading">
+              <div class="panel-title"><a href="./">WalkERS</a></div>
+	          <div id="pass-msg">
+	            <a href="#">¿Olvidaste la contraseña?</a>
+	          </div>
+	        </div>     
+	        <div class="panel-body" >
+			  <form class="form-signin" role="form" action="/login" method="POST" name="form-login">
+			    <h2 class="form-signin-heading">IncluirUsuario</h2>
+			    <label for="inputEmail" class="sr-only">Usuario</label>
+			    <div class="checkbox">
+			      <label>
+		            <input type="checkbox" value="remember-me"> Recordar mis datos
+	   			  </label>
+			    </div>
+			    <button class="btn btn-lg btn-success btn-block" type="submit">Login</button>
+		      </form>
+		  </div>
+		</div>
+	  </div>
+    </div> <!-- /container -->
+    
+  </body>
+</html>
+
