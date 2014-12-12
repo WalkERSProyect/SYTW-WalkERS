@@ -7,6 +7,7 @@ gem 'haml'
 gem 'sinatra'
 gem 'omniauth'
 gem 'omniauth-google-oauth2'
+gem 'omniauth-facebook'
 gem 'pry'
 gem 'erubis'
 #gem "rspec", ">= 1.2.1"
