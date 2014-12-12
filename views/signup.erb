@@ -17,6 +17,9 @@
               <div class="panel-title"><a href="./">WalkERS</a></div>
 	        </div>     
 	        <div class="panel-body" >
+            <% if (flash[:mensaje]) %>
+              <div id="login-alert" class="alert alert-danger col-sm-12"><p><%= flash[:mensaje] %></p></div>
+            <% end %>
 	      	  <div id="mensaje-pass" class="alert alert-danger col-sm-12"></div>
 			  <form class="form-horizontal" role="form" action="/signup" method="POST" name="form-signup" id="form-signup">
 			    <h2 class="form-signin-heading">Registro</h2>

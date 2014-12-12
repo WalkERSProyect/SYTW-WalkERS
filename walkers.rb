@@ -52,8 +52,14 @@ end
 post '/signup' do
   puts "inside post '/': #{params}"
   begin
-    @objeto = Usuarios.first_or_create(:username => params[:usuario], :nombre => params[:nombre], :apellidos => params[:apellidos], :email => params[:email], :password => params[:pass1])
-    session[:user] = params[:nombre]
+    @usuario = Usuarios.first(:username => params[:usuario])
+    if (!@usuario)
+      @objeto = Usuarios.first_or_create(:username => params[:usuario], :nombre => params[:nombre], :apellidos => params[:apellidos], :email => params[:email], :password => params[:pass1])
+      session[:user] = params[:nombre]
+    else
+      flash[:mensaje] = "El nombre de usuario ya existe. Por favor, elija otro."
+      redirect '/signup'
+    end
   rescue Exception => e
     puts e.message
   end
