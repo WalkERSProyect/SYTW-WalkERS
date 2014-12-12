@@ -70,8 +70,15 @@ end
 
 post '/login' do
   begin
-    @user = Usuarios.first(:username => params[:usuario], :password => params[:password])
-    session[:user] = @user.nombre
+    #@user = Usuarios.first(:username => params[:usuario], :password => params[:password])
+    @user = Usuarios.first(:username => params[:usuario])
+    @user_hash = BCrypt::Password.new(@user.password)
+    if (@user_hash == params[:password])
+      session[:user] = @user.nombre
+    else
+      flash[:mensaje] = "El nombre de usuario y/o contraseña no son correctos."
+      puts e.message
+    end
   rescue Exception => e
     flash[:mensaje] = "El nombre de usuario y/o contraseña no son correctos."
     puts e.message
