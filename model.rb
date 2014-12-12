@@ -28,3 +28,14 @@ class Rutas
   property :created_at, 	DateTime
 
 end
+
+class Amigos
+  include DataMapper::Resource
+
+  property :id,           Serial 
+  property :id_usuario,   Integer
+  property :id_amigo,     Integer   
+  property :created_at,   DateTime
+  property :updated_at,   DateTime
+
+end
