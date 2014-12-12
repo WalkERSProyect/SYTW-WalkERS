@@ -6,7 +6,7 @@ class Usuarios
 
   property :id,   		  Serial
   property :username,   String
-  property :password,   String
+  property :password,   BCryptHash
   property :nombre,     String
   property :apellidos,  String
   property :email,      String
@@ -22,7 +22,8 @@ class Rutas
   property :username,		  String
   property :nombre, 		  String
   property :informacion, 	String
-  property :puntuacion, 	Decimal
+  property :dificultad,   Integer
+  property :puntuacion, 	Integer
   property :votos, 			  Integer
   property :imagen,       String
   property :created_at, 	DateTime

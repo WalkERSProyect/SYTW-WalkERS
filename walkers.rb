@@ -74,8 +74,15 @@ end
 
 post '/login' do
   begin
-    @user = Usuarios.first(:username => params[:usuario], :password => params[:password])
-    session[:user] = @user.nombre
+    #@user = Usuarios.first(:username => params[:usuario], :password => params[:password])
+    @user = Usuarios.first(:username => params[:usuario])
+    @user_hash = BCrypt::Password.new(@user.password)
+    if (@user_hash == params[:password])
+      session[:user] = @user.nombre
+    else
+      flash[:mensaje] = "El nombre de usuario y/o contraseña no son correctos."
+      puts e.message
+    end
   rescue Exception => e
     flash[:mensaje] = "El nombre de usuario y/o contraseña no son correctos."
     puts e.message
@@ -87,12 +94,19 @@ get '/rutas' do
   if (!session[:user])
     redirect '/'
   else
+    # Obtengo las rutas almacenadas
+    @rutas = Rutas.all()
+    #puts "Esta es la info de rutas"
+    #puts @rutas[0].nombre
     erb :rutas
   end 
 end
 
 get '/ruta/:num' do
-
+  #puts "Estamos en la ruta con id:"
+  #puts params[:num]
+  @ruta = Rutas.first(:id_rut => params[:num])
+  erb :ruta
 end
 
 get '/ultimas' do

@@ -49,22 +49,14 @@
 <!-- FIN MENU -->
 
 <h1>Rutas</h1>
-
-
 <div class="list-group">
-  <a href="#" class="list-group-item active">
-    <h4 class="list-group-item-heading">Cruz del Carmen - La Punta</h4>
-    <p class="list-group-item-text">Esta el la primera ruta</p>
-  </a>
+  <% @rutas.each do |ruta| %>
+    <a href="./ruta/<%= ruta.id_rut %>" class="list-group-item">
+      <h4 class="list-group-item-heading"><%= ruta.nombre %></h4> 
+      <p class="list-group-item-text"><%= ruta.informacion %></p>
+    </a>
+  <% end %>
 </div>
-<div class="list-group">
-  <a href="#" class="list-group-item active">
-    <h4 class="list-group-item-heading">Cruz del Carmen - El Batán</h4>
-    <p class="list-group-item-text">Esta el la segunda ruta</p>
-  </a>
-</div>
-
-
 
 
 
