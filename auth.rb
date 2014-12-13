@@ -1,6 +1,7 @@
 require 'bundler/setup'
 require 'omniauth-oauth2'
 require 'omniauth-google-oauth2'
+require 'omniauth-facebook'
 require 'pry'
 require 'erubis'
 
