@@ -1,4 +1,5 @@
-$(document).ready(function() {
+$(document).ready(function() 
+{
   $("#mensaje-pass").hide();
   $("#pass2").keyup(function() {
     pass1 = $("#pass1").val();
@@ -13,7 +14,8 @@ $(document).ready(function() {
 	}
   });
 
-  $("#form-signup").submit(function() {
+  $("#form-signup").submit(function() 
+  {
   	if ($("#pass1").val() != $("#pass2").val()) {
   	  return false;
   	}

@@ -130,6 +130,14 @@ get '/amigos' do
   end
 end  
 
+get '/buscaramigos' do
+  if (!session[:user])
+    redirect '/'
+  else
+     @amigos = Amigos.all()
+     erb :buscaramigos
+  end  
+end
 
 get '/logout' do
   session.clear

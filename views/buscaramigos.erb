@@ -1,7 +1,7 @@
 <!DOCTYPE html>
 <html>
   <head>
-    <title>WalkERS</title>
+    <title>WalkERS - Amigos</title>
     <link href="./css/bootstrap.min.css" rel="stylesheet">
     <link href="./css/index.css" rel="stylesheet">
     <script src="./js/jquery.min.js"></script>
@@ -26,10 +26,10 @@
           otro elemento que se pueda ocultar al minimizar la barra -->
         <div class="collapse navbar-collapse navbar-ex1-collapse">
           <ul class="nav navbar-nav">
-            <li class="active"><a href="#">MIS SENDEROS</a></li>
-            <li><a href="./amigos">AMIGOS</a></li>
-            <li><a href="./rutas">RUTAS</a></li>
-            <li><a href="./buscaramigos">BUSCAR AMIGOS</a></li>
+            <li><a href="#">MIS SENDEROS</a></li>
+            <li><a href="#">AMIGOS</a></li>
+            <li class="active"><a href="./rutas">RUTAS</a></li>
+            <li><a href="#">BUSCAR AMIGOS</a></li>
             <p class="navbar-text pull-left">
               Conectado como <a href="#" class="navbar-link"><b><%= session[:user] %></b></a>
               - <a href="/logout">Salir</a>
@@ -43,10 +43,10 @@
           </form>
         </div>
       </nav>
-      <% if (flash[:mensaje]) %>
-      <div class="alert alert-success" role="alert"><%= flash[:mensaje] %></div>
-      <% end %>
     </div>
-    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.1/js/bootstrap.min.js"></script>
+    <!-- FIN MENU -->
+      <h1> <strong>  Aquí encontraras todos los amigos que tenemos </strong> </h1>
   </body>
-</html>
+</html> 
+
+
