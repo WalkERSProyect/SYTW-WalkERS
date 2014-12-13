@@ -28,7 +28,7 @@
 	  <div class="collapse navbar-collapse navbar-ex1-collapse">
 	    <ul class="nav navbar-nav">
 	      <li class="active"><a href="#">MIS SENDEROS</a></li>
-	      <li><a href="#">AMIGOS</a></li>
+	      <li><a href="./amigos">AMIGOS</a></li>
 	      <li><a href="./rutas">RUTAS</a></li>
 	      <li><a href="#">BUSCAR AMIGOS</a></li>
 	      <p class="navbar-text pull-left">
@@ -45,6 +45,10 @@
 	    </form>
 	  </div>
 	</nav>
+	<% if (flash[:mensaje]) %>
+	  <div class="alert alert-success" role="alert"><%= flash[:mensaje] %></div>
+	<% end %>
+
 </div>
     <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.1/js/bootstrap.min.js"></script>
   </body>
