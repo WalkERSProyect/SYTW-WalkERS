@@ -124,8 +124,8 @@ get '/amigos' do
    if (!session[:user])
     redirect '/'
   else
-    @amigos = Usuarios.all()
-    puts @amigos[0].username
+    @amigos = Amigos.all() # SELECT * FROM AMIGOS
+    puts @amigos
     erb :amigos
   end
 end  

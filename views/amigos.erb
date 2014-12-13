@@ -52,12 +52,11 @@
     <h1> <strong>  Aquí encontraras todos tus amigos</strong> </h1>
     <!-- Imagen -->
     <div class="lista-amigos">
-        <% @amigos.each do |amigos| %>
+        <% @amigos.each do |amigo| %>
         <div class="clase-amigo">
-    <a href="./amigos/<%= amigos.id %>" class="">
+    <a href="" class="">
         <img src="img/rushil.png" alt="" width = 200 px> </img>
-      <h4 class="list-group-item-heading"><%= amigos.nombre %></h4> 
-      <p class="list-group-item-text"><%= amigos.email %></p>
+      <p class="list-group-item-text"><%= amigo.id_usuario %></p>
     </a>
     </div>
   <% end %>
