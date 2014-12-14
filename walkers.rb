@@ -134,10 +134,45 @@ get '/buscaramigos' do
   if (!session[:user])
     redirect '/'
   else
-     @amigos = Amigos.all()
+     @usuario = Usuarios.all() #SELECT * FROM USUARIOS
+     @contador = Usuarios.count
+     @amigo  = Amigos.all()
+     #@contador2 = Amigos.count
+     #@añadido = false
+     #puts "Contador es #{@contador2}"
+     puts @usuario[0].username
      erb :buscaramigos
   end  
 end
+
+post '/buscaramigos' do
+  @usuari = Usuarios.first(:username => params[:usuario]) # SELECT * FROM USUARIOS WHERE USERNAME = "params usuario"
+  if (!@usuari)
+   flash[:mensaje] = "No existe ningun usuario con ese nombre"
+   redirect '/'
+  elsif (@usuari.nombre == session[:user])
+    flash[:mensaje] = "El usuario que esta buscando es usted mismo"
+    redirect '/'
+  else   
+   #flash[:mensaje] = "El usuario que esta buscando se llama #{@usuari.username}"
+   erb :añadiramigo
+  end
+end
+
+post '/añadiramigo' do
+  if (!session[:user])
+    redirect '/'
+  else
+    if (@opcion == '1')
+       flash[:mensaje] = "Amigo añadido con exito" 
+       redirect '/'
+    else
+       flash[:mensaje] = "No desea añadir el amigo" 
+       redirect '/'
+    end         
+  end 
+end
+
 
 get '/logout' do
   session.clear
