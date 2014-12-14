@@ -46,13 +46,13 @@
       </nav>
     </div>
     <!-- FIN MENU -->
-      <h1> Aqui podra añadir o buscar a un amigo </h1>
-        <form class="form-buscar" role="form" action="/buscaramigos" method="POST" name="form-buscar">
-          <h3 class="form-buscar-heading">Introduzca el nombre del usuario a buscar:</h3>  
-          <label for="inputEmail" class="sr-only">Usuario</label>
-          <input type="text" id="usuario" name="usuario" class="form-control" placeholder="Usuario" required autofocus>   
+     <h1> Desea añadir al usuario <%= @usuari.username %></h1>
+        <form class="form-buscar" role="form" action="/añadiramigo" method="POST" name="form-buscar">     
+          <input type="radio" name="opcion" value="1">Si  <br>
+          <input type="radio" name="opcion" value="2" checked>No <br>
+          <br> <br>
+          <button type="submit" class="btn btn-default">Enviar</button>
         </form> 
   </body>
 </html> 
-
-
+  
