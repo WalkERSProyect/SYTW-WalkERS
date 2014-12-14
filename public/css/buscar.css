@@ -1,0 +1,18 @@
+body {
+  padding-top: 40px;
+  padding-bottom: 40px;
+  /*background-color: #eee;*/
+  background: green url(../img/wallpaper2.jpg);
+  background-attachment: fixed;
+  /*color: white;*/
+}
+
+.form-buscar {
+  max-width: 330px;
+  padding: 15px;
+  margin: 0 auto;
+}
+.form-buscar .form-buscar-heading,
+.form-buscar .checkbox {
+  margin-bottom: 10px;
+}

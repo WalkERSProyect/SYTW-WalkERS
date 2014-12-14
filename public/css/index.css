@@ -12,14 +12,4 @@ body {
   background-attachment: fixed;
 }
 
-.lista-amigos {
-	/*background-color: white;*/
-	overflow:hidden;
-	min-height: 200px;
-	height:auto;
-}
-.clase-amigo {
-	float:left;
-	width: 300px;
-}
 
