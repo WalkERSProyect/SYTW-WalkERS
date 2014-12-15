@@ -35,7 +35,8 @@ class Amigos
 
   property :id,           Serial 
   property :id_usuario,   Integer
-  property :id_amigo,     Integer   
+  property :id_amigo,     Integer 
+  property :nombre,       String  
   property :created_at,   DateTime
   property :updated_at,   DateTime
 
