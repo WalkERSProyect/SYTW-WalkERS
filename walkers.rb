@@ -74,7 +74,7 @@ post '/getUser' do
   begin
     @usuario = Usuarios.first(:username => params[:usuario])
     if (!@usuario)
-      @objeto = Usuarios.first_or_create(:username => params[:usuario], :nombre => session[:name], :email => session[:email])
+      @objeto = Usuarios.first_or_create(:username => params[:usuario], :nombre => session[:name], :apellidos => session[:surname], :email => session[:email])
       session[:user] = session[:name]
       flash[:mensaje] = "¡Enhorabuena! Se ha registrado correctamente."
     else
