@@ -7,7 +7,9 @@ gem 'haml'
 gem 'sinatra'
 gem 'omniauth'
 gem 'omniauth-facebook'
+gem 'omniauth-twitter', ">= 1.1.0"
 gem 'omniauth-google-oauth2'
+
 
 gem 'pry'
 gem 'erubis'

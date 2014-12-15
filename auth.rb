@@ -2,6 +2,7 @@ require 'bundler/setup'
 require 'omniauth-oauth2'
 require 'omniauth-google-oauth2'
 require 'omniauth-facebook'
+require 'omniauth-twitter'
 require 'pry'
 require 'erubis'
 
@@ -13,6 +14,7 @@ use OmniAuth::Builder do
   config = YAML.load_file 'config/config.yml'
   provider :google_oauth2, config['identifier'], config['secret']
   provider :facebook, config['identifier_f'], config['secret_f']
+  provider :twitter, config['identifier_t'], config['secret_t']
 end
 
 
