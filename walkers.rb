@@ -32,12 +32,18 @@ DataMapper.auto_upgrade!
 enable :sessions
 set :session_secret, '*&(^#234a)'
 
+#erb :site_layout, :layout => false do
+#  erb :region_layout do
+#    erb :page
+#  end
+#end
+
 get '/' do
   #Comprobamos si el usuario no se ha registrado.
   if (!session[:user])
-    erb :welcome
+    haml :welcome, :layout => false
   else
-    erb :index
+    haml :index
   end
 end
 
@@ -224,7 +230,6 @@ post '/añadiramigo' do
     end         
   end 
 end
-
 
 get '/logout' do
   session.clear
