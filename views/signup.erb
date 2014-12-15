@@ -11,72 +11,68 @@
   <body>
     <!--<h1>Registro</h1>-->
     <div class="container">
-      <div id="loginbox" class="mainbox col-md-6 col-md-offset-3 col-sm-8 col-sm-offset-2">
-        <div class="panel panel-info">
-          <div class="panel-heading">
-            <div class="panel-title"><a href="./">WalkERS</a> </div>
-          </div>
-          <div class="panel-body" >
-            <% if (flash[:mensaje]) %>
-            <div id="login-alert" class="alert alert-danger col-sm-12">
-              <p> <%= flash[:mensaje] %></p>
+      	<div id="loginbox" class="mainbox col-md-6 col-md-offset-3 col-sm-8 col-sm-offset-2">
+      	  <div class="panel panel-info">
+           <div class="panel-heading">
+              <div class="panel-title"><a href="./">WalkERS</a></div>
+	         </div>     
+	         <div class="panel-body" >
+	      	  <div id="registro-fuente-externa">
+              <a href="/auth/google_oauth2">Google</a><br><a href="/auth/facebook">Facebook</a><br><a href="/auth/twitter">Twitter</a>
             </div>
-            <% end %>
             <div id="mensaje-pass" class="alert alert-danger col-sm-12"></div>
-            <form class="form-horizontal" role="form" action="/signup" method="POST" name="form-signup" id="form-signup">
-              <h2 class="form-signin-heading">Registro</h2>
-              <div class="form-group">
-                <label for="nombre" class="col-sm-2 control-label">Nombre</label>
-                <div class="col-sm-10">
-                  <input type="text" class="form-control" id="nombre" name="nombre" placeholder="Nombre" required autofocus>
-                </div>
-              </div>
-              <div class="form-group">
-                <label for="apellidos" class="col-sm-2 control-label">Apellidos</label>
-                <div class="col-sm-10">
-                  <input type="text" class="form-control" id="apellidos" name="apellidos" placeholder="Apellidos" required>
-                </div>
-              </div>
-              <div class="form-group">
-                <label for="apellidos" class="col-sm-2 control-label">Usuario</label>
-                <div class="col-sm-10">
-                  <input type="text" class="form-control" id="usuario" name="usuario" placeholder="Nombre de usuario" required>
-                </div>
-              </div>
-              <div class="form-group">
-                <label for="email" class="col-sm-2 control-label">Email</label>
-                <div class="col-sm-10">
-                  <input type="email" class="form-control" id="email" name="email" placeholder="Email" required>
-                </div>
-              </div>
-              <div class="form-group">
-                <label for="pass1" class="col-sm-2 control-label">Contraseña</label>
-                <div class="col-sm-10">
-                  <input type="password" class="form-control" id="pass1" name="pass1" placeholder="Contraseña" required>
-                </div>
-              </div>
-              <div class="form-group">
-                <!-- COMPROBAR QUE LA SEGUNDA CONTRASEÑA ES LA MISMA CON JS-->
-                <label for="pass2" class="col-sm-2 control-label">Repetir contraseña</label>
-                <div class="col-sm-10">
-                  <input type="password" class="form-control" id="pass2" name="pass2" placeholder="Repetir contraseña" required>
-                </div>
-              </div>
-              <div class="form-group">
-                <div class="col-sm-offset-2 col-sm-10">
-                  <button class="btn btn-lg btn-success btn-block" type="submit" id="btn-submit" onclick="enviar()">Registro</button>
-                </div>
-              </div>
-              <div id="signup-msg">
-                ¿Ya tiene una cuenta?
-                <!--<a href="#" onClick="$('#loginbox').hide(); $('#signupbox').show()">Regístrate aquí</a>-->
-                <a href="./login">Loguéate aquí</a>
-              </div>
-            </form>
-          </div>
-        </div>
-      </div>
-    </div>
-    <!-- /container -->
+    			  <form class="form-horizontal" role="form" action="/signup" method="POST" name="form-signup" id="form-signup">
+    			    <h2 class="form-signin-heading">Registro</h2>
+    			    <div class="form-group">
+        			  <label for="nombre" class="col-sm-2 control-label">Nombre</label>
+        			  <div class="col-sm-10">
+          			    <input type="text" class="form-control" id="nombre" name="nombre" placeholder="Nombre" required autofocus>
+        			  </div>
+           			</div>
+           			<div class="form-group">
+        			  <label for="apellidos" class="col-sm-2 control-label">Apellidos</label>
+        			  <div class="col-sm-10">
+          			    <input type="text" class="form-control" id="apellidos" name="apellidos" placeholder="Apellidos" required>
+        			  </div>
+           			</div>
+           			<div class="form-group">
+        			  <label for="apellidos" class="col-sm-2 control-label">Usuario</label>
+        			  <div class="col-sm-10">
+          			    <input type="text" class="form-control" id="usuario" name="usuario" placeholder="Nombre de usuario" required>
+        			  </div>
+           			</div>
+           			<div class="form-group">
+        			  <label for="email" class="col-sm-2 control-label">Email</label>
+        			  <div class="col-sm-10">
+          			    <input type="email" class="form-control" id="email" name="email" placeholder="Email" required>
+        			  </div>
+           			</div>
+           			<div class="form-group">
+        			  <label for="pass1" class="col-sm-2 control-label">Contraseña</label>
+        			  <div class="col-sm-10">
+          			    <input type="password" class="form-control" id="pass1" name="pass1" placeholder="Contraseña" required>
+        			  </div>
+           			</div>
+           			<div class="form-group"> <!-- COMPROBAR QUE LA SEGUNDA CONTRASEÑA ES LA MISMA CON JS-->
+        			  <label for="pass2" class="col-sm-2 control-label">Repetir contraseña</label>
+        			  <div class="col-sm-10">
+          			    <input type="password" class="form-control" id="pass2" name="pass2" placeholder="Repetir contraseña" required>
+        			  </div>
+           			</div>
+           			<div class="form-group">
+           			  <div class="col-sm-offset-2 col-sm-10">
+    			        <button class="btn btn-lg btn-success btn-block" type="submit" id="btn-submit" onclick="enviar()">Registro</button>
+    			      </div>
+    			    </div>
+    		        <div id="signup-msg">
+    		          ¿Ya tiene una cuenta?
+    		          <!--<a href="#" onClick="$('#loginbox').hide(); $('#signupbox').show()">Regístrate aquí</a>-->
+    		          <a href="./login">Loguéate aquí</a>
+    		        </div>
+    		      </form>
+		       </div>
+		      </div>
+	      </div>
+    </div> <!-- /container -->
   </body>
 </html>

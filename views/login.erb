@@ -10,42 +10,42 @@
   <body>
     <!--<h1>Logueo</h1>-->
     <div class="container">
-      <div id="loginbox" class="mainbox col-md-6 col-md-offset-3 col-sm-8 col-sm-offset-2">
-        <div class="panel panel-info">
-          <div class="panel-heading">
-            <div class="panel-title"><a href="./">WalkERS</a></div>
-            <div id="pass-msg">
-              <a href="#">¿Olvidaste la contraseña?</a>
-            </div>
-          </div>
-          <div class="panel-body" >
-            <% if (flash[:mensaje]) %>
-            <div id="login-alert" class="alert alert-danger col-sm-12">
-              <p><%= flash[:mensaje] %></p>
-            </div>
-            <% end %>
-            <form class="form-signin" role="form" action="/login" method="POST" name="form-login">
-              <h2 class="form-signin-heading">Logueo</h2>
-              <label for="inputEmail" class="sr-only">Usuario</label>
-              <input type="text" id="usuario" name="usuario" class="form-control" placeholder="Usuario" required autofocus>
-              <label for="inputPassword" class="sr-only">Contraseña</label>
-              <input type="password" id="password" name="password" class="form-control" placeholder="Contraseña" required>
-              <div class="checkbox">
-                <label>
-                <input type="checkbox" value="remember-me"> Recordar mis datos
-                </label>
-              </div>
-              <button class="btn btn-lg btn-success btn-block" type="submit">Login</button>
-              <div id="signup-msg">
-                ¿No tiene una cuenta?
-                <!--<a href="#" onClick="$('#loginbox').hide(); $('#signupbox').show()">Regístrate aquí</a>-->
-                <a href="./signup">Regístrate aquí</a>
-              </div>
-            </form>
-          </div>
-        </div>
-      </div>
-    </div>
-    <!-- /container --> 
+      	<div id="loginbox" class="mainbox col-md-6 col-md-offset-3 col-sm-8 col-sm-offset-2">
+      	  <div class="panel panel-info">
+            <div class="panel-heading">
+              <div class="panel-title"><a href="./">WalkERS</a></div>
+	          <div id="pass-msg">
+	            <a href="#">¿Olvidaste la contraseña?</a>
+	          </div>
+	        </div>     
+	        <div class="panel-body" >
+	          <% if (flash[:mensaje]) %>
+	      	    <div id="login-alert" class="alert alert-danger col-sm-12"><p><%= flash[:mensaje] %></p></div>
+	      	  <% end %>
+			  <form class="form-signin" role="form" action="/login" method="POST" name="form-login">
+			    <h2 class="form-signin-heading">Logueo</h2>
+           	    <div id="registro-fuente-externa">
+              		<a href="/auth/google_oauth2">Google</a><br><a href="/auth/facebook">Facebook</a><br><a href="/auth/twitter">Twitter</a>
+                </div>
+			    <label for="inputEmail" class="sr-only">Usuario</label>
+			    <input type="text" id="usuario" name="usuario" class="form-control" placeholder="Usuario" required autofocus>
+			    <label for="inputPassword" class="sr-only">Contraseña</label>
+			    <input type="password" id="password" name="password" class="form-control" placeholder="Contraseña" required>
+			    <div class="checkbox">
+			      <label>
+		            <input type="checkbox" value="remember-me"> Recordar mis datos
+	   			  </label>
+			    </div>
+			    <button class="btn btn-lg btn-success btn-block" type="submit">Login</button>
+		        <div id="signup-msg">
+		          ¿No tiene una cuenta?
+		          <!--<a href="#" onClick="$('#loginbox').hide(); $('#signupbox').show()">Regístrate aquí</a>-->
+		          <a href="./signup">Regístrate aquí</a>
+		        </div>
+		      </form>
+		  </div>
+		</div>
+	  </div>
+    </div> <!-- /container -->
   </body>
 </html>
