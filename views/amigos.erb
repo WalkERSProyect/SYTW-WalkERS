@@ -4,6 +4,7 @@
     <title>WalkERS - Amigos</title>
     <link href="./css/bootstrap.min.css" rel="stylesheet">
     <link href="./css/index.css" rel="stylesheet">
+    <link href="./css/amigos.css" rel="stylesheet">
     <script src="./js/jquery.min.js"></script>
     <script src="./js/bootstrap.min.js"></script>
   </head>
@@ -51,8 +52,8 @@
       <% @amigos.each do |amigo| %>
       <div class="clase-amigo">
         <a href="" class="">
-          <img src="img/rushil.png" alt="" width = 200 px> </img>
-          <p class="list-group-item-text"><%= amigo.id_amigo %></p>
+          <img src="img/perfil-anonimo.jpg" alt="" width = 200 px> </img>
+          <p class="list-group-item-text"><%= amigo.nombre %></p>
         </a>
       </div>
       <% end %>
