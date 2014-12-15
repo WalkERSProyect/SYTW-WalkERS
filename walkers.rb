@@ -182,10 +182,10 @@ get '/amigos' do
       erb :amigos  
      elsif (@mostrar == false) && (@amigos[session[:id]] == nil) 
         flash[:mensaje] = ":( El usuario no tiene amigos"
-        redirect '/'  
+        redirect '/buscaramigos'  
       elsif (@mostrar == false) && (Amigos.count() != 0)
          flash[:mensaje] = "Los amigos no pertenecen a este usuario"  
-        redirect '/'       
+        redirect '/buscaramigos'       
     end 
   end   
 end  
