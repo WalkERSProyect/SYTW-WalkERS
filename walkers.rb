@@ -32,6 +32,19 @@ DataMapper.auto_upgrade!
 enable :sessions
 set :session_secret, '*&(^#234a)'
 
+
+def get_remote_ip(env)
+  puts "request.url = #{request.url}"
+  puts "request.ip = #{request.ip}"
+  if addr = env['HTTP_X_FORWARDED_FOR']
+    puts "env['HTTP_X_FORWARDED_FOR'] = #{addr}"
+    addr.split(',').first.strip
+  else
+    puts "env['REMOTE_ADDR'] = #{env['REMOTE_ADDR']}"
+    env['REMOTE_ADDR']
+  end
+end
+
 get '/' do
   #Comprobamos si el usuario no se ha registrado.
   if (!session[:user])
