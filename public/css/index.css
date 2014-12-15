@@ -12,4 +12,26 @@ body {
   background-attachment: fixed;
 }
 
+#populares {
+	width: 100%;
+	height: 300px;
+	background-color: rgba(255,255,255, 0.8);
+	margin-bottom: 10px;
+	border-radius: 10px;
+}
+
+#populares h4 {
+	padding-top: 15px;
+}
+
+#ultimas {
+	width: 100%;
+	background-color: rgba(255,255,255, 0.8);
+	height: 300px;
+	border-radius: 10px;
+}
+
+#ultimas h4 {
+	padding-top: 15px;
+}
 

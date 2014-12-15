@@ -35,7 +35,7 @@
               - <a href="/logout">Salir</a>
             </p>
           </ul>
-          <form class="navbar-form navbar-left" role="search">
+          <form class="navbar-form navbar-right" role="search">
             <div class="form-group">
               <input type="text" class="form-control" placeholder="Buscar">
             </div>
@@ -46,6 +46,14 @@
       <% if (flash[:mensaje]) %>
       <div class="alert alert-success" role="alert"><%= flash[:mensaje] %></div>
       <% end %>
+
+      <div id="ultimas">
+        <h4>Últimas rutas añadidas</h4>
+      </div>
+      <div id="populares">
+        <h4>Rutas más populares</h4>
+      </div>
+
     </div>
     <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.1/js/bootstrap.min.js"></script>
   </body>
