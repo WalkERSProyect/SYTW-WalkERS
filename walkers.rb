@@ -72,8 +72,15 @@ end
 
 post '/getUser' do
   begin
-    @objeto = Usuarios.first_or_create(:username => params[:usuario], :nombre => session[:name], :email => session[:email])
-    session[:user] = session[:name]
+    @usuario = Usuarios.first(:username => params[:usuario])
+    if (!@usuario)
+      @objeto = Usuarios.first_or_create(:username => params[:usuario], :nombre => session[:name], :email => session[:email])
+      session[:user] = session[:name]
+      flash[:mensaje] = "¡Enhorabuena! Se ha registrado correctamente."
+    else
+      flash[:mensaje] = "El nombre de usuario ya existe. Por favor, elija otro."
+      redirect '/getUser'
+    end
   rescue Exception => e
     puts e.message
   end
