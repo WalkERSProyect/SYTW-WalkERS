@@ -113,6 +113,7 @@ post '/login' do
     @user_hash = BCrypt::Password.new(@user.password)
     if (@user_hash == params[:password])
       session[:user] = @user.nombre
+      session[:id] = @user.id
     else
       flash[:mensaje] = "El nombre de usuario y/o contraseña no son correctos."
       puts e.message
@@ -178,15 +179,26 @@ end
 
 post '/buscaramigos' do
   @usuari = Usuarios.first(:username => params[:usuario]) # SELECT * FROM USUARIOS WHERE USERNAME = "params usuario"
+  #@añadido = false
   if (!@usuari)
-   flash[:mensaje] = "No existe ningun usuario con ese nombre"
-   redirect '/'
+    flash[:mensaje] = "No existe ningun usuario con ese nombre"
+    redirect '/'
   elsif (@usuari.nombre == session[:user])
     flash[:mensaje] = "El usuario que esta buscando es usted mismo"
-    redirect '/'
+    redirect '/' 
   else   
-   #flash[:mensaje] = "El usuario que esta buscando se llama #{@usuari.username}"
-   erb :añadiramigo
+    #flash[:mensaje] = "El usuario que esta buscando se llama #{@usuari.username}"
+    @amigo = Amigos.first_or_create(:id_usuario => session[:id])
+    puts "Amigo"
+    @amigo.id_amigo = nil # Solucion Temporal
+    puts @amigo.id_amigo
+    if (@amigo.id_amigo == nil)
+      @amigo = Amigos.first_or_create(:id_usuario => session[:id],:id_amigo => @usuari.id, :nombre => @usuari.nombre)
+      puts @amigo.id_amigo
+      erb :añadiramigo
+    else
+      flash[:mensaje] = "Ya tiene el amigo en su lista"  
+    end
   end
 end
 
@@ -194,7 +206,9 @@ post '/añadiramigo' do
   if (!session[:user])
     redirect '/'
   else
-    if (@opcion == '1')
+    #@amigo  = Amigos.all()
+    @opcion = params[:opcion]
+    if (@opcion == '1') 
        flash[:mensaje] = "Amigo añadido con exito" 
        redirect '/'
     else
