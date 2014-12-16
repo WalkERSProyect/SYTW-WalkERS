@@ -32,11 +32,18 @@ DataMapper.auto_upgrade!
 enable :sessions
 set :session_secret, '*&(^#234a)'
 
-#erb :site_layout, :layout => false do
-#  erb :region_layout do
-#    erb :page
-#  end
-#end
+
+def get_remote_ip(env)
+  puts "request.url = #{request.url}"
+  puts "request.ip = #{request.ip}"
+  if addr = env['HTTP_X_FORWARDED_FOR']
+    puts "env['HTTP_X_FORWARDED_FOR'] = #{addr}"
+    addr.split(',').first.strip
+  else
+    puts "env['REMOTE_ADDR'] = #{env['REMOTE_ADDR']}"
+    env['REMOTE_ADDR']
+  end
+end
 
 get '/' do
   #Comprobamos si el usuario no se ha registrado.
@@ -72,6 +79,7 @@ get'/getUser' do
     else
       puts "en el else"
       session[:user] = session[:name]
+      session[:username] = session[:usuario]
       redirect '/'
     end 
     rescue Exception => e
@@ -86,6 +94,7 @@ post '/getUser' do
     if (!@usuario)
       @objeto = Usuarios.first_or_create(:username => params[:usuario], :nombre => session[:name], :apellidos => session[:surname], :email => session[:email])
       session[:user] = session[:name]
+      session[:username] = params[:usuario]
       flash[:mensaje] = "¡Enhorabuena! Se ha registrado correctamente."
     else
       flash[:mensaje] = "El nombre de usuario ya existe. Por favor, elija otro."
@@ -104,6 +113,7 @@ post '/signup' do
     if (!@usuario)
       @objeto = Usuarios.first_or_create(:username => params[:usuario], :nombre => params[:nombre], :apellidos => params[:apellidos], :email => params[:email], :password => params[:pass1])
       session[:user] = params[:nombre]
+      session[:username] = params[:usuario]
       flash[:mensaje] = "¡Enhorabuena! Se ha registrado correctamente."
     else
       flash[:mensaje] = "El nombre de usuario ya existe. Por favor, elija otro."
@@ -131,6 +141,7 @@ post '/login' do
     if (@user_hash == params[:password])
       session[:user] = @user.nombre
       session[:id] = @user.id
+      session[:username] = @user.username      
     else
       flash[:mensaje] = "El nombre de usuario y/o contraseña no son correctos."
       puts e.message
@@ -154,6 +165,29 @@ get '/rutas' do
   end 
 end
 
+get '/addruta' do
+  if (!session[:user])
+    redirect '/'
+  else
+    erb :addruta
+  end
+end  
+
+post '/addruta' do
+  if (!session[:user])
+    redirect '/'
+  else
+    puts "Estoy aqui en el post de add ruta"
+    puts "Nombraco " + params[:nombre]
+    puts "Difi " + params[:dificultad]
+    puts "Info " + params[:descripcion]
+    @ruta=Rutas.first_or_create(:nombre => params[:nombre] ,:dificultad => params[:dificultad], :informacion => params[:descripcion])
+    #@ruta.save
+    
+    redirect '/rutas'
+  end
+end
+
 get '/ruta/:num' do
   #puts "Estamos en la ruta con id:"
   #puts params[:num]
@@ -167,6 +201,11 @@ get '/ultimas' do
   else
     erb :ultimas
   end 
+end
+
+get '/estadisticas/:id' do
+  
+  
 end
 
 get '/amigos' do
@@ -228,6 +267,7 @@ post '/buscaramigos' do
     end
   end
 end
+
 
 get '/logout' do
   session.clear

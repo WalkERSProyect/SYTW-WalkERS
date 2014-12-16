@@ -18,7 +18,7 @@ gem 'erubis'
 #Gemas estadistica
 gem 'rest-client'
 gem 'xml-simple'
-#gem 'chartkick'
+gem 'chartkick'
 
 gem 'sinatra-flash'
 
