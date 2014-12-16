@@ -44,7 +44,9 @@ get '/' do
     haml :welcome, :layout => false
   else
     # Obtenemos las últimas rutas añadidas
-    @ultimas_rutas = Rutas.all()
+    @ultimas_rutas = Rutas.all(:limit => 4, :order => [ :created_at.desc ])
+    # Obtenemos las rutas más populares
+    @populares_rutas = Rutas.all(:limit => 4, :order => [:puntuacion.desc])
     haml :index
   end
 end
@@ -53,7 +55,7 @@ get '/signup' do
   if (!session[:user])
     erb :signup
   else
-    redirect '/'
+    redirect '/, :order => [:puntuacion.desc]'
   end
 end
 
