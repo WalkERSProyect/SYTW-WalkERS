@@ -173,7 +173,14 @@ post '/addruta' do
   if (!session[:user])
     redirect '/'
   else
-    @ruta=Rutas.first_or_create()
+    puts "Estoy aqui en el post de add ruta"
+    puts "Nombraco " + params[:nombre]
+    puts "Difi " + params[:dificultad]
+    puts "Info " + params[:descripcion]
+    @ruta=Rutas.first_or_create(:nombre => params[:nombre] ,:dificultad => params[:dificultad], :informacion => params[:descripcion])
+    #@ruta.save
+    
+    redirect '/rutas'
   end
 end
 
