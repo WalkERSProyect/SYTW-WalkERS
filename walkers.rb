@@ -191,8 +191,21 @@ end
 get '/ruta/:num' do
   #puts "Estamos en la ruta con id:"
   #puts params[:num]
+
+  puts "Este debiera ser el parámetro= " + params[:num]
   @ruta = Rutas.first(:id_rut => params[:num])
   erb :ruta
+end
+
+post'/ruta/:num' do
+  puts "eys. en el post"
+  puts "Estamos en la ruta con id:"
+  puts params[:num]
+
+  @ruta_actual = params[:num]
+  puts "Puto id:"
+  puts @ruta_actual
+  redirect "/ruta/#{params[:num]}"
 end
 
 get '/ultimas' do
