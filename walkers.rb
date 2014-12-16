@@ -157,8 +157,18 @@ get '/rutas' do
   end 
 end
 
-post '/rutas' do
+get '/addruta' do
+  if (!session[:user])
+    redirect '/'
+  else
+    erb :addruta
+end  
 
+post '/addruta' do
+  if (!session[:user])
+    redirect '/'
+  else
+    @ruta=Rutas.first_or_create()
 end
 
 get '/ruta/:num' do
