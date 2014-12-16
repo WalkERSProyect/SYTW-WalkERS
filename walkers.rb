@@ -215,7 +215,7 @@ get '/amigos' do
     @mostrar = false
     @amigo = Amigos.all() # SELECT * FROM AMIGOS
     for i in 0...Amigos.count()
-      if (session[:id] == @amigo[i].id_usuario) && (@amigo[i].nombre)
+      if ((session[:id] == @amigo[i].id_usuario) && (@amigo[i].nombre))
           puts "hacia vista amigos"
           puts i
           #erb :amigos
@@ -268,11 +268,11 @@ post '/añadiramigo' do
   end    
   if ((@amigo) && (@encontrado == true)) # Si existe el amigo 
     flash[:mensaje] = "Ya tiene el amigo en su lista"
-    redirect '/buscaramigos'  
+    redirect '/amigos'  
   else      
     @amigo = Amigos.first_or_create(:id_usuario => session[:id],:id_amigo => @usuario.id, :nombre => @usuario.nombre)
     flash[:mensaje] = "Amigo añadido con exito"
-    redirect '/buscaramigos'
+    redirect '/amigos'
   end
 end
 

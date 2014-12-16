@@ -47,33 +47,23 @@
       </nav>
     </div>
     <!-- FIN MENU -->
-   
+    <% if (flash[:mensaje]) %>
+    <div class="alert-danger" role="alert"><%= flash[:mensaje] %></div>
+    <% end %>
    <h1> <strong>  Aquí encontraras todos tus amigos</strong> </h1>
   <button type="button" class="btn btn-default"><a href="./buscaramigos">BUSCAR AMIGOS</a></button>
-    <!-- Imagen -->
+  <br>
+  <br>
+    <!-- Imagen -->   
     <div class="lista-amigos">
       <% for i in 0...Amigos.count() %>
          <% if ((@amigo[i].nombre) && (session[:id] == @amigo[i].id_usuario)) %>
          <div class="clase-amigo">
          <img src="img/perfil-anonimo.jpg" alt="" width = 200 px> </img>
-         <p class ="list-group-item-text"><%= @amigo[i].nombre %> </p>  
+         <h4 class ="list-group-item-text"><%= @amigo[i].nombre %> </h4>  
      </div>  
         <% end %>   
-      <% end %> 
-      <!--
-      <% @amigo.each do |amigo| %>
-      <div class="clase-amigo">
-        <a href="" class="">
-          <img src="img/perfil-anonimo.jpg" alt="" width = 200 px> </img>
-          <p class="list-group-item-text"><%= amigo.nombre %></p>
-        </a>
-      </div>
-      <% end %>
-    </div>
-    -->
-    <% if (flash[:mensaje]) %>
-    <div class="alert alert-success" role="alert"><%= flash[:mensaje] %></div>
-    <% end %>  
+      <% end %>   
      <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.1/js/bootstrap.min.js"></script>
   </body>  
 </html
