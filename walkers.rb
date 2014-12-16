@@ -218,6 +218,8 @@ post '/añadiramigo' do
 end
 
 
+
+
 get '/logout' do
   session.clear
   redirect '/'
