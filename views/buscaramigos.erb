@@ -46,13 +46,17 @@
       </nav>
     </div>
     <!-- FIN MENU -->
-      <h1> Aqui podra añadir o buscar a un amigo </h1>
-        <form class="form-buscar" role="form" action="/buscaramigos" method="POST" name="form-buscar">
-          <h3 class="form-buscar-heading">Introduzca el nombre del usuario a buscar:</h3>  
-          <label for="inputEmail" class="sr-only">Usuario</label>
-          <input type="text" id="usuario" name="usuario" class="form-control" placeholder="Usuario" required autofocus>   
-        </form> 
+    <h1> Aqui podra añadir o buscar a un amigo </h1>
+    <form class="form-buscar" role="form" action="/buscaramigos" method="POST" name="form-buscar">
+      <h3 class="form-buscar-heading">Introduzca el nombre del usuario a buscar:</h3>
+      <label for="inputEmail" class="sr-only">Usuario</label>
+      <input type="text" id="usuario" name="usuario" class="form-control" placeholder="Usuario" required autofocus>   
+    </form>
+    <% if (flash[:mensaje]) %>
+    <div class="alert alert-success" role="alert"><%= flash[:mensaje] %></div>
+    <% end %>  
+    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.1/js/bootstrap.min.js"></script>
   </body>
-</html> 
+</html>
 
 

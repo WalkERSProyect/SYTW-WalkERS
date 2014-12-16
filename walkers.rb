@@ -166,70 +166,67 @@ get '/ultimas' do
 end
 
 get '/amigos' do
+  @mostrar = false
    if (!session[:user])
     redirect '/'
   else
     @amigos = Amigos.all() # SELECT * FROM AMIGOS
-    puts @amigos
-    erb :amigos
-  end
+    for i in 0...Amigos.count()
+      puts @amigos[i].id_usuario
+      if (@amigos[i].id_usuario == session[:id])
+        puts "hacia vista amigos"
+        @mostrar = true
+      end
+    end
+     if (@mostrar == true)
+      erb :amigos  
+     elsif (@mostrar == false) && (@amigos[session[:id]] == nil) 
+        flash[:mensaje] = ":( El usuario no tiene amigos"
+        redirect '/buscaramigos'  
+      elsif (@mostrar == false) && (Amigos.count() != 0)
+         flash[:mensaje] = "Los amigos no pertenecen a este usuario"  
+        redirect '/buscaramigos'       
+    end 
+  end   
 end  
+
+
 
 get '/buscaramigos' do
   if (!session[:user])
     redirect '/'
   else
-     @usuario = Usuarios.all() #SELECT * FROM USUARIOS
-     @contador = Usuarios.count
-     @amigo  = Amigos.all()
-     #@contador2 = Amigos.count
-     #@añadido = false
-     #puts "Contador es #{@contador2}"
-     puts @usuario[0].username
      erb :buscaramigos
   end  
 end
 
 post '/buscaramigos' do
+  @amigos = Amigos.all()
   @usuari = Usuarios.first(:username => params[:usuario]) # SELECT * FROM USUARIOS WHERE USERNAME = "params usuario"
-  #@añadido = false
   if (!@usuari)
     flash[:mensaje] = "No existe ningun usuario con ese nombre"
-    redirect '/'
+    redirect '/buscaramigos'
   elsif (@usuari.nombre == session[:user])
     flash[:mensaje] = "El usuario que esta buscando es usted mismo"
-    redirect '/' 
+    redirect '/buscaramigos' 
   else   
-    #flash[:mensaje] = "El usuario que esta buscando se llama #{@usuari.username}"
-    @amigo = Amigos.first_or_create(:id_usuario => session[:id])
-    puts "Amigo"
-    @amigo.id_amigo = nil # Solucion Temporal
-    puts @amigo.id_amigo
-    if (@amigo.id_amigo == nil)
+    @usuario = Usuarios.first(:id => session[:id]) # SELECT * FROM AMIGOS WHERE ID = SESSION[ID]
+    #if (@amigos[session[:id]].id_amigo != nil)
+    puts @usuario.nombre # Usuario conectado actual
+    puts @usuari.nombre # Usuario introducio por teclado
+    puts "hola"
+    if (@usuario.nombre == @usuari.nombre)
+       flash[:mensaje] = "Ya tiene el amigo en su lista"
+       redirect '/buscaramigos'  
+    else      
       @amigo = Amigos.first_or_create(:id_usuario => session[:id],:id_amigo => @usuari.id, :nombre => @usuari.nombre)
-      puts @amigo.id_amigo
-      erb :añadiramigo
-    else
-      flash[:mensaje] = "Ya tiene el amigo en su lista"  
+      puts @amigo.nombre
+      flash[:mensaje] = "Amigo añadido con exito"
+      redirect '/buscaramigos'
     end
   end
 end
 
-post '/añadiramigo' do
-  if (!session[:user])
-    redirect '/'
-  else
-    #@amigo  = Amigos.all()
-    @opcion = params[:opcion]
-    if (@opcion == '1') 
-       flash[:mensaje] = "Amigo añadido con exito" 
-       redirect '/'
-    else
-       flash[:mensaje] = "No desea añadir el amigo" 
-       redirect '/'
-    end         
-  end 
-end
 
 get '/logout' do
   session.clear
