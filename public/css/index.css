@@ -12,27 +12,9 @@ body {
   background-attachment: fixed;
 }
 
-#populares {
-	width: 100%;
+.panel.panel-success {
 	background-color: rgba(255,255,255, 0.8);
-	overflow:hidden;
-	margin-top: 10px;
-	border-radius: 10px;
-}
-
-#populares h4 {
-	padding-top: 15px;
-}
-
-#ultimas {
-	width: 100%;
-	background-color: rgba(255,255,255, 0.8);
-	overflow:hidden;
-	border-radius: 10px;
-}
-
-#ultimas h4 {
-	padding-top: 15px;
+	margin-bottom: 6px;
 }
 
 .imagen {
