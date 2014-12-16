@@ -1,0 +1,14 @@
+%h1 Rutas
+%button.btn.btn-default{:type => "button"}
+  %a{:href => "./addruta"} Añadir ruta
+.list-group
+  - @rutas.each do |ruta|
+    %a.list-group-item{:href => "./ruta/#{ruta.id_rut}"}
+      %h4.list-group-item-heading= ruta.nombre
+      %p.list-group-item-text= ruta.informacion
+%nav
+  %ul.pager
+    %li.disabled
+      %a{:href => "#"} Previous
+    %li
+      %a{:href => "#"} Next

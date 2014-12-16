@@ -146,7 +146,7 @@ get '/rutas' do
     @rutas = Rutas.all()
     #puts "Esta es la info de rutas"
     #puts @rutas[0].nombre
-    erb :rutas
+    haml :rutas
   end 
 end
 
