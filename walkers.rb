@@ -75,6 +75,7 @@ get'/getUser' do
     else
       puts "en el else"
       session[:user] = session[:name]
+      session[:username] = session[:usuario]
       redirect '/'
     end 
     rescue Exception => e
@@ -89,6 +90,7 @@ post '/getUser' do
     if (!@usuario)
       @objeto = Usuarios.first_or_create(:username => params[:usuario], :nombre => session[:name], :apellidos => session[:surname], :email => session[:email])
       session[:user] = session[:name]
+      session[:username] = params[:usuario]
       flash[:mensaje] = "¡Enhorabuena! Se ha registrado correctamente."
     else
       flash[:mensaje] = "El nombre de usuario ya existe. Por favor, elija otro."
@@ -107,6 +109,7 @@ post '/signup' do
     if (!@usuario)
       @objeto = Usuarios.first_or_create(:username => params[:usuario], :nombre => params[:nombre], :apellidos => params[:apellidos], :email => params[:email], :password => params[:pass1])
       session[:user] = params[:nombre]
+      session[:username] = params[:usuario]
       flash[:mensaje] = "¡Enhorabuena! Se ha registrado correctamente."
     else
       flash[:mensaje] = "El nombre de usuario ya existe. Por favor, elija otro."
@@ -134,6 +137,7 @@ post '/login' do
     if (@user_hash == params[:password])
       session[:user] = @user.nombre
       session[:id] = @user.id
+      session[:username] = @user.username      
     else
       flash[:mensaje] = "El nombre de usuario y/o contraseña no son correctos."
       puts e.message
@@ -162,6 +166,7 @@ get '/addruta' do
     redirect '/'
   else
     erb :addruta
+  end
 end  
 
 post '/addruta' do
@@ -169,6 +174,7 @@ post '/addruta' do
     redirect '/'
   else
     @ruta=Rutas.first_or_create()
+  end
 end
 
 get '/ruta/:num' do
