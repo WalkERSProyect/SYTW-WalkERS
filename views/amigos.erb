@@ -52,7 +52,16 @@
   <button type="button" class="btn btn-default"><a href="./buscaramigos">BUSCAR AMIGOS</a></button>
     <!-- Imagen -->
     <div class="lista-amigos">
-      <% @amigos.each do |amigo| %>
+      <% for i in 0...Amigos.count() %>
+         <% if ((@amigo[i].nombre) && (session[:id] == @amigo[i].id_usuario)) %>
+         <div class="clase-amigo">
+         <img src="img/perfil-anonimo.jpg" alt="" width = 200 px> </img>
+         <p class ="list-group-item-text"><%= @amigo[i].nombre %> </p>  
+     </div>  
+        <% end %>   
+      <% end %> 
+      <!--
+      <% @amigo.each do |amigo| %>
       <div class="clase-amigo">
         <a href="" class="">
           <img src="img/perfil-anonimo.jpg" alt="" width = 200 px> </img>
@@ -61,12 +70,17 @@
       </div>
       <% end %>
     </div>
+    -->
     <% if (flash[:mensaje]) %>
-+    <div class="alert alert-success" role="alert"><%= flash[:mensaje] %></div>
-+    <% end %>  
+    <div class="alert alert-success" role="alert"><%= flash[:mensaje] %></div>
+    <% end %>  
      <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.1/js/bootstrap.min.js"></script>
--  </body>  
--</html
+  </body>  
+</html
+
+
+
+
 
 
 

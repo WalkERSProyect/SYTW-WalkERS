@@ -49,9 +49,20 @@
     <h1> Aqui podra añadir o buscar a un amigo </h1>
     <form class="form-buscar" role="form" action="/buscaramigos" method="POST" name="form-buscar">
       <h3 class="form-buscar-heading">Introduzca el nombre del usuario a buscar:</h3>
-      <label for="inputEmail" class="sr-only">Usuario</label>
-      <input type="text" id="usuario" name="usuario" class="form-control" placeholder="Usuario" required autofocus>   
+      <label for="inputUsuario" class="sr-only">Usuario</label>
+      <input type="text" id="usuario" name="usuario" class="form-control" placeholder="Usuario" required autofocus>
+      <br>
+      <button type="submit" class="btn btn-default">Buscar</button>   
     </form>
+    <% if (@usuario) %>
+          <img src= "img/perfil-anonimo.jpg" alt="" width = 200 px> </img>
+          <p class="list-group-item-text">Usuario:<%= @usuario.nombre %></p>
+        </a>
+        <form class="form-añadir" role="form" action="/añadiramigo" method="POST" name="form-añadir">
+        <input type = "text" value = "<%= @usuario.nombre %>" name = "usuario" >
+        <button type="submit" class="btn btn-default">Añadir</button>
+        </form>
+    <% end %>
     <% if (flash[:mensaje]) %>
     <div class="alert alert-success" role="alert"><%= flash[:mensaje] %></div>
     <% end %>  
