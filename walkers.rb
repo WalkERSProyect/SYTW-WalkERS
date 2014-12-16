@@ -223,7 +223,7 @@ get '/amigos' do
       end 
     end
     if (@mostrar == true)
-      erb :amigos
+      haml :amigos
     else  
       flash[:mensaje] = "El usuario no tiene amigos"
       redirect '/buscaramigos'
@@ -236,7 +236,7 @@ get '/buscaramigos' do
   if (!session[:user])
     redirect '/'
   else
-     erb :buscaramigos
+     haml :buscaramigos
   end  
 end
 
@@ -249,7 +249,7 @@ post '/buscaramigos' do
     flash[:mensaje] = "El usuario que esta buscando es usted mismo"
     redirect '/buscaramigos'   
   else
-    erb :buscaramigos
+    haml :buscaramigos
   end
 end
  
