@@ -16,3 +16,16 @@ body {
 .form-buscar .checkbox {
   margin-bottom: 10px;
 }
+
+.alert-success{
+  max-width: 300px;
+  max-height:500px;
+  min-height: 30px;
+  text-align:center;
+  margin: 0 auto; /*Centrar el texto */
+}
+
+h4 {
+  color:white;
+}
+
