@@ -20,9 +20,13 @@ end
 
 get '/auth/:name/callback' do
   
-
   session[:auth] = @auth = request.env['omniauth.auth']
-  session[:name] = @auth['info'].name
+  
+  #session[:name] = @auth['info'].name
+  nombre_completo = @auth['info'].name.split
+  session[:name] = nombre_completo[0]
+  session[:surname] = nombre_completo[1,nombre_completo.length].join(" ")
+
   session[:image] = @auth['info'].image
   session[:url] = @auth['info'].urls.values[0]
   session[:email] = @auth['info'].email

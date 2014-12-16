@@ -4,6 +4,8 @@
     <title>WalkERS - Amigos</title>
     <link href="./css/bootstrap.min.css" rel="stylesheet">
     <link href="./css/index.css" rel="stylesheet">
+    <link rel="stylesheet" type="text/css" href="./css/buscar.css">
+    <link rel="stylesheet" type="text/css" href="./css/amigos.css">
     <script src="./js/jquery.min.js"></script>
     <script src="./js/bootstrap.min.js"></script>
   </head>
@@ -27,8 +29,8 @@
         <div class="collapse navbar-collapse navbar-ex1-collapse">
           <ul class="nav navbar-nav">
             <li><a href="#">MIS SENDEROS</a></li>
-            <li><a href="#">AMIGOS</a></li>
-            <li class="active"><a href="./rutas">RUTAS</a></li>
+            <li class ="active"> <a href="#">AMIGOS</a></li>
+            <li> <a href="#">RUTAS</a></li>
             <li><a href="#">BUSCAR AMIGOS</a></li>
             <p class="navbar-text pull-left">
               Conectado como <a href="#" class="navbar-link"><b><%= session[:user] %></b></a>
@@ -45,18 +47,27 @@
       </nav>
     </div>
     <!-- FIN MENU -->
-    <h1> <strong>  Aquí encontraras todos tus amigos</strong> </h1>
+   
+   <h1> <strong>  Aquí encontraras todos tus amigos</strong> </h1>
+  <button type="button" class="btn btn-default"><a href="./buscaramigos">BUSCAR AMIGOS</a></button>
     <!-- Imagen -->
     <div class="lista-amigos">
       <% @amigos.each do |amigo| %>
       <div class="clase-amigo">
         <a href="" class="">
-          <img src="img/rushil.png" alt="" width = 200 px> </img>
-          <p class="list-group-item-text"><%= amigo.id_amigo %></p>
+          <img src="img/perfil-anonimo.jpg" alt="" width = 200 px> </img>
+          <p class="list-group-item-text"><%= amigo.nombre %></p>
         </a>
       </div>
       <% end %>
     </div>
-    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.1/js/bootstrap.min.js"></script>
-  </body>  
-</html
+    <% if (flash[:mensaje]) %>
++    <div class="alert alert-success" role="alert"><%= flash[:mensaje] %></div>
++    <% end %>  
+     <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.1/js/bootstrap.min.js"></script>
+-  </body>  
+-</html
+
+
+
+
