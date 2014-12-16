@@ -43,6 +43,8 @@ get '/' do
   if (!session[:user])
     haml :welcome, :layout => false
   else
+    # Obtenemos las últimas rutas añadidas
+    @ultimas_rutas = Rutas.all()
     haml :index
   end
 end
@@ -188,9 +190,7 @@ get '/amigos' do
         redirect '/buscaramigos'       
     end 
   end   
-end  
-
-
+end
 
 get '/buscaramigos' do
   if (!session[:user])
@@ -226,7 +226,6 @@ post '/buscaramigos' do
     end
   end
 end
-
 
 get '/logout' do
   session.clear

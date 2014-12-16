@@ -19,10 +19,10 @@ body {
 
 #imagen-portada {
   /*border: 1px solid #000;*/
-  border-radius: 25%;
+  /*border-radius: 25%;*/
   width: 100%;
   margin:5%;
-  box-shadow: 2px 1px 1px #fff;
+  /*box-shadow: 2px 1px 1px #fff;*/
 }
 
 .menu {

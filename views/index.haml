@@ -1,4 +1,16 @@
 #ultimas
-  %h4 Últimas rutas añadidas
+  %h4 ÚLTIMAS RUTAS AÑADIDAS
+  .row
+  - @ultimas_rutas.each do |ruta|
+    .col-xs-3
+      %a.thumbnail{:href => "ruta/#{ruta.id_rut}"}
+        %img.img-responsive{:src => "./img/sendero1.jpg"}
+        %p= ruta.nombre
 #populares
-  %h4 Rutas más populares
+  %h4 RUTAS MÁS POPULARES
+  .row
+  - @ultimas_rutas.each do |ruta|
+    .col-xs-3
+      %a.thumbnail{:href => "ruta/#{ruta.id_rut}"}
+        %img.img-responsive{:src => "./img/sendero1.jpg"}
+        %p= ruta.nombre
