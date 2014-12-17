@@ -18,7 +18,7 @@ end
 class Rutas
   include DataMapper::Resource
 
-  property :id_rut,       Serial
+  property :id,           Serial
   property :username,		  String
   property :nombre, 		  String
   property :informacion, 	String

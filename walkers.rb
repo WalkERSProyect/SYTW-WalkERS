@@ -6,6 +6,7 @@ require 'pp'
 require 'rubygems'
 require 'sinatra/flash'
 require './auth.rb'
+require 'chartkick'
 
 
 # Configuracion en local
@@ -196,11 +197,11 @@ get '/ruta/:num' do
   #puts "Estamos en la ruta con id:"
   #puts params[:num]
   #puts "Este debiera ser el parámetro= " + params[:num]
-  @ruta = Rutas.first(:id_rut => params[:num])
+  @ruta = Rutas.first(:id => params[:num])
   @comentario = Comentarios.all(:ruta_id => params[:num])
-  visitas = Visit.new(:ip => get_remote_ip(env), :rutas_id_rut => params[:num])
+  visitas = Visit.new(:ip => get_remote_ip(env), :rutas_id => params[:num])
   visitas.save
-  contador = Visit.all(:rutas_id_rut => params[:num])
+  contador = Visit.all(:rutas_id => params[:num])
   puts "Esta pagina tiene tantas visitas"
   puts contador.count
   haml :ruta
@@ -222,9 +223,10 @@ get '/ultimas' do
   end 
 end
 
-get '/estadisticas/:id' do
+get '/estadisticas/:num' do
   
-  
+  haml :estadisticas
+
 end
 
 get '/amigos' do
