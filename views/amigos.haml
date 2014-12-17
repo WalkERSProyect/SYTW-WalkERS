@@ -14,4 +14,7 @@
             %img{:alt => "", :px => "", :src => "img/perfil-anonimo.jpg", :width => "200"}                 
             %h4.list-group-item-text
               = @amigo[i].nombre
-      %script{:src => "https://maxcdn.bootstrapcdn.com/bootstrap/3.3.1/js/bootstrap.min.js"}
+              %form{:action => "/eliminaramigo", :class => "form-eliminar", :method => "POST", :name => "form-eliminar", :role => "form"}
+                %input{:name => "usuario", :style => "visibility:hidden;", :value => @amigo[i].nombre}
+                  %button.btn.btn-default{:type => "submit"} Eliminar
+                %script{:src => "https://maxcdn.bootstrapcdn.com/bootstrap/3.3.1/js/bootstrap.min.js"}

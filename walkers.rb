@@ -269,6 +269,16 @@ post '/añadiramigo' do
   end
 end
 
+post '/eliminaramigo' do
+  puts params[:usuario]
+  @amigo = Amigos.first(:nombre => params[:usuario]) # Usuario introducido por teclado
+  @amigo.id_amigo
+  @amigo.nombre
+  @amigo.destroy
+  flash[:mensaje] = "Amigo eliminado con exito"
+  redirect '/amigos'
+end
+
 get '/logout' do
   session.clear
   redirect '/'
