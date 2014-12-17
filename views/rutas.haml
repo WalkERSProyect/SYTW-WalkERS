@@ -3,7 +3,7 @@
   %a{:href => "./addruta"} Añadir ruta
 .list-group
   - @rutas.each do |ruta|
-    %a.list-group-item{:href => "./ruta/#{ruta.id_rut}"}
+    %a.list-group-item{:href => "./ruta/#{ruta.id}"}
       %h4.list-group-item-heading= ruta.nombre
       %p.list-group-item-text= ruta.informacion
 %nav
