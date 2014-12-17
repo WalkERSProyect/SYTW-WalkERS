@@ -182,10 +182,13 @@ post '/addruta' do
     #puts "Difi " + params[:dificultad]
     #puts "Info " + params[:descripcion]
     @ruta=Rutas.first_or_create(:nombre => params[:nombre] ,:dificultad => params[:dificultad], :informacion => params[:descripcion])
-    #@ruta.save
-    
+    #@ruta.save   
     redirect '/rutas'
   end
+end
+
+get '/seguir_ruta' do
+
 end
 
 get '/ruta/:num' do
@@ -278,7 +281,7 @@ post '/añadiramigo' do
     flash[:mensaje] = "Ya tiene el amigo en su lista"
     redirect '/amigos'  
   else      
-    @amigo = Amigos.first_or_create(:id_usuario => session[:id],:id_amigo => @usuario.id, :nombre => @usuario.nombre)
+    @amigo = Amigos.first_or_create(:id_usuario => session[:id],:id_amigo => @usuario.id, :nombre => @usuario.username)
     flash[:mensaje] = "Amigo añadido con exito"
     redirect '/amigos'
   end
@@ -294,9 +297,7 @@ post '/eliminaramigo' do
   redirect '/amigos'
 end
 
-get '/seguir_ruta' do
-
-end  
+  
 
 get '/logout' do
   session.clear

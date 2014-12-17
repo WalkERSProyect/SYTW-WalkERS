@@ -28,22 +28,7 @@ class Rutas
   property :imagen,       String
   property :created_at, 	DateTime
 
-  has n, :visits
-
 end
-
-
-class Comentarios
-  include DataMapper::Resource
-
-  property :id,           Serial
-  property :username,     String
-  property :ruta_id,      Integer
-  property :comentario,   String
-  property :created_at,   DateTime
-
-end
-
 
 class Amigos
   include DataMapper::Resource
@@ -56,6 +41,16 @@ class Amigos
   property :updated_at,   DateTime
 
 end
+
+class Seguidor_ruta
+  include DataMapper::Resource
+
+  property :id,           Serial 
+  property :id_usuario,   Integer
+  property :id_ruta,      Integer
+  property :created_at,   DateTime
+  property :updated_at,   DateTime
+end  
 
 class Visit
   include DataMapper::Resource
