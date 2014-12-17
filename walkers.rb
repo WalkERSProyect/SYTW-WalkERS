@@ -191,7 +191,6 @@ end
 get '/ruta/:num' do
   #puts "Estamos en la ruta con id:"
   #puts params[:num]
-
   #puts "Este debiera ser el parámetro= " + params[:num]
   @ruta = Rutas.first(:id_rut => params[:num])
   @comentario = Comentarios.all(:ruta_id => params[:num])
@@ -284,6 +283,20 @@ post '/añadiramigo' do
     redirect '/amigos'
   end
 end
+
+post '/eliminaramigo' do
+  puts params[:usuario]
+  @amigo = Amigos.first(:nombre => params[:usuario]) # Usuario introducido por teclado
+  @amigo.id_amigo
+  @amigo.nombre
+  @amigo.destroy
+  flash[:mensaje] = "Amigo eliminado con exito"
+  redirect '/amigos'
+end
+
+get '/seguir_ruta' do
+
+end  
 
 get '/logout' do
   session.clear
