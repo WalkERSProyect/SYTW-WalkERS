@@ -6,6 +6,7 @@ require 'pp'
 require 'rubygems'
 require 'sinatra/flash'
 require './auth.rb'
+require 'chartkick'
 
 
 # Configuracion en local
@@ -194,15 +195,19 @@ post '/addruta' do
   redirect '/ruta/1'
 end
 
+get '/seguir_ruta' do
+
+end  
+
 get '/ruta/:num' do
   #puts "Estamos en la ruta con id:"
   #puts params[:num]
   #puts "Este debiera ser el parámetro= " + params[:num]
-  @ruta = Rutas.first(:id_rut => params[:num])
+  @ruta = Rutas.first(:id => params[:num])
   @comentario = Comentarios.all(:ruta_id => params[:num])
-  visitas = Visit.new(:ip => get_remote_ip(env), :rutas_id_rut => params[:num])
+  visitas = Visit.new(:ip => get_remote_ip(env), :rutas_id => params[:num])
   visitas.save
-  contador = Visit.all(:rutas_id_rut => params[:num])
+  contador = Visit.all(:rutas_id => params[:num])
   puts "Esta pagina tiene tantas visitas"
   puts contador.count
   haml :ruta
@@ -224,9 +229,10 @@ get '/ultimas' do
   end 
 end
 
-get '/estadisticas/:id' do
+get '/estadisticas/:num' do
   
-  
+  haml :estadisticas
+
 end
 
 get '/amigos' do
@@ -284,25 +290,24 @@ post '/añadiramigo' do
     flash[:mensaje] = "Ya tiene el amigo en su lista"
     redirect '/amigos'  
   else      
-    @amigo = Amigos.first_or_create(:id_usuario => session[:id],:id_amigo => @usuario.id, :nombre => @usuario.nombre)
+    @amigo = Amigos.first_or_create(:id_usuario => session[:id],:id_amigo => @usuario.id, :nombre => @usuario.username)
     flash[:mensaje] = "Amigo añadido con exito"
     redirect '/amigos'
   end
 end
 
 post '/eliminaramigo' do
-  puts params[:usuario]
-  @amigo = Amigos.first(:nombre => params[:usuario]) # Usuario introducido por teclado
-  @amigo.id_amigo
-  @amigo.nombre
+  #puts params[:usuario]
+  @amigo = Amigos.first(:id_usuario => session[:id],:nombre => params[:usuario]) # Usuario introducido por teclado
+  puts @amigo.id_usuario
+  puts @amigo.id_amigo
+  puts @amigo.nombre
   @amigo.destroy
   flash[:mensaje] = "Amigo eliminado con exito"
   redirect '/amigos'
 end
 
-get '/seguir_ruta' do
 
-end  
 
 get '/logout' do
   session.clear

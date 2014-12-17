@@ -18,7 +18,7 @@ end
 class Rutas
   include DataMapper::Resource
 
-  property :id_rut,       Serial
+  property :id,           Serial
   property :username,		  String
   property :nombre, 		  String
   property :informacion, 	String
@@ -31,6 +31,17 @@ class Rutas
   has n, :visits
 
 end
+
+class Seguir_Ruta
+  include DataMapper::Resource
+
+  property :id,           Serial
+  property :id_ruta,      Integer
+  property :id_usuario,   Integer
+  property :created_at,   DateTime
+  property :updated_at,   DateTime
+end  
+
 
 
 class Comentarios
