@@ -51,8 +51,10 @@
 <!-- FIN MENU -->
 
 <!-- CUERPO DE LA PAGINA -->
+  <div id="titulo">
   <h1><%= @ruta.nombre %></h1>
-
+  </div>
+  <div id="contenido">
   <!-- Imagen -->
   <div id="izquierda">
     <img id="imagen-portada" src="../img/sendero1.jpg" border="1" alt="" class="img-thumbnail"> 
@@ -64,8 +66,9 @@
        else
         @dif = "rojo.png"
        end %>
-    <p>Dificultad:<img src="../img/<%= @dif %>"</p>
-    <p>Puntuación: <%= @ruta.puntuacion %></p>
+    <p>Dificultad:<img id="semaforo" src="../img/<%= @dif %>"> Puntuación: <%= @ruta.puntuacion %>
+      <button type="button" class="btn btn-danger">Me gusta</button>
+    </p>
   </div>
 
   <div id="derecha">
@@ -107,6 +110,8 @@
       </div>
     </div>
   </div>
+  <div class="reset"></div>  
+</div>
 </div>
     <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.1/js/bootstrap.min.js"></script>
 </html>
