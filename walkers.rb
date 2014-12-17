@@ -48,7 +48,7 @@ end
 get '/' do
   #Comprobamos si el usuario no se ha registrado.
   if (!session[:user])
-    haml :welcome, :layout => false
+    haml :welcome, :layout => false 
   else
     # Obtenemos las últimas rutas añadidas
     @ultimas_rutas = Rutas.all(:limit => 4, :order => [ :created_at.desc ])
@@ -212,18 +212,15 @@ get '/amigos' do
    if (!session[:user])
     redirect '/'
   else
-    @mostrar = false
-    @amigo = Amigos.all() # SELECT * FROM AMIGOS
+   @mostrar = false
+  @amigo = Amigos.all() # SELECT * FROM AMIGOS
     for i in 0...Amigos.count()
-      if (session[:id] == @amigo[i].id_usuario) && (@amigo[i].nombre)
-          puts "hacia vista amigos"
-          puts i
-          #erb :amigos
+      if ((session[:id] == @amigo[i].id_usuario) && (@amigo[i].nombre))
           @mostrar = true
-      end 
+     end 
     end
     if (@mostrar == true)
-      erb :amigos
+      haml :amigos
     else  
       flash[:mensaje] = "El usuario no tiene amigos"
       redirect '/buscaramigos'
@@ -236,7 +233,7 @@ get '/buscaramigos' do
   if (!session[:user])
     redirect '/'
   else
-     erb :buscaramigos
+     haml :buscaramigos
   end  
 end
 
@@ -249,7 +246,7 @@ post '/buscaramigos' do
     flash[:mensaje] = "El usuario que esta buscando es usted mismo"
     redirect '/buscaramigos'   
   else
-    erb :buscaramigos
+    haml :buscaramigos
   end
 end
  
@@ -257,10 +254,6 @@ post '/añadiramigo' do
   @usuario = Usuarios.first(:username => params[:usuario]) # Usuario introducido por teclado
   @amigos = Amigos.all()
   @amigo = Amigos.first(:nombre => params[:usuario]) # SELECT * FROM AMIGOS WHERE NOMBRE = "params usuario"
-  puts session[:user]
-  @id = session[:id]
-  @id = @id-1
-  puts @id
   for i in 0...Amigos.count()
     if ((@amigos[i].nombre == params[:usuario]) && (@amigos[i].id_usuario == session[:id]))
       @encontrado = true
@@ -268,11 +261,11 @@ post '/añadiramigo' do
   end    
   if ((@amigo) && (@encontrado == true)) # Si existe el amigo 
     flash[:mensaje] = "Ya tiene el amigo en su lista"
-    redirect '/buscaramigos'  
+    redirect '/amigos'  
   else      
     @amigo = Amigos.first_or_create(:id_usuario => session[:id],:id_amigo => @usuario.id, :nombre => @usuario.nombre)
     flash[:mensaje] = "Amigo añadido con exito"
-    redirect '/buscaramigos'
+    redirect '/amigos'
   end
 end
 

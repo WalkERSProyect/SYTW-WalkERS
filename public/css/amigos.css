@@ -8,3 +8,16 @@
 	float:left;
 	width: 300px;
 }
+
+.alert-danger{
+	max-width: 300px;
+  	max-height:500px;
+ 	min-height: 40px;
+	text-align:center;
+	margin: 0 auto; /*Centrar el texto */
+
+}
+
+h4 {
+  color:white;
+}

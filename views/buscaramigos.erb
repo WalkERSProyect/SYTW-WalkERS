@@ -56,15 +56,18 @@
     </form>
     <% if (@usuario) %>
           <img src= "img/perfil-anonimo.jpg" alt="" width = 200 px> </img>
-          <p class="list-group-item-text">Usuario:<%= @usuario.nombre %></p>
+          <br>
+          <br>
+          <h4 class="list-group-item-text">Usuario:<%= @usuario.nombre %></h4>
         </a>
         <form class="form-añadir" role="form" action="/añadiramigo" method="POST" name="form-añadir">
-        <input type = "text" value = "<%= @usuario.nombre %>" name = "usuario" >
+        <input style = "visibility:hidden;" value = "<%= @usuario.nombre %>" name = "usuario" >
+        <br>
         <button type="submit" class="btn btn-default">Añadir</button>
         </form>
     <% end %>
     <% if (flash[:mensaje]) %>
-    <div class="alert alert-success" role="alert"><%= flash[:mensaje] %></div>
+    <div class="alert-success" role="alert"><%= flash[:mensaje] %></div>
     <% end %>  
     <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.1/js/bootstrap.min.js"></script>
   </body>

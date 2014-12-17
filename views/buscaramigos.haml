@@ -1,0 +1,19 @@
+%link{:href => "./css/buscar.css", :rel => "stylesheet", :type => "text/css"}
+%h1 Aqui podra añadir o buscar a un amigo
+%form.form-buscar{:action => "/buscaramigos", :method => "POST", :name => "form-buscar", :role => "form"}
+  %h3.form-buscar-heading Introduzca el nombre del usuario a buscar:
+  %label.sr-only{:for => "inputUsuario"} Usuario
+  %input#usuario.form-control{:autofocus => "", :name => "usuario", :placeholder => "Usuario", :required => "", :type => "text"}
+    %br
+      %button.btn.btn-default{:type => "submit"} Buscar
+- if (@usuario)
+  %img{:alt => "", :px => "", :src => "img/perfil-anonimo.jpg", :width => "200"}   
+  %br
+    %br
+      %h4.list-group-item-text
+        Usuario:#{@usuario.nombre}
+      %form{:action => "/añadiramigo", :class => "form-añadir", :method => "POST", :name => "form-añadir", :role => "form"}
+        %input{:name => "usuario", :style => "visibility:hidden;", :value => @usuario.nombre}
+          %br
+            %button.btn.btn-default{:type => "submit"} Añadir
+%script{:src => "https://maxcdn.bootstrapcdn.com/bootstrap/3.3.1/js/bootstrap.min.js"}
