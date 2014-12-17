@@ -212,9 +212,20 @@ get '/amigos' do
    if (!session[:user])
     redirect '/'
   else
-    @amigo = Amigos.all()
-    erb :amigos 
-  end
+   @mostrar = false
+  @amigo = Amigos.all() # SELECT * FROM AMIGOS
+    for i in 0...Amigos.count()
+      if ((session[:id] == @amigo[i].id_usuario) && (@amigo[i].nombre))
+          @mostrar = true
+     end 
+    end
+    if (@mostrar == true)
+      haml :amigos
+    else  
+      flash[:mensaje] = "El usuario no tiene amigos"
+      redirect '/buscaramigos'
+    end  
+  end   
 end
 
 
@@ -222,7 +233,7 @@ get '/buscaramigos' do
   if (!session[:user])
     redirect '/'
   else
-     erb :buscaramigos
+     haml :buscaramigos
   end  
 end
 
@@ -235,7 +246,7 @@ post '/buscaramigos' do
     flash[:mensaje] = "El usuario que esta buscando es usted mismo"
     redirect '/buscaramigos'   
   else
-    erb :buscaramigos
+    haml :buscaramigos
   end
 end
  
