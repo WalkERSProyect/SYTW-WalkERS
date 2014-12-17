@@ -80,13 +80,13 @@
       <div class="tab-content">
         <div role="tabpanel" class="tab-pane fade in active menu" id="home"><%= @ruta.informacion%></div>
         <div role="tabpanel" class="tab-pane fade menu" id="profile">
-          Nuestros posts
-          <!--% if (@comentario) %-->
-           <!--% @comentario.each do |comenta| %-->
-            <!--p class="list-group-item-text"><%= comenta.username %></p-->
-            <!--p class="list-group-item-text"><%= comenta.comentario %></p-->
-            <!--% end %-->
-          <!--%end%-->
+          <% if (@comentario)
+            @comentario.each do |comenta| %>
+              <p class="list-group-item-text"><%= comenta.username %></p>
+              <p class="list-group-item-text"><%= comenta.comentario %></p>
+              <hr>
+            <% end %>
+          <% end %>
           
             <div class="row">
               <div class="span4 well" style="padding-bottom:0">

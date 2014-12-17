@@ -194,7 +194,7 @@ get '/ruta/:num' do
 
   #puts "Este debiera ser el parámetro= " + params[:num]
   @ruta = Rutas.first(:id_rut => params[:num])
-  @comentario = Comentarios.first(:ruta_id => params[:num])
+  @comentario = Comentarios.all(:ruta_id => params[:num])
   visitas = Visit.new(:ip => get_remote_ip(env), :rutas_id_rut => params[:num])
   visitas.save
   contador = Visit.all(:rutas_id_rut => params[:num])
