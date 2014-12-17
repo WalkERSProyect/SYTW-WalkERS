@@ -215,6 +215,12 @@ post'/ruta/:num' do
   redirect "/ruta/#{params[:num]}"
 end
 
+get '/misrutas' do
+
+  haml :misrutas
+
+end
+
 get '/ultimas' do
   if (!session[:user])
     redirect '/'
