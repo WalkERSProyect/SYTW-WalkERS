@@ -169,23 +169,29 @@ get '/addruta' do
   if (!session[:user])
     redirect '/'
   else
-    erb :addruta
+    haml :addruta
   end
 end  
 
 post '/addruta' do
-  if (!session[:user])
-    redirect '/'
-  else
-    #puts "Estoy aqui en el post de add ruta"
-    #puts "Nombraco " + params[:nombre]
-    #puts "Difi " + params[:dificultad]
-    #puts "Info " + params[:descripcion]
-    @ruta=Rutas.first_or_create(:nombre => params[:nombre] ,:dificultad => params[:dificultad], :informacion => params[:descripcion])
-    #@ruta.save
-    
-    redirect '/rutas'
+  begin
+    if (!session[:user])
+      redirect '/'
+    else
+      #puts "Estoy aqui en el post de add ruta"
+      puts "Nombraco " + params[:nombre]
+      puts "Difi " + params[:dificultad]
+      puts "Info " + params[:descripcion]
+      puts "Imagen" + params[:imagen]
+      @ruta = Rutas.first_or_create(:nombre => params[:nombre] ,:dificultad => params[:dificultad], 
+                                    :informacion => params[:descripcion], :imagen => params[:imagen])
+    end
+  rescue Exception => e
+    flash[:mensajeRojo] = "No se ha podido añadir la ruta. Por favor, inténtelo de nuevo."
+    puts e.message
+    redirect '/addruta'
   end
+  redirect '/ruta/1'
 end
 
 get '/ruta/:num' do

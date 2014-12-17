@@ -57,6 +57,7 @@ class Amigos
 
 end
 
+
 class Visit
   include DataMapper::Resource
 
@@ -66,7 +67,6 @@ class Visit
   property  :country,     String
   
   belongs_to  :rutas
-
 
   before :create, :set_country
 
