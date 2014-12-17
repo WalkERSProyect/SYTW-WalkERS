@@ -42,7 +42,6 @@ class Comentarios
   property :comentario,   String
   property :created_at,   DateTime
 
-
 end
 
 

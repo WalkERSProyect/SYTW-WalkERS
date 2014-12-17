@@ -51,8 +51,10 @@
 <!-- FIN MENU -->
 
 <!-- CUERPO DE LA PAGINA -->
+  <div id="titulo">
   <h1><%= @ruta.nombre %></h1>
-
+  </div>
+  <div id="contenido">
   <!-- Imagen -->
   <div id="izquierda">
     <img id="imagen-portada" src="../img/sendero1.jpg" border="1" alt="" class="img-thumbnail"> 
@@ -64,8 +66,9 @@
        else
         @dif = "rojo.png"
        end %>
-    <p>Dificultad:<img src="../img/<%= @dif %>"</p>
-    <p>Puntuación: <%= @ruta.puntuacion %></p>
+    <p>Dificultad:<img id="semaforo" src="../img/<%= @dif %>"> Puntuación: <%= @ruta.puntuacion %>
+      <button type="button" class="btn btn-danger">Me gusta</button>
+    </p>
   </div>
 
   <div id="derecha">
@@ -80,8 +83,18 @@
       <div class="tab-content">
         <div role="tabpanel" class="tab-pane fade in active menu" id="home"><%= @ruta.informacion%></div>
         <div role="tabpanel" class="tab-pane fade menu" id="profile">
+<<<<<<< HEAD
           Nuestros posts
 
+=======
+          <% if (@comentario)
+            @comentario.each do |comenta| %>
+              <p class="list-group-item-text"><%= comenta.username %></p>
+              <p class="list-group-item-text"><%= comenta.comentario %></p>
+              <hr>
+            <% end %>
+          <% end %>
+>>>>>>> 95a717caa7fd038006e3b1faf69e8f7c47979210
           
             <div class="row">
               <div class="span4 well" style="padding-bottom:0">
@@ -102,6 +115,8 @@
       </div>
     </div>
   </div>
+  <div class="reset"></div>  
+</div>
 </div>
     <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.1/js/bootstrap.min.js"></script>
 </html>

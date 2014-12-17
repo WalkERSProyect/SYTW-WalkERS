@@ -2,27 +2,50 @@ html,
 body {
   height: 100%;
   background-color: #66A523;
+  color: #000;
+}
+
+h1 {
   color: #fff;
+  padding-top: 5px;
+}
+
+#titulo {
+  background: rgba(255,255,255, 0.7);
+  height: 100%;
+  width: auto;
+  margin: 0 auto;
+  border-top-left-radius:5px;
+  border-top-right-radius:5px;
+  border-bottom: 1px solid white;
+}
+
+#contenido {
+  background: rgba(255,255,255, 0.7);
+  width: 100%;
+  overflow: hidden;
+  border-radius: 5px;
 }
 
 #izquierda {
   float: left;
-  width: 40%;
+  width: 35%;
+  background: #fff;
+  margin-right: 25px;
+  margin: 10px;
+  border-radius: 5px;
 }
 
 #derecha {
   float: left;
   width: 50%;
-  margin:50px;
   height: 300px;
+  margin: 10px;
 }
 
 #imagen-portada {
-  /*border: 1px solid #000;*/
-  /*border-radius: 25%;*/
   width: 100%;
-  margin:5%;
-  /*box-shadow: 2px 1px 1px #fff;*/
+  /*margin:5%;*/
 }
 
 .menu {
@@ -30,6 +53,16 @@ body {
 }
 
 #panel {
-  background: rgba(255, 255, 255, 0.5);
+  background: rgba(255, 255, 255, 1);
   height: 100%;
+  border-radius: 5px;
+}
+
+#semaforo {
+  width: 30px;
+  height: auto;
+}
+
+.reset {
+  clear: both;
 }

@@ -1,0 +1,17 @@
+%link{:href => "./css/buscar.css", :rel => "stylesheet", :type => "text/css"}
+%link{:href => "./css/amigos.css", :rel => "stylesheet", :type => "text/css"}
+%h1
+  %strong Aquí encontraras todos tus amigos
+%button.btn.btn-default{:type => "button"}
+  %a{:href => "./buscaramigos"} BUSCAR AMIGOS
+%br
+  %br
+    / Imagen
+    .lista-amigos
+      - for i in 0...Amigos.count()
+        - if ((@amigo[i].nombre) && (session[:id] == @amigo[i].id_usuario))
+          .clase-amigo
+            %img{:alt => "", :px => "", :src => "img/perfil-anonimo.jpg", :width => "200"}                 
+            %h4.list-group-item-text
+              = @amigo[i].nombre
+      %script{:src => "https://maxcdn.bootstrapcdn.com/bootstrap/3.3.1/js/bootstrap.min.js"}
