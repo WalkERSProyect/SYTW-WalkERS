@@ -177,10 +177,10 @@ post '/addruta' do
   if (!session[:user])
     redirect '/'
   else
-    puts "Estoy aqui en el post de add ruta"
-    puts "Nombraco " + params[:nombre]
-    puts "Difi " + params[:dificultad]
-    puts "Info " + params[:descripcion]
+    #puts "Estoy aqui en el post de add ruta"
+    #puts "Nombraco " + params[:nombre]
+    #puts "Difi " + params[:dificultad]
+    #puts "Info " + params[:descripcion]
     @ruta=Rutas.first_or_create(:nombre => params[:nombre] ,:dificultad => params[:dificultad], :informacion => params[:descripcion])
     #@ruta.save
     
@@ -192,19 +192,22 @@ get '/ruta/:num' do
   #puts "Estamos en la ruta con id:"
   #puts params[:num]
 
-  puts "Este debiera ser el parámetro= " + params[:num]
+  #puts "Este debiera ser el parámetro= " + params[:num]
   @ruta = Rutas.first(:id_rut => params[:num])
+  @comentario = Comentarios.first(:ruta_id => params[:num])
+  visitas = Visit.new(:ip => get_remote_ip(env), :rutas_id_rut => params[:num])
+  visitas.save
+  contador = Visit.all(:rutas_id_rut => params[:num])
+  puts "Esta pagina tiene tantas visitas"
+  puts contador.count
   erb :ruta
 end
 
 post'/ruta/:num' do
-  puts "eys. en el post"
-  puts "Estamos en la ruta con id:"
-  puts params[:num]
-
-  @ruta_actual = params[:num]
-  puts "Puto id:"
-  puts @ruta_actual
+  #puts "eys. en el post"
+  #puts "Estamos en la ruta con id:"
+  #puts params[:num]
+  @comenta = Comentarios.first_or_create(:username => session[:username], :ruta_id => params[:num], :comentario => params[:mensaje])
   redirect "/ruta/#{params[:num]}"
 end
 
