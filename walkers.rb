@@ -188,6 +188,10 @@ post '/addruta' do
   end
 end
 
+get '/seguir_ruta' do
+
+end  
+
 get '/ruta/:num' do
   #puts "Estamos en la ruta con id:"
   #puts params[:num]
@@ -294,9 +298,7 @@ post '/eliminaramigo' do
   redirect '/amigos'
 end
 
-get '/seguir_ruta' do
 
-end  
 
 get '/logout' do
   session.clear

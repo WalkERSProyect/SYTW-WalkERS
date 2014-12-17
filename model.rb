@@ -32,6 +32,17 @@ class Rutas
 
 end
 
+class Seguir_Ruta
+  include DataMapper::Resource
+
+  property :id,           Serial
+  property :id_ruta,      Integer
+  property :id_usuario,   Integer
+  property :created_at,   DateTime
+  property :updated_at,   DateTime
+end  
+
+
 
 class Comentarios
   include DataMapper::Resource
