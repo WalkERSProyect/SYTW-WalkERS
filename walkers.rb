@@ -205,8 +205,8 @@ end
 
 post'/ruta/:num' do
   #puts "eys. en el post"
-  #puts "Estamos en la ruta con id:"
-  #puts params[:num]
+  puts "Estamos en la ruta con id:"
+  puts params[:num]
   @comenta = Comentarios.first_or_create(:username => session[:username], :ruta_id => params[:num], :comentario => params[:mensaje])
   redirect "/ruta/#{params[:num]}"
 end
