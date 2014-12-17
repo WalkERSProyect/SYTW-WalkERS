@@ -66,3 +66,26 @@ h1 {
 .reset {
   clear: both;
 }
+
+#profile.tab-pane.fade.menu{
+  width: auto;
+  position: relative;
+  box-sizing: border-box;
+  -webkit-box-sizing: border;
+}
+
+#posts {
+  margin: 5px;
+  width: 100%;
+  height: auto;
+  background: red;
+  overflow-y: scroll;
+}
+
+#mensaje {
+  vertical-align: text-bottom;
+}
+
+#comentario-post {
+  resize:none;
+}

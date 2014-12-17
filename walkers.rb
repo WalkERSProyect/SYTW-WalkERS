@@ -6,6 +6,7 @@ require 'pp'
 require 'rubygems'
 require 'sinatra/flash'
 require './auth.rb'
+require 'chartkick'
 
 
 # Configuracion en local
@@ -169,25 +170,33 @@ get '/addruta' do
   if (!session[:user])
     redirect '/'
   else
-    erb :addruta
+    haml :addruta
   end
 end  
 
 post '/addruta' do
-  if (!session[:user])
-    redirect '/'
-  else
-    #puts "Estoy aqui en el post de add ruta"
-    #puts "Nombraco " + params[:nombre]
-    #puts "Difi " + params[:dificultad]
-    #puts "Info " + params[:descripcion]
-    @ruta=Rutas.first_or_create(:nombre => params[:nombre] ,:dificultad => params[:dificultad], :informacion => params[:descripcion])
-    #@ruta.save   
-    redirect '/rutas'
+  begin
+    if (!session[:user])
+      redirect '/'
+    else
+      #puts "Estoy aqui en el post de add ruta"
+      puts "Nombraco " + params[:nombre]
+      puts "Difi " + params[:dificultad]
+      puts "Info " + params[:descripcion]
+      puts "Imagen" + params[:imagen]
+      @ruta = Rutas.first_or_create(:nombre => params[:nombre] ,:dificultad => params[:dificultad], 
+                                    :informacion => params[:descripcion], :imagen => params[:imagen])
+    end
+  rescue Exception => e
+    flash[:mensajeRojo] = "No se ha podido añadir la ruta. Por favor, inténtelo de nuevo."
+    puts e.message
+    redirect '/addruta'
   end
+  redirect '/ruta/1'
 end
 
 get '/seguir_ruta' do
+
 
 end
 
@@ -195,11 +204,11 @@ get '/ruta/:num' do
   #puts "Estamos en la ruta con id:"
   #puts params[:num]
   #puts "Este debiera ser el parámetro= " + params[:num]
-  @ruta = Rutas.first(:id_rut => params[:num])
+  @ruta = Rutas.first(:id => params[:num])
   @comentario = Comentarios.all(:ruta_id => params[:num])
-  visitas = Visit.new(:ip => get_remote_ip(env), :rutas_id_rut => params[:num])
+  visitas = Visit.new(:ip => get_remote_ip(env), :rutas_id => params[:num])
   visitas.save
-  contador = Visit.all(:rutas_id_rut => params[:num])
+  contador = Visit.all(:rutas_id => params[:num])
   puts "Esta pagina tiene tantas visitas"
   puts contador.count
   haml :ruta
@@ -207,8 +216,8 @@ end
 
 post'/ruta/:num' do
   #puts "eys. en el post"
-  #puts "Estamos en la ruta con id:"
-  #puts params[:num]
+  puts "Estamos en la ruta con id:"
+  puts params[:num]
   @comenta = Comentarios.first_or_create(:username => session[:username], :ruta_id => params[:num], :comentario => params[:mensaje])
   redirect "/ruta/#{params[:num]}"
 end
@@ -221,9 +230,10 @@ get '/ultimas' do
   end 
 end
 
-get '/estadisticas/:id' do
+get '/estadisticas/:num' do
   
-  
+  haml :estadisticas
+
 end
 
 get '/amigos' do
@@ -288,16 +298,15 @@ post '/añadiramigo' do
 end
 
 post '/eliminaramigo' do
-  puts params[:usuario]
-  @amigo = Amigos.first(:nombre => params[:usuario]) # Usuario introducido por teclado
-  @amigo.id_amigo
-  @amigo.nombre
+  #puts params[:usuario]
+  @amigo = Amigos.first(:id_usuario => session[:id],:nombre => params[:usuario]) # Usuario introducido por teclado
+  puts @amigo.id_usuario
+  puts @amigo.id_amigo
+  puts @amigo.nombre
   @amigo.destroy
   flash[:mensaje] = "Amigo eliminado con exito"
   redirect '/amigos'
 end
-
-  
 
 get '/logout' do
   session.clear

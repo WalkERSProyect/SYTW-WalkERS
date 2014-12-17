@@ -18,7 +18,7 @@ end
 class Rutas
   include DataMapper::Resource
 
-  property :id_rut,       Serial
+  property :id,           Serial
   property :username,		  String
   property :nombre, 		  String
   property :informacion, 	String
@@ -29,6 +29,7 @@ class Rutas
   property :created_at, 	DateTime
 
 end
+
 
 class Amigos
   include DataMapper::Resource
@@ -42,15 +43,30 @@ class Amigos
 
 end
 
-class Seguidor_ruta
+
+class SeguirRuta
+  include DataMapper::Resource
+
+  property :id,           Serial
+  property :id_ruta,      Integer
+  property :id_usuario,   Integer
+  property :created_at,   DateTime
+  property :updated_at,   DateTime
+end  
+
+
+class Comentarios
   include DataMapper::Resource
 
   property :id,           Serial 
   property :id_usuario,   Integer
-  property :id_ruta,      Integer
+  property :id_amigo,     Integer 
+  property :nombre,       String  
   property :created_at,   DateTime
   property :updated_at,   DateTime
-end  
+
+end
+
 
 class Visit
   include DataMapper::Resource
@@ -61,7 +77,6 @@ class Visit
   property  :country,     String
   
   belongs_to  :rutas
-
 
   before :create, :set_country
 
