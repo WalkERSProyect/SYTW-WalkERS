@@ -219,9 +219,10 @@ get '/ultimas' do
   end 
 end
 
-get '/estadisticas/:id' do
+get '/estadisticas/:num' do
   
-  
+  haml :estadisticas
+
 end
 
 get '/amigos' do
