@@ -191,7 +191,6 @@ end
 get '/ruta/:num' do
   #puts "Estamos en la ruta con id:"
   #puts params[:num]
-
   #puts "Este debiera ser el parámetro= " + params[:num]
   @ruta = Rutas.first(:id_rut => params[:num])
   @comentario = Comentarios.all(:ruta_id => params[:num])
