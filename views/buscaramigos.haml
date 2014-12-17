@@ -11,9 +11,9 @@
   %br
     %br
       %h4.list-group-item-text
-        Usuario:#{@usuario.nombre}
+        Usuario:#{@usuario.username}
       %form{:action => "/añadiramigo", :class => "form-añadir", :method => "POST", :name => "form-añadir", :role => "form"}
-        %input{:name => "usuario", :style => "visibility:hidden;", :value => @usuario.nombre}
+        %input{:name => "usuario", :style => "visibility:hidden;", :value => @usuario.username}
           %br
             %button.btn.btn-default{:type => "submit"} Añadir
 %script{:src => "https://maxcdn.bootstrapcdn.com/bootstrap/3.3.1/js/bootstrap.min.js"}
