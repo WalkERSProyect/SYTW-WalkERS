@@ -6,6 +6,7 @@ require 'pp'
 require 'rubygems'
 require 'sinatra/flash'
 require './auth.rb'
+require 'chartkick'
 
 
 # Configuracion en local

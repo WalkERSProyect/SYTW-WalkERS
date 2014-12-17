@@ -1,3 +1,5 @@
+%script{:src => "http://www.google.com/jsapi"}
+%script{:src => "../js/chartkick.js"}
 %h1 Estadisticas
 
 - visita = Visit.all()
@@ -8,3 +10,10 @@
 
 = column_chart(dias)  
 
+= area_chart(dias)
+
+- pais = Hash.new
+- visita.pais_contador(params[:id]).each do |item|
+  -pais[item.country] = item.count
+
+= geo_chart(pais)
