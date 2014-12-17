@@ -39,7 +39,7 @@
                 %p.list-group-item-text= comenta.comentario
                 %hr
           #comentario
-            %form{"accept-charset" => "UTF-8", :action => "/ruta/#{@ruta.id_rut}", :method => "POST"}
+            %form{"accept-charset" => "UTF-8", :action => "/ruta/#{@ruta.id}", :method => "POST"}
               %textarea.form-control{:rows => "1", :id => "comentario-post", :name => "mensaje"}
               %button.btn.btn-success{:type => "submit"} Postear
         #messages.tab-pane.fade.menu{:role => "tabpanel"} Mapa de Google
