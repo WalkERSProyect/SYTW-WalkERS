@@ -192,7 +192,7 @@ get '/ruta/:num' do
   #puts "Estamos en la ruta con id:"
   #puts params[:num]
   @ruta = Rutas.first(:id_rut => params[:num])
-  erb :ruta
+  haml :ruta
 end
 
 get '/ultimas' do

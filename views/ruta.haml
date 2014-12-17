@@ -1,0 +1,35 @@
+/ CUERPO DE LA PAGINA
+#titulo
+  %h1= @ruta.nombre
+#contenido
+  / Imagen
+  #izquierda
+    %img#imagen-portada.img-thumbnail{:alt => "", :border => "1", :src => "../img/sendero1.jpg"}
+      %br
+        - if(@ruta.dificultad == 1)
+          - @dif = "verde.png"
+        - elsif (@ruta.dificultad == 2)
+          - @dif = "naranja.png"
+        - else
+          - @dif = "rojo.png"
+        %p
+          Dificultad:
+          %img#semaforo{:src => "../img/#{@dif}"}
+            Puntuación: #{@ruta.puntuacion}
+            %button.btn.btn-danger{:type => "button"} Me gusta
+  #derecha
+    #panel{:role => "tabpanel"}
+      / Nav tabs
+      %ul.nav.nav-tabs{:role => "tablist"}
+        %li.active{:role => "presentation"}
+          %a{"aria-controls" => "home", "data-toggle" => "tab", :href => "#home", :role => "tab"} Descripción
+        %li{:role => "presentation"}
+          %a{"aria-controls" => "profile", "data-toggle" => "tab", :href => "#profile", :role => "tab"} Posts
+        %li{:role => "presentation"}
+          %a{"aria-controls" => "messages", "data-toggle" => "tab", :href => "#messages", :role => "tab"} Mapas
+      / Tab panes
+      .tab-content
+        #home.tab-pane.fade.in.active.menu{:role => "tabpanel"}= @ruta.informacion
+        #profile.tab-pane.fade.menu{:role => "tabpanel"} Nuestros posts
+        #messages.tab-pane.fade.menu{:role => "tabpanel"} Mapa de Google
+  .reset
