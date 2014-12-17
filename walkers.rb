@@ -279,6 +279,10 @@ post '/eliminaramigo' do
   redirect '/amigos'
 end
 
+get '/seguir_ruta' do
+
+end  
+
 get '/logout' do
   session.clear
   redirect '/'
