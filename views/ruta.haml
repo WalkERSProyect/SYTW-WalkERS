@@ -16,7 +16,15 @@
           Dificultad:
           %img#semaforo{:src => "../img/#{@dif}"}
             Puntuación: #{@ruta.puntuacion}
-            %button.btn.btn-danger{:type => "button"} Me gusta
+            %form{:action => "/seguirruta", :class => "form-seguir_ruta", :method => "POST", :name => "form-seguir_ruta", :role => "form"}
+              %input{:name => "user_ruta", :style => "visibility:hidden;", :value => @ruta.username}
+              %input{:name => "ruta", :style => "visibility:hidden;", :value => @ruta.id}
+              %br
+              - if (@seguidor != nil)
+                Ya te gusta esta ruta
+              - else  
+                %button.btn.btn-danger{:type => "submit"} Me gusta
+                  
   #derecha
     #panel{:role => "tabpanel"}
       / Nav tabs
@@ -26,7 +34,6 @@
         %li{:role => "presentation", :id => "btn-post"}
           %a{"aria-controls" => "profile", "data-toggle" => "tab", :href => "#profile", :role => "tab"} 
             Posts
-
         %li{:role => "presentation"}
           %a{"aria-controls" => "messages", "data-toggle" => "tab", :href => "#messages", :role => "tab"} Mapas
       / Tab panes
