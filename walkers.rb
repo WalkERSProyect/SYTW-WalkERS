@@ -257,6 +257,7 @@ get '/estadisticas/:num' do
 end
 
 get '/amigos' do
+   @actual =  "amigos"
    if (!session[:user])
     redirect '/'
   else

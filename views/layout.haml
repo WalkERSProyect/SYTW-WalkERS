@@ -37,8 +37,12 @@
                 %a{:href => "/"} INICIO
             %li
               %a{:href => "/misrutas"} MIS SENDEROS
-            %li
-              %a{:href => "/amigos"} AMIGOS
+            - if (@actual == 'amigos')
+              %li.active.elementos
+                %a{:href => '/amigos'} AMIGOS
+            - else
+              %li
+                %a{:href => "/amigos"} AMIGOS
             - if (@actual == "rutas")
               %li.active.elementos
                 %a{:href => "/rutas"} RUTAS
