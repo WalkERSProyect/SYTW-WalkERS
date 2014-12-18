@@ -47,6 +47,7 @@ def get_remote_ip(env)
 end
 
 get '/' do
+  @actual =  "inicio"
   #Comprobamos si el usuario no se ha registrado.
   if (!session[:user])
     haml :welcome, :layout => false 
@@ -155,6 +156,7 @@ post '/login' do
 end
 
 get '/rutas' do
+  @actual = "rutas";
   if (!session[:user])
     redirect '/'
   else

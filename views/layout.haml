@@ -29,20 +29,30 @@
           otro elemento que se pueda ocultar al minimizar la barra
         .collapse.navbar-collapse.navbar-ex1-collapse
           %ul.nav.navbar-nav
-            %li.active.elementos
-              %a{:href => "/"} INICIO
+            - if (@actual == "inicio")
+              %li.active.elementos
+                %a{:href => "/"} INICIO
+            - else
+              %li
+                %a{:href => "/"} INICIO
             %li
               %a{:href => "#"} MIS SENDEROS
             %li
               %a{:href => "/amigos"} AMIGOS
+            - if (@actual == "rutas")
+              %li.active.elementos
+                %a{:href => "/rutas"} RUTAS
+            - else
+              %li
+                %a{:href => "/rutas"} RUTAS
             %li
-              %a{:href => "/rutas"} RUTAS
+              %img{:id => "imagen-menu", :class => "img-circle", :src => "/img/sendero1.jpg"}
             %p.navbar-text.pull-left
-              En línea:
               %a.navbar-link{:href => "#"}
                 %b= session[:user]
               \-
               %a{:href => "/logout"} Salir
+              
           %form.navbar-form.navbar-right{:role => "search"}
             .form-group
               %input.form-control{:placeholder => "Buscar", :type => "text"}/

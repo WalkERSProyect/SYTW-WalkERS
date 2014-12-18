@@ -29,3 +29,12 @@ p {
 #descripcion {
   resize:none;
 }
+
+#imagen-menu {
+  width: 55px;
+  height: auto;
+  margin-top:4px;
+  /*border: 1px solid #000;*/
+  /*border-radius: 50%;*/
+  overflow: hidden;
+}
