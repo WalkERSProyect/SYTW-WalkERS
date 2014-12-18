@@ -161,11 +161,7 @@ post '/login' do
       session[:user] = @user.nombre
       session[:id] = @user.id
       session[:username] = @user.username
-      puts "esta es la imagen en '/login'"
-      puts @user.imagen
-      session[:imagen] = @user.imagen
-      puts "¿Hay username?"
-      puts session[:username]      
+      session[:imagen] = @user.imagen    
     else
       flash[:mensaje] = "El nombre de usuario y/o contraseña no son correctos."
       puts e.message
