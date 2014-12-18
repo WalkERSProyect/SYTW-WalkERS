@@ -24,11 +24,11 @@ class Rutas
   property :nombre,       String
   property :informacion,  String
   property :dificultad,   Integer
-  property :puntuacion,   Integer
-  property :votos,        Integer
-  property :imagen,       String
-  property :created_at,   DateTime
-
+  property :puntuacion, 	Integer
+  property :votos, 			  Integer
+  property :imagen,       Text
+  property :created_at, 	DateTime
+  
   has n, :visits
 
 end

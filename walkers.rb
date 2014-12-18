@@ -47,6 +47,7 @@ def get_remote_ip(env)
 end
 
 get '/' do
+  @actual =  "inicio"
   #Comprobamos si el usuario no se ha registrado.
   if (!session[:user])
     haml :welcome, :layout => false 
@@ -81,6 +82,7 @@ get'/getUser' do
       erb :loginUser
     else
       puts "en el else"
+      session[:imagen] = 
       session[:user] = session[:name]
       session[:username] = session[:usuario]
       puts "¿Hay username?"
@@ -100,6 +102,7 @@ post '/getUser' do
       @objeto = Usuarios.first_or_create(:username => params[:usuario], :nombre => session[:name], :apellidos => session[:surname], :imagen => session[:image], :email => session[:email])
       session[:user] = session[:name]
       session[:username] = params[:usuario]
+      session[:imagen] = session[:image]
       puts "¿Hay username?"
       puts session[:username]
       flash[:mensaje] = "¡Enhorabuena! Se ha registrado correctamente."
@@ -118,7 +121,7 @@ post '/signup' do
   begin
     @usuario = Usuarios.first(:username => params[:usuario])
     if (!@usuario)
-      @objeto = Usuarios.first_or_create(:username => params[:usuario], :nombre => params[:nombre], :apellidos => params[:apellidos], :email => params[:email], :password => params[:pass1])
+      @objeto = Usuarios.first_or_create(:username => params[:usuario], :nombre => params[:nombre], :apellidos => params[:apellidos], :email => params[:email], :password => params[:pass1], :imagen => params[:imagen])
       session[:user] = params[:nombre]
       session[:username] = params[:usuario]
       puts "¿Hay username?"
@@ -151,6 +154,7 @@ post '/login' do
       session[:user] = @user.nombre
       session[:id] = @user.id
       session[:username] = @user.username
+      session[:imagen] = @user.imagen
       puts "¿Hay username?"
       puts session[:username]      
     else
@@ -165,6 +169,7 @@ post '/login' do
 end
 
 get '/rutas' do
+  @actual = "rutas";
   if (!session[:user])
     redirect '/'
   else
@@ -189,7 +194,6 @@ post '/addruta' do
     if (!session[:user])
       redirect '/'
     else
-      #puts "Estoy aqui en el post de add ruta"
       puts "Nombraco " + params[:nombre]
       puts "Difi " + params[:dificultad]
       puts "Info " + params[:descripcion]
@@ -231,7 +235,12 @@ post'/ruta/:num' do
   #puts "eys. en el post"
   puts "Estamos en la ruta con id:"
   puts params[:num]
-  @comenta = Comentarios.first_or_create(:username => session[:username], :ruta_id => params[:num], :comentario => params[:mensaje])
+    puts params[:num]
+  if(params[:mensaje] != '' && params[:mensaje] != ' ')
+    @comenta = Comentarios.first_or_create(:username => session[:username], :ruta_id => params[:num], :comentario => params[:mensaje])
+  else
+    flash[:mensaje] = "No ha escrito comentario"
+  end
   redirect "/ruta/#{params[:num]}"
 end
 
@@ -275,6 +284,7 @@ get '/estadisticas/:num' do
 end
 
 get '/amigos' do
+   @actual =  "amigos"
    if (!session[:user])
     redirect '/'
   else
@@ -294,7 +304,6 @@ get '/amigos' do
   end   
 end
 
-
 get '/buscaramigos' do
   if (!session[:user])
     redirect '/'
@@ -308,7 +317,7 @@ post '/buscaramigos' do
   if (!@usuario)
     flash[:mensaje] = "No existe ningun usuario con ese nombre"
     redirect '/buscaramigos'
-  elsif (@usuario.nombre == session[:user])
+  elsif (@usuario.username == session[:username])
     flash[:mensaje] = "El usuario que esta buscando es usted mismo"
     redirect '/buscaramigos'   
   else
@@ -338,15 +347,10 @@ end
 post '/eliminaramigo' do
   #puts params[:usuario]
   @amigo = Amigos.first(:id_usuario => session[:id],:nombre => params[:usuario]) # Usuario introducido por teclado
-  puts @amigo.id_usuario
-  puts @amigo.id_amigo
-  puts @amigo.nombre
   @amigo.destroy
   flash[:mensaje] = "Amigo eliminado con exito"
   redirect '/amigos'
 end
-
-
 
 get '/logout' do
   session.clear

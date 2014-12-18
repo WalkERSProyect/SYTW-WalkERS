@@ -4,7 +4,7 @@
 #contenido
   / Imagen
   #izquierda
-    %img#imagen-portada.img-thumbnail{:alt => "", :border => "1", :src => "../img/sendero1.jpg"}
+    %img#imagen-portada.img-thumbnail{:alt => "", :border => "1", :src => "#{@ruta.imagen}"}
       %br
         - if(@ruta.dificultad == 1)
           - @dif = "verde.png"
