@@ -64,7 +64,7 @@ end
 
 get '/signup' do
   if (!session[:user])
-    erb :signup
+    haml :signup, :layout => false
   else
     redirect '/, :order => [:puntuacion.desc]'
   end
@@ -128,9 +128,17 @@ post '/signup' do
   begin
     @usuario = Usuarios.first(:username => params[:usuario])
     if (!@usuario)
-      @objeto = Usuarios.first_or_create(:username => params[:usuario], :nombre => params[:nombre], :apellidos => params[:apellidos], :email => params[:email], :password => params[:pass1], :imagen => params[:imagen])
+      if (!params[:imagen])
+        imagen = "http://i.imgur.com/lEZ3n1E.jpg"
+      else
+        imagen = params[:imagen]
+      end
+      @objeto = Usuarios.first_or_create(:username => params[:usuario], :nombre => params[:nombre], 
+                                         :apellidos => params[:apellidos], :email => params[:email], 
+                                         :password => params[:pass1], :imagen => imagen)
       session[:user] = params[:nombre]
       session[:username] = params[:usuario]
+      session[:imagen] = imagen
       puts "¿Hay username?"
       puts session[:username]
       flash[:mensaje] = "¡Enhorabuena! Se ha registrado correctamente."
@@ -161,7 +169,7 @@ post '/login' do
       session[:user] = @user.nombre
       session[:id] = @user.id
       session[:username] = @user.username
-      session[:imagen] = @user.imagen    
+      session[:imagen] = @user.imagen
     else
       flash[:mensaje] = "El nombre de usuario y/o contraseña no son correctos."
       puts e.message
