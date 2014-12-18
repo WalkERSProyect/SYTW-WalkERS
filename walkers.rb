@@ -289,7 +289,7 @@ post '/buscaramigos' do
   if (!@usuario)
     flash[:mensaje] = "No existe ningun usuario con ese nombre"
     redirect '/buscaramigos'
-  elsif (@usuario.nombre == session[:user])
+  elsif (@usuario.username == session[:username])
     flash[:mensaje] = "El usuario que esta buscando es usted mismo"
     redirect '/buscaramigos'   
   else
