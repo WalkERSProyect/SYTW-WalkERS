@@ -82,8 +82,10 @@ get'/getUser' do
       erb :loginUser
     else
       puts "en el else"
+      session[:imagen] = 
       session[:user] = session[:name]
       session[:username] = session[:usuario]
+      session[:imagen] = @email.imagen
       puts "¿Hay username?"
       puts session[:username]
       redirect '/'
@@ -101,6 +103,13 @@ post '/getUser' do
       @objeto = Usuarios.first_or_create(:username => params[:usuario], :nombre => session[:name], :apellidos => session[:surname], :imagen => session[:image], :email => session[:email])
       session[:user] = session[:name]
       session[:username] = params[:usuario]
+      session[:imagen] = session[:image]
+      puts "Esta es la imagen en /getUser"
+      puts session[:imagen]
+
+      puts "Esta es la image (SIN E) en /getUser"
+      puts session[:image]
+
       puts "¿Hay username?"
       puts session[:username]
       flash[:mensaje] = "¡Enhorabuena! Se ha registrado correctamente."
@@ -119,7 +128,7 @@ post '/signup' do
   begin
     @usuario = Usuarios.first(:username => params[:usuario])
     if (!@usuario)
-      @objeto = Usuarios.first_or_create(:username => params[:usuario], :nombre => params[:nombre], :apellidos => params[:apellidos], :email => params[:email], :password => params[:pass1])
+      @objeto = Usuarios.first_or_create(:username => params[:usuario], :nombre => params[:nombre], :apellidos => params[:apellidos], :email => params[:email], :password => params[:pass1], :imagen => params[:imagen])
       session[:user] = params[:nombre]
       session[:username] = params[:usuario]
       puts "¿Hay username?"
@@ -152,6 +161,9 @@ post '/login' do
       session[:user] = @user.nombre
       session[:id] = @user.id
       session[:username] = @user.username
+      puts "esta es la imagen en '/login'"
+      puts @user.imagen
+      session[:imagen] = @user.imagen
       puts "¿Hay username?"
       puts session[:username]      
     else
@@ -232,7 +244,12 @@ post'/ruta/:num' do
   #puts "eys. en el post"
   puts "Estamos en la ruta con id:"
   puts params[:num]
-  @comenta = Comentarios.first_or_create(:username => session[:username], :ruta_id => params[:num], :comentario => params[:mensaje])
+    puts params[:num]
+  if(params[:mensaje] != '' && params[:mensaje] != ' ')
+    @comenta = Comentarios.first_or_create(:username => session[:username], :ruta_id => params[:num], :comentario => params[:mensaje])
+  else
+    flash[:mensaje] = "No ha escrito comentario"
+  end
   redirect "/ruta/#{params[:num]}"
 end
 

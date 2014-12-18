@@ -10,10 +10,17 @@ task :test do
   sh "ruby ./test/test.rb"
 end
 
-desc "run test examples"
+desc "run selenium examples"
 task :selenium do
   sh "bundle exec rspec -I. test/selenium.rb"
 end
+
+desc "run spec examples"
+task :spec do
+  sh "bundle exec rspec -I. test/spec.rb"
+end
+
+
 #desc "make a non Ajax request via curl"
 #task :noajax do
 #  sh "curl -v http://localhost:4567/update"
@@ -31,10 +38,7 @@ end
 
 
 
-#desc "run spec examples"
-#task :spec do
-#  sh "bundle exec rspec -I. spec/spec.rb"
-#end
+
 
 #desc "Run server"
 #    task :server do

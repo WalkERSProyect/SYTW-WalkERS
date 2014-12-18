@@ -51,7 +51,7 @@
               %li
                 %a{:href => "/rutas"} RUTAS
             %li
-              %img{:id => "imagen-menu", :class => "img-circle", :src => "/img/sendero1.jpg"}
+              %img{:id => "imagen-menu", :class => "img-circle", :src => session[:imagen] }
             %p.navbar-text.pull-left
               %a.navbar-link{:href => "#"}
                 %b= session[:user]
