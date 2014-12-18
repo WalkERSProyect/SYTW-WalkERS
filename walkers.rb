@@ -82,6 +82,7 @@ get'/getUser' do
       erb :loginUser
     else
       puts "en el else"
+      session[:imagen] = 
       session[:user] = session[:name]
       session[:username] = session[:usuario]
       puts "¿Hay username?"
@@ -101,6 +102,7 @@ post '/getUser' do
       @objeto = Usuarios.first_or_create(:username => params[:usuario], :nombre => session[:name], :apellidos => session[:surname], :imagen => session[:image], :email => session[:email])
       session[:user] = session[:name]
       session[:username] = params[:usuario]
+      session[:imagen] = session[:image]
       puts "¿Hay username?"
       puts session[:username]
       flash[:mensaje] = "¡Enhorabuena! Se ha registrado correctamente."
@@ -152,13 +154,14 @@ post '/login' do
       session[:user] = @user.nombre
       session[:id] = @user.id
       session[:username] = @user.username
+      session[:imagen] = @user.imagen
       puts "¿Hay username?"
       puts session[:username]      
     else
       flash[:mensaje] = "El nombre de usuario y/o contraseña no son correctos."
       puts e.message
     end
-  rescue Excepftion => e
+  rescue Exception => e
     flash[:mensaje] = "El nombre de usuario y/o contraseña no son correctos."
     puts e.message
   end
