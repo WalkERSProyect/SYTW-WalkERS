@@ -1,9 +1,12 @@
 require 'coveralls'
 ENV['RACK_ENV'] = 'test'
 require_relative '../walkers.rb'
+require 'test/unit'
 require 'rack/test'
+require 'selenium-webdriver'
 require 'rubygems'
 require 'rspec'
+require 'haml'
 
 Coveralls.wear!
 
@@ -28,11 +31,18 @@ describe "Rspec" do
 		last_response.body['Comienza']
 	end
     
-    it '/' do
+    it 'Probar registro' do
 		post '/signup',  :usuario => "sergio7", :nombre => "sergio" , :apellidos => "díaz", 
 						 :email => "sergio@gmail.com", :pass1 => "1", :pass2=> "1", :imagen => "imagen.jpg"
 		last_response.body['ÚLTIMAS RUTAS AÑADIDAS']
 	end
+
+	it 'Probar login' do
+		post '/signup',  :usuario => "sergio7", :email => "sergio@gmail.com"
+		last_response.body['ÚLTIMAS RUTAS AÑADIDAS']
+	end
+
+	
 #[:usuario], :[:nombre], [:apellidos], [:email], [:pass1],[:imagen]
 
    # it "sesión" do
