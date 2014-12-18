@@ -264,19 +264,22 @@ get '/misrutas' do
   else
     @mostrar = false
     @rutas = SeguirRuta.all()
-    for i in 0...SeguirRuta.count()
-      if ((session[:id] == @rutas[i].id_usuario) && (@rutas[i].id_ruta))
-        @mostrar = true  
+    @ruta_seg = Rutas.all()
+    if (@rutas)
+      for i in 0...SeguirRuta.count()
+        if ((session[:id] == @rutas[i].id_usuario) && (@rutas[i].id_ruta))
+          @mostrar = true  
+        end
       end
-    end 
       if (@mostrar == true)
-        haml :misrutas
-      else  
+        haml :misrutas    
+      else
         flash[:mensaje] = "El usuario no le gusta ninguna ruta"
-        redirect '/rutas'
+        haml :misrutas  
+        #redirect '/misrutas'
       end
-  end        
-    haml :misrutas
+    end
+  end          
 end
 
 
