@@ -154,7 +154,7 @@ end
 
 get '/login' do
   if (!session[:user])
-    erb :login
+    haml :login, :layout => false
   else
     redirect '/'
   end 
