@@ -197,8 +197,7 @@ end
 
 get '/seguir_ruta' do
 
-
-end
+end  
 
 get '/ruta/:num' do
   #puts "Estamos en la ruta con id:"
@@ -313,6 +312,8 @@ post '/eliminaramigo' do
   flash[:mensaje] = "Amigo eliminado con exito"
   redirect '/amigos'
 end
+
+
 
 get '/logout' do
   session.clear

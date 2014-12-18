@@ -4,7 +4,7 @@ require 'xmlsimple'
 class Usuarios
   include DataMapper::Resource
 
-  property :id,   		  Serial
+  property :id,         Serial
   property :username,   String
   property :password,   BCryptHash
   property :nombre,     String
@@ -19,43 +19,44 @@ class Rutas
   include DataMapper::Resource
 
   property :id,           Serial
-  property :username,		  String
-  property :nombre, 		  String
-  property :informacion, 	String
+  property :username,     String
+  property :nombre,       String
+  property :informacion,  String
   property :dificultad,   Integer
-  property :puntuacion, 	Integer
-  property :votos, 			  Integer
+  property :puntuacion,   Integer
+  property :votos,        Integer
   property :imagen,       String
-  property :created_at, 	DateTime
-
-end
-
-
-class Amigos
-  include DataMapper::Resource
-
-  property :id,           Serial 
-  property :id_usuario,   Integer
-  property :id_amigo,     Integer 
-  property :nombre,       String  
   property :created_at,   DateTime
-  property :updated_at,   DateTime
+
+  has n, :visits
 
 end
 
-
-class SeguirRuta
+class Seguir_Ruta
   include DataMapper::Resource
 
   property :id,           Serial
+  property :id_usuario,   Integer 
   property :id_ruta,      Integer
-  property :id_usuario,   Integer
   property :created_at,   DateTime
   property :updated_at,   DateTime
 end  
 
 
+
 class Comentarios
+  include DataMapper::Resource
+
+  property :id,           Serial
+  property :username,     String
+  property :ruta_id,      Integer
+  property :comentario,   String
+  property :created_at,   DateTime
+
+end
+
+
+class Amigos
   include DataMapper::Resource
 
   property :id,           Serial 
