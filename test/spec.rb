@@ -1,11 +1,11 @@
 require 'coveralls'
-Coveralls.wear!
-ENV['RACK_ENV'] = 'test'
+ENV['RACK_ENV'] = 'spec'
 require_relative '../walkers.rb'
 require 'rack/test'
 require 'rubygems'
 require 'rspec'
 
+Coveralls.wear!
 
 include Rack::Test::Methods
 def app
