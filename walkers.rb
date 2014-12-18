@@ -233,30 +233,25 @@ post '/addruta' do
   end
 end
 
-get '/seguir_ruta' do
-
-end  
+ 
 
 get '/ruta/:num' do
-
-  begin
-    if (!session[:user])
-      redirect '/'
-    else
-      #puts "Estamos en la ruta con id:"
-      #puts params[:num]
-      #puts "Este debiera ser el parámetro= " + params[:num]
-      puts "¿Hay username?"
-      puts session[:username]
-      @ruta = Rutas.first(:id => params[:num])
-      @comentario = Comentarios.all(:ruta_id => params[:num])
-      visitas = Visit.new(:ip => get_remote_ip(env), :rutas_id => params[:num])
-      visitas.save
-      contador = Visit.all(:rutas_id => params[:num])
-      puts "Esta pagina tiene tantas visitas"
-      puts contador.count
-      haml :ruta
-    end
+  if (!session[:user])
+    redirect '/'
+  else
+    #puts "Estamos en la ruta con id:"
+    #puts params[:num]
+    #puts "Este debiera ser el parámetro= " + params[:num]
+    puts "¿Hay username?"
+    puts session[:username]
+    @ruta = Rutas.first(:id => params[:num])
+    @comentario = Comentarios.all(:ruta_id => params[:num])
+    visitas = Visit.new(:ip => get_remote_ip(env), :rutas_id => params[:num])
+    visitas.save
+    contador = Visit.all(:rutas_id => params[:num])
+    puts "Esta pagina tiene tantas visitas"
+    puts contador.count
+    haml :ruta
   end  
 end
 
@@ -274,14 +269,10 @@ post'/ruta/:num' do
 end
 
 get '/misrutas' do
-
-  begin
-    if (!session[:user])
-      redirect '/'
-    else
-
-      haml :misrutas
-    end
+  if (!session[:user])
+    redirect '/'
+  else
+    haml :misrutas
   end
 end
 
@@ -291,6 +282,35 @@ get '/estadisticas/:num' do
   else
     haml :estadisticas
   end
+end
+
+post '/seguirruta' do
+  @seguir_ruta = SeguirRuta.first_or_create(:id_usuario => session[:id] , :id_ruta => params[:ruta].to_i)
+  redirect '/misrutas'
+end 
+
+get '/misrutas' do
+  if (!session[:user])
+    redirect '/'
+  else
+    @mostrar = false
+    @rutas = SeguirRuta.all()
+    @ruta_seg = Rutas.all()
+    if (@rutas)
+      for i in 0...SeguirRuta.count()
+        if ((session[:id] == @rutas[i].id_usuario) && (@rutas[i].id_ruta))
+          @mostrar = true  
+        end
+      end
+      if (@mostrar == true)
+        haml :misrutas    
+      else
+        flash[:mensaje] = "El usuario no le gusta ninguna ruta"
+        haml :misrutas  
+        #redirect '/misrutas'
+      end
+    end
+  end          
 end
 
 get '/amigos' do

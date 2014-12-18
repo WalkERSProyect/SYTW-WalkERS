@@ -1,1 +1,15 @@
-%h1 Rutas
+%h1 Mis Rutas
+.panel.panel-success
+  .panel-heading
+    %h3.panel-title MIS RUTAS
+  .panel-body
+    .row
+      - for i in 0...SeguirRuta.count()
+        - if ((session[:id] == @rutas[i].id_usuario) && (@rutas[i].id_ruta))
+          - for j in 0...Rutas.count()
+            - if (@rutas[i].id_ruta == @ruta_seg[j].id)
+              .col-xs-3
+                %a.thumbnail{:href => "ruta/#{@ruta_seg[j].id}"}
+                  %img.img-responsive{:src => "#{@ruta_seg[j].imagen}"}
+                  %p= @ruta_seg[j].nombre
+                  
