@@ -16,6 +16,7 @@
           Dificultad:
           %img#semaforo{:src => "../img/#{@dif}"}
             Puntuación: #{@ruta.puntuacion}
+            %form{:action => "./seguir_ruta", :class => "form-seguir_ruta", :method => "POST", :name => "form-seguir_ruta", :role => "form"}
             %button.btn.btn-danger{:type => "button"} Me gusta
   #derecha
     #panel{:role => "tabpanel"}
@@ -25,7 +26,6 @@
           %a{"aria-controls" => "home", "data-toggle" => "tab", :href => "#home", :role => "tab"} Descripción
         %li{:role => "presentation"}
           %a{"aria-controls" => "profile", "data-toggle" => "tab", :href => "#profile", :role => "tab"} Posts
-
         %li{:role => "presentation"}
           %a{"aria-controls" => "messages", "data-toggle" => "tab", :href => "#messages", :role => "tab"} Mapas
       / Tab panes

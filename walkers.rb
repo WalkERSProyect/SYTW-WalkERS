@@ -180,7 +180,8 @@ post '/addruta' do
       redirect '/'
     else
       #puts "Estoy aqui en el post de add ruta"
-      puts "Nombraco " + params[:nombre]
+      puts "Usuario" + params[:session[:id]]
+      puts "Nombre " + params[:nombre]
       puts "Difi " + params[:dificultad]
       puts "Info " + params[:descripcion]
       puts "Imagen" + params[:imagen]
@@ -195,9 +196,7 @@ post '/addruta' do
   redirect '/ruta/1'
 end
 
-get '/seguir_ruta' do
-
-end  
+ 
 
 get '/ruta/:num' do
   #puts "Estamos en la ruta con id:"
@@ -221,11 +220,14 @@ post'/ruta/:num' do
   redirect "/ruta/#{params[:num]}"
 end
 
+post 'seguir_ruta' do
+  puts "hola"
+end 
+
 get '/misrutas' do
-
   haml :misrutas
-
 end
+
 
 get '/ultimas' do
   if (!session[:user])
