@@ -85,6 +85,7 @@ get'/getUser' do
       session[:imagen] = 
       session[:user] = session[:name]
       session[:username] = session[:usuario]
+      session[:imagen] = @email.imagen
       puts "¿Hay username?"
       puts session[:username]
       redirect '/'
@@ -103,6 +104,12 @@ post '/getUser' do
       session[:user] = session[:name]
       session[:username] = params[:usuario]
       session[:imagen] = session[:image]
+      puts "Esta es la imagen en /getUser"
+      puts session[:imagen]
+
+      puts "Esta es la image (SIN E) en /getUser"
+      puts session[:image]
+
       puts "¿Hay username?"
       puts session[:username]
       flash[:mensaje] = "¡Enhorabuena! Se ha registrado correctamente."
@@ -154,6 +161,8 @@ post '/login' do
       session[:user] = @user.nombre
       session[:id] = @user.id
       session[:username] = @user.username
+      puts "esta es la imagen en '/login'"
+      puts @user.imagen
       session[:imagen] = @user.imagen
       puts "¿Hay username?"
       puts session[:username]      
