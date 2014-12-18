@@ -25,7 +25,7 @@ class Rutas
   property :dificultad,   Integer
   property :puntuacion, 	Integer
   property :votos, 			  Integer
-  property :imagen,       String
+  property :imagen,       Text
   property :created_at, 	DateTime
 
   has n, :visits

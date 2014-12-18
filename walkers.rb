@@ -180,19 +180,21 @@ post '/addruta' do
       redirect '/'
     else
       #puts "Estoy aqui en el post de add ruta"
-      puts "Nombraco " + params[:nombre]
-      puts "Difi " + params[:dificultad]
-      puts "Info " + params[:descripcion]
-      puts "Imagen" + params[:imagen]
+      #puts "Nombraco " + params[:nombre]
+      #puts "Difi " + params[:dificultad]
+      #puts "Info " + params[:descripcion]
+      #puts "Imagen" + params[:imagen]
       @ruta = Rutas.first_or_create(:nombre => params[:nombre] ,:dificultad => params[:dificultad], 
                                     :informacion => params[:descripcion], :imagen => params[:imagen])
+      #puts @ruta
+      #ruta_id = @ruta.id
+      redirect '/rutas'
     end
   rescue Exception => e
     flash[:mensajeRojo] = "No se ha podido añadir la ruta. Por favor, inténtelo de nuevo."
     puts e.message
     redirect '/addruta'
   end
-  redirect '/ruta/1'
 end
 
 get '/seguir_ruta' do
@@ -255,7 +257,6 @@ get '/amigos' do
   end   
 end
 
-
 get '/buscaramigos' do
   if (!session[:user])
     redirect '/'
@@ -306,8 +307,6 @@ post '/eliminaramigo' do
   flash[:mensaje] = "Amigo eliminado con exito"
   redirect '/amigos'
 end
-
-
 
 get '/logout' do
   session.clear

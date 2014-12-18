@@ -6,7 +6,7 @@
     - @ultimas_rutas.each do |ruta_ult|
       .col-xs-3
         %a.thumbnail{:href => "ruta/#{ruta_ult.id}"}
-          %img.img-responsive{:src => "./img/sendero1.jpg"}
+          %img.img-responsive{:src => "#{ruta_ult.imagen}"}
           %p= ruta_ult.nombre
           %p Añadida el #{ruta_ult.created_at.strftime("%d/%m/%Y")}
           
@@ -18,7 +18,7 @@
     - @populares_rutas.each do |ruta_pop|
       .col-xs-3
         %a.thumbnail{:href => "ruta/#{ruta_pop.id}"}
-          %img.img-responsive{:src => "./img/sendero1.jpg"}
+          %img.img-responsive{:src => "#{ruta_pop.imagen}"}
           %p= ruta_pop.nombre
           %p Putuación: #{ruta_pop.puntuacion}
   
