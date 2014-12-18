@@ -82,12 +82,9 @@ get'/getUser' do
       erb :loginUser
     else
       puts "en el else"
-      session[:imagen] = 
       session[:user] = session[:name]
-      session[:username] = session[:usuario]
+      session[:username] = @email.username
       session[:imagen] = @email.imagen
-      puts "¿Hay username?"
-      puts session[:username]
       redirect '/'
     end 
     rescue Exception => e
@@ -135,10 +132,10 @@ post '/signup' do
       end
       @objeto = Usuarios.first_or_create(:username => params[:usuario], :nombre => params[:nombre], 
                                          :apellidos => params[:apellidos], :email => params[:email], 
-                                         :password => params[:pass1], :imagen => imagen)
+                                         :password => params[:pass1], :imagen => params[:imagen])
       session[:user] = params[:nombre]
       session[:username] = params[:usuario]
-      session[:imagen] = imagen
+      session[:imagen] = params[:imagen]
       puts "¿Hay username?"
       puts session[:username]
       flash[:mensaje] = "¡Enhorabuena! Se ha registrado correctamente."
@@ -185,11 +182,28 @@ get '/configuracion' do
   if (!session[:user])
     redirect '/'
   else
-    @usuario = Usuarios.all()
+    @usuario = Usuarios.first(:email => session[:email])
+    puts "El username es"
+    puts @usuario.username
     haml :configuracion
   end
 end
 
+post '/configuracion' do
+  if (!session[:user])
+    redirect '/'
+  else
+    @actualizar = Usuarios.first(:username=>session[:username])
+    @actualizar.update(:username => params[:usuario], :nombre => params[:nombre], 
+                                         :apellidos => params[:apellidos], :email => params[:email], 
+                                         :password => params[:pass1], :imagen => params[:imagen])
+    
+
+
+    #@actualizar.save
+  end
+  redirect '/'
+end
 get '/rutas' do
   @actual = "rutas";
   if (!session[:user])
