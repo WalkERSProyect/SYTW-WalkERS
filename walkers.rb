@@ -181,6 +181,14 @@ post '/login' do
   redirect './login'
 end
 
+get '/configuracion' do
+  if (!session[:user])
+    redirect '/'
+  else
+    haml :configuracion
+  end
+end
+
 get '/rutas' do
   @actual = "rutas";
   if (!session[:user])
@@ -229,19 +237,26 @@ get '/seguir_ruta' do
 end  
 
 get '/ruta/:num' do
-  #puts "Estamos en la ruta con id:"
-  #puts params[:num]
-  #puts "Este debiera ser el parámetro= " + params[:num]
-  puts "¿Hay username?"
-  puts session[:username]
-  @ruta = Rutas.first(:id => params[:num])
-  @comentario = Comentarios.all(:ruta_id => params[:num])
-  visitas = Visit.new(:ip => get_remote_ip(env), :rutas_id => params[:num])
-  visitas.save
-  contador = Visit.all(:rutas_id => params[:num])
-  puts "Esta pagina tiene tantas visitas"
-  puts contador.count
-  haml :ruta
+
+  begin
+    if (!session[:user])
+      redirect '/'
+    else
+      #puts "Estamos en la ruta con id:"
+      #puts params[:num]
+      #puts "Este debiera ser el parámetro= " + params[:num]
+      puts "¿Hay username?"
+      puts session[:username]
+      @ruta = Rutas.first(:id => params[:num])
+      @comentario = Comentarios.all(:ruta_id => params[:num])
+      visitas = Visit.new(:ip => get_remote_ip(env), :rutas_id => params[:num])
+      visitas.save
+      contador = Visit.all(:rutas_id => params[:num])
+      puts "Esta pagina tiene tantas visitas"
+      puts contador.count
+      haml :ruta
+    end
+  end  
 end
 
 post'/ruta/:num' do
@@ -259,8 +274,14 @@ end
 
 get '/misrutas' do
 
-  haml :misrutas
+  begin
+    if (!session[:user])
+      redirect '/'
+    else
 
+      haml :misrutas
+    end
+  end
 end
 
 get '/ultimas' do
@@ -272,9 +293,11 @@ get '/ultimas' do
 end
 
 get '/estadisticas/:num' do
-  
-  haml :estadisticas
-
+  if (!session[:user])
+    redirect '/'
+  else
+    haml :estadisticas
+  end
 end
 
 get '/amigos' do
@@ -320,33 +343,41 @@ post '/buscaramigos' do
 end
  
 post '/añadiramigo' do
-  @usuario = Usuarios.first(:username => params[:usuario]) # Usuario introducido por teclado
-  @amigos = Amigos.all()
-  @amigo = Amigos.first(:nombre => params[:usuario]) # SELECT * FROM AMIGOS WHERE NOMBRE = "params usuario"
-  for i in 0...Amigos.count()
-    if ((@amigos[i].nombre == params[:usuario]) && (@amigos[i].id_usuario == session[:id]))
-      @encontrado = true
+  if (!session[:user])
+      redirect '/'
+  else
+    @usuario = Usuarios.first(:username => params[:usuario]) # Usuario introducido por teclado
+    @amigos = Amigos.all()
+    @amigo = Amigos.first(:nombre => params[:usuario]) # SELECT * FROM AMIGOS WHERE NOMBRE = "params usuario"
+    for i in 0...Amigos.count()
+      if ((@amigos[i].nombre == params[:usuario]) && (@amigos[i].id_usuario == session[:id]))
+        @encontrado = true
+      end
+    end    
+    if ((@amigo) && (@encontrado == true)) # Si existe el amigo 
+      flash[:mensaje] = "Ya tiene el amigo en su lista"
+      redirect '/amigos'  
+    else      
+      @amigo = Amigos.first_or_create(:id_usuario => session[:id],:id_amigo => @usuario.id, :nombre => @usuario.username)
+      flash[:mensaje] = "Amigo añadido con exito"
+      redirect '/amigos'
     end
-  end    
-  if ((@amigo) && (@encontrado == true)) # Si existe el amigo 
-    flash[:mensaje] = "Ya tiene el amigo en su lista"
-    redirect '/amigos'  
-  else      
-    @amigo = Amigos.first_or_create(:id_usuario => session[:id],:id_amigo => @usuario.id, :nombre => @usuario.username)
-    flash[:mensaje] = "Amigo añadido con exito"
-    redirect '/amigos'
-  end
+  end  
 end
 
 post '/eliminaramigo' do
-  #puts params[:usuario]
-  @amigo = Amigos.first(:id_usuario => session[:id],:nombre => params[:usuario]) # Usuario introducido por teclado
-  puts @amigo.id_usuario
-  puts @amigo.id_amigo
-  puts @amigo.nombre
-  @amigo.destroy
-  flash[:mensaje] = "Amigo eliminado con exito"
-  redirect '/amigos'
+  if (!session[:user])
+      redirect '/'
+  else
+    #puts params[:usuario]
+    @amigo = Amigos.first(:id_usuario => session[:id],:nombre => params[:usuario]) # Usuario introducido por teclado
+    puts @amigo.id_usuario
+    puts @amigo.id_amigo
+    puts @amigo.nombre
+    @amigo.destroy
+    flash[:mensaje] = "Amigo eliminado con exito"
+    redirect '/amigos'
+  end
 end
 
 get '/logout' do
