@@ -23,11 +23,13 @@ $(document).ready(function()
   		return true;
   });
 
+
+  //$("#posts").scrollTop(50000000000);
   $("#btn-post").click(function() {
-    
-    tam = $("#posts").css("height");
+    $("#posts").scrollTop(5000000000000);
+    //tam = $("#posts").css("height");
     //alert(tam);
-    $("#posts").scrollTop(tam * 1000);
+    //$("#posts").scrollTop(tam * 1000);
   });
 
 });
