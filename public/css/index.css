@@ -45,3 +45,14 @@ p {
   /*border-radius: 50%;*/
   overflow: hidden;
 }
+
+#pass-msg {
+  float:right;
+  /*font-size: 80%;*/
+  position: relative;
+  top:-15px;
+}
+
+#pass-msg:hover {
+  font-size: 105%;
+}
