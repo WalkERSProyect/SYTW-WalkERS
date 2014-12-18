@@ -49,6 +49,8 @@
             %button.btn.btn-default{:type => "submit"} Buscar
       - if (flash[:mensaje])
         .alert.alert-success{:role => "alert"}= flash[:mensaje]
+      - elsif (flash[:mensajeRojo])
+        .alert.alert-danger{:role => "alert"}= flash[:mensajeRojo]
 
       = yield
       

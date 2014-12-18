@@ -170,23 +170,29 @@ get '/addruta' do
   if (!session[:user])
     redirect '/'
   else
-    erb :addruta
+    haml :addruta
   end
 end  
 
 post '/addruta' do
-  if (!session[:user])
-    redirect '/'
-  else
-    #puts "Estoy aqui en el post de add ruta"
-    #puts "Nombraco " + params[:nombre]
-    #puts "Difi " + params[:dificultad]
-    #puts "Info " + params[:descripcion]
-    @ruta=Rutas.first_or_create(:nombre => params[:nombre] ,:dificultad => params[:dificultad], :informacion => params[:descripcion])
-    #@ruta.save
-    
-    redirect '/rutas'
+  begin
+    if (!session[:user])
+      redirect '/'
+    else
+      #puts "Estoy aqui en el post de add ruta"
+      puts "Nombraco " + params[:nombre]
+      puts "Difi " + params[:dificultad]
+      puts "Info " + params[:descripcion]
+      puts "Imagen" + params[:imagen]
+      @ruta = Rutas.first_or_create(:nombre => params[:nombre] ,:dificultad => params[:dificultad], 
+                                    :informacion => params[:descripcion], :imagen => params[:imagen])
+    end
+  rescue Exception => e
+    flash[:mensajeRojo] = "No se ha podido añadir la ruta. Por favor, inténtelo de nuevo."
+    puts e.message
+    redirect '/addruta'
   end
+  redirect '/ruta/1'
 end
 
 get '/seguir_ruta' do
@@ -290,17 +296,18 @@ post '/añadiramigo' do
     flash[:mensaje] = "Ya tiene el amigo en su lista"
     redirect '/amigos'  
   else      
-    @amigo = Amigos.first_or_create(:id_usuario => session[:id],:id_amigo => @usuario.id, :nombre => @usuario.nombre)
+    @amigo = Amigos.first_or_create(:id_usuario => session[:id],:id_amigo => @usuario.id, :nombre => @usuario.username)
     flash[:mensaje] = "Amigo añadido con exito"
     redirect '/amigos'
   end
 end
 
 post '/eliminaramigo' do
-  puts params[:usuario]
-  @amigo = Amigos.first(:nombre => params[:usuario]) # Usuario introducido por teclado
-  @amigo.id_amigo
-  @amigo.nombre
+  #puts params[:usuario]
+  @amigo = Amigos.first(:id_usuario => session[:id],:nombre => params[:usuario]) # Usuario introducido por teclado
+  puts @amigo.id_usuario
+  puts @amigo.id_amigo
+  puts @amigo.nombre
   @amigo.destroy
   flash[:mensaje] = "Amigo eliminado con exito"
   redirect '/amigos'
