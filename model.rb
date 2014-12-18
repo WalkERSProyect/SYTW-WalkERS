@@ -24,21 +24,21 @@ class Rutas
   property :nombre,       String
   property :informacion,  String
   property :dificultad,   Integer
-  property :puntuacion, 	Integer
-  property :votos, 			  Integer
+  property :puntuacion,   Integer
+  property :votos,        Integer
   property :imagen,       Text
-  property :created_at, 	DateTime
-  
+  property :created_at,   DateTime
+
   has n, :visits
 
 end
 
-class SeguirRuta
+class Seguir_Ruta
   include DataMapper::Resource
 
   property :id,           Serial
-  property :id_usuario,   Integer 
   property :id_ruta,      Integer
+  property :id_usuario,   Integer
   property :created_at,   DateTime
   property :updated_at,   DateTime
 end  
