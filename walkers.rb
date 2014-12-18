@@ -237,7 +237,6 @@ post'/ruta/:num' do
     @comenta = Comentarios.first_or_create(:username => session[:username], :ruta_id => params[:num], :comentario => params[:mensaje])
   else
     flash[:mensaje] = "No ha escrito comentario"
-    puts e.message
   end
   redirect "/ruta/#{params[:num]}"
 end
