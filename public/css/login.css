@@ -71,3 +71,9 @@ body {
   padding-top:5px;
   font-size:85%;
 }
+
+#icono-autenticacion {
+  width: 50px;
+  height: auto;
+  margin-bottom: 5px;
+}
