@@ -180,8 +180,7 @@ post '/addruta' do
       redirect '/'
     else
       #puts "Estoy aqui en el post de add ruta"
-      puts "Usuario" + params[:session[:id]]
-      puts "Nombre " + params[:nombre]
+      puts "Nombraco " + params[:nombre]
       puts "Difi " + params[:dificultad]
       puts "Info " + params[:descripcion]
       puts "Imagen" + params[:imagen]
@@ -220,7 +219,7 @@ post'/ruta/:num' do
   redirect "/ruta/#{params[:num]}"
 end
 
-post 'seguir_ruta' do
+post '/ruta/:num/seguir_ruta' do
   puts "hola"
 end 
 
