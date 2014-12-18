@@ -51,6 +51,8 @@ get '/' do
   if (!session[:user])
     haml :welcome, :layout => false 
   else
+    puts "¿Hay username en 'get /'?"
+    puts session[:username]
     # Obtenemos las últimas rutas añadidas
     @ultimas_rutas = Rutas.all(:limit => 4, :order => [ :created_at.desc ])
     # Obtenemos las rutas más populares
@@ -81,6 +83,8 @@ get'/getUser' do
       puts "en el else"
       session[:user] = session[:name]
       session[:username] = session[:usuario]
+      puts "¿Hay username?"
+      puts session[:username]
       redirect '/'
     end 
     rescue Exception => e
@@ -93,9 +97,11 @@ post '/getUser' do
   begin
     @usuario = Usuarios.first(:username => params[:usuario])
     if (!@usuario)
-      @objeto = Usuarios.first_or_create(:username => params[:usuario], :nombre => session[:name], :apellidos => session[:surname], :email => session[:email])
+      @objeto = Usuarios.first_or_create(:username => params[:usuario], :nombre => session[:name], :apellidos => session[:surname], :imagen => session[:image], :email => session[:email])
       session[:user] = session[:name]
       session[:username] = params[:usuario]
+      puts "¿Hay username?"
+      puts session[:username]
       flash[:mensaje] = "¡Enhorabuena! Se ha registrado correctamente."
     else
       flash[:mensaje] = "El nombre de usuario ya existe. Por favor, elija otro."
@@ -115,6 +121,8 @@ post '/signup' do
       @objeto = Usuarios.first_or_create(:username => params[:usuario], :nombre => params[:nombre], :apellidos => params[:apellidos], :email => params[:email], :password => params[:pass1])
       session[:user] = params[:nombre]
       session[:username] = params[:usuario]
+      puts "¿Hay username?"
+      puts session[:username]
       flash[:mensaje] = "¡Enhorabuena! Se ha registrado correctamente."
     else
       flash[:mensaje] = "El nombre de usuario ya existe. Por favor, elija otro."
@@ -142,7 +150,9 @@ post '/login' do
     if (@user_hash == params[:password])
       session[:user] = @user.nombre
       session[:id] = @user.id
-      session[:username] = @user.username      
+      session[:username] = @user.username
+      puts "¿Hay username?"
+      puts session[:username]      
     else
       flash[:mensaje] = "El nombre de usuario y/o contraseña no son correctos."
       puts e.message
@@ -183,8 +193,10 @@ post '/addruta' do
       puts "Nombraco " + params[:nombre]
       puts "Difi " + params[:dificultad]
       puts "Info " + params[:descripcion]
-      puts "Imagen" + params[:imagen]
-      @ruta = Rutas.first_or_create(:nombre => params[:nombre] ,:dificultad => params[:dificultad], 
+      puts "Imagen " + params[:imagen]
+      puts "Username de la session en '/addruta'" 
+      puts session[:username]
+      @ruta = Rutas.first_or_create(:nombre => params[:nombre], :username => session[:username], :dificultad => params[:dificultad], 
                                     :informacion => params[:descripcion], :imagen => params[:imagen])
     end
   rescue Exception => e
@@ -203,6 +215,8 @@ get '/ruta/:num' do
   #puts "Estamos en la ruta con id:"
   #puts params[:num]
   #puts "Este debiera ser el parámetro= " + params[:num]
+  puts "¿Hay username?"
+  puts session[:username]
   @ruta = Rutas.first(:id => params[:num])
   @comentario = Comentarios.all(:ruta_id => params[:num])
   visitas = Visit.new(:ip => get_remote_ip(env), :rutas_id => params[:num])
