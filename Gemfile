@@ -4,6 +4,7 @@ gem 'data_mapper'
 gem 'sinatra-contrib'
 gem 'haml'
 
+gem 'thin'
 gem 'sinatra'
 gem 'omniauth'
 gem 'omniauth-facebook'
