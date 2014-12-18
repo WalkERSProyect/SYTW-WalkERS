@@ -1,5 +1,5 @@
 require 'coveralls'
-ENV['RACK_ENV'] = 'spec'
+ENV['RACK_ENV'] = 'test'
 require_relative '../walkers.rb'
 require 'rack/test'
 require 'rubygems'
