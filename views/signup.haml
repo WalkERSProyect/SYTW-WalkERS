@@ -3,11 +3,10 @@
   %head
     %title WalkERS - Registro
     %link{:href => "https://maxcdn.bootstrapcdn.com/bootstrap/3.3.1/css/bootstrap.min.css", :rel => "stylesheet"}
-      %link{:href => "./css/login.css", :rel => "stylesheet", :type => "text/css"}
-        %script{:src => "https://ajax.googleapis.com/ajax/libs/jquery/1.11.1/jquery.min.js"}
-        %script{:src => "https://maxcdn.bootstrapcdn.com/bootstrap/3.3.1/js/bootstrap.min.js"}
-        %script{:src => "../js/walkers.js", :type => "text/javascript"}
-        / MIRARRRR!!!!
+    %link{:href => "./css/login.css", :rel => "stylesheet", :type => "text/css"}
+    %script{:src => "https://ajax.googleapis.com/ajax/libs/jquery/1.11.1/jquery.min.js"}
+    %script{:src => "https://maxcdn.bootstrapcdn.com/bootstrap/3.3.1/js/bootstrap.min.js"}
+    %script{:src => "../js/walkers.js", :type => "text/javascript"}
   %body
     / <h1>Registro</h1>
     .container
@@ -17,13 +16,14 @@
             .panel-title
               %a{:href => "./"} WalkERS
           .panel-body
-            #registro-fuente-externa
-              %a{:href => "/auth/google_oauth2"} Google
-              %br
-                %a{:href => "/auth/facebook"} Facebook
             #mensaje-pass.alert.alert-danger.col-sm-12
             %form#form-signup.form-horizontal{:action => "/signup", :method => "POST", :name => "form-signup", :role => "form"}
               %h2.form-signin-heading Registro
+              #registro-fuente-externa
+              %a{:href => "/auth/google_oauth2"}
+                %img{:src => "http://i.imgur.com/cYZGfB0.png", :alt => "Google", :class => "img-circle", :id => "icono-autenticacion"}
+              %a{:href => "/auth/facebook"}
+                %img{:src => "http://i.imgur.com/X0dq98g.png", :alt => "Facebook", :class => "img-circle", :id => "icono-autenticacion"}
               .form-group
                 %label.col-sm-2.control-label{:for => "nombre"} Nombre*
                 .col-sm-10
