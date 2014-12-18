@@ -1,27 +1,65 @@
-require 'capybara' # loading capybara
-require 'capybara/dsl'
-require 'rack/test'
 require 'coveralls'
-
 Coveralls.wear!
-
-Capybara.default_driver = :selenium 
-
 ENV['RACK_ENV'] = 'test'
+require_relative '../walkers.rb'
+require 'rack/test'
+require 'rubygems'
+require 'rspec'
 
-RSpec.configure do |config|
-  config.include Capybara::DSL
-  config.run_all_when_everything_filtered = true
-  config.filter_run :focus
-  config.order = :random
+
+include Rack::Test::Methods
+def app
+  Sinatra::Application
 end
+describe "Rspec" do
+
+	it "/ coincidendia de nombre 1" do
+		get '/'
+		last_response.body['Tu Chat']
+	end	
+
+	it '/ coincidencia de nombre 2' do
+		get '/'
+		last_response.body['Eduardo']
+	end
+
+	it '/ coincidencia de nombre 3' do
+		get '/'
+		last_response.body['Sergio']
+	end
+    
+    it '/' do
+		post '/'
+		last_response.body['Sergio']
+	end
+
+    it "sesión" do
+       get '/', {}, 'rack.session' => { :usuario => 'Eduardo' }
+       expect(last_response).to be_ok
+    end
 
 
-urlHer = 'http://localhost:4567/'
+	it '/ coincidencia de nombre 3' do
+		get '/'
+		last_response.body['y']
+	end
 
-describe 'make API call to load path', :type => :feature do 
-  it "should load the home page" do
-    visit "#{urlHer}"
-    expect(page).to have_content("WalkERS")
-  end
+	it '/chat coincidencia de nombre 3' do
+		get '/'
+		last_response.body['Usuarios conectados']
+	end
+
+	it 'post' do
+		post '/', params = {:usuario => 'Sergio'}
+		get '/chat'
+		last_response.body['Diseñado']
+	end
+
+	it '/chat' do
+		get '/chat'
+		last_response.body['Bienvenido']
+	end
+
+    
+
 end
