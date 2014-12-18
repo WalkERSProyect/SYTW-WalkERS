@@ -20,7 +20,7 @@
               %input{:name => "user_ruta", :style => "visibility:hidden;", :value => @ruta.username}
               %input{:name => "ruta", :style => "visibility:hidden;", :value => @ruta.id}
               %br
-              - if (@seguidor != nil)
+              - if (@seguidor != nil) 
                 Ya te gusta esta ruta
               - else  
                 %button.btn.btn-danger{:type => "submit"} Me gusta
