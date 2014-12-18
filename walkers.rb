@@ -185,6 +185,7 @@ get '/configuracion' do
   if (!session[:user])
     redirect '/'
   else
+    @usuario = Usuarios.all()
     haml :configuracion
   end
 end
@@ -282,14 +283,6 @@ get '/misrutas' do
       haml :misrutas
     end
   end
-end
-
-get '/ultimas' do
-  if (!session[:user])
-    redirect '/'
-  else
-    erb :ultimas
-  end 
 end
 
 get '/estadisticas/:num' do
