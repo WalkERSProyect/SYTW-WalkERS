@@ -7,6 +7,7 @@ class Usuarios
   property :id,         Serial
   property :username,   String
   property :password,   BCryptHash
+  property :imagen,     Text
   property :nombre,     String
   property :apellidos,  String
   property :email,      String
