@@ -23,8 +23,9 @@
       %ul.nav.nav-tabs{:role => "tablist"}
         %li.active{:role => "presentation"}
           %a{"aria-controls" => "home", "data-toggle" => "tab", :href => "#home", :role => "tab"} Descripción
-        %li{:role => "presentation"}
-          %a{"aria-controls" => "profile", "data-toggle" => "tab", :href => "#profile", :role => "tab"} Posts
+        %li{:role => "presentation", :id => "btn-post"}
+          %a{"aria-controls" => "profile", "data-toggle" => "tab", :href => "#profile", :role => "tab"} 
+            Posts
 
         %li{:role => "presentation"}
           %a{"aria-controls" => "messages", "data-toggle" => "tab", :href => "#messages", :role => "tab"} Mapas
@@ -35,12 +36,16 @@
           #posts
             - if (@comentario)
               - @comentario.each do |comenta|
-                %p.list-group-item-text= comenta.username
-                %p.list-group-item-text= comenta.comentario
+                %p.list-group-item-text
+                  %b= "#{comenta.username},"
+                  #{"el " + comenta.created_at.strftime("%x") + " a las " + comenta.created_at.strftime("%X")}
+                %p.list-group-item-text= "> #{comenta.comentario}"
                 %hr
+              #final
           #comentario
             %form{"accept-charset" => "UTF-8", :action => "/ruta/#{@ruta.id}", :method => "POST"}
-              %textarea.form-control{:rows => "1", :id => "comentario-post", :name => "mensaje"}
-              %button.btn.btn-success{:type => "submit"} Postear
+              %textarea.form-control{:rows => "1", :id => "comentario-post", :name => "mensaje", :placeholder => "Añada un comentario", :autofocus => ""}
+              #boton
+                %button.btn.btn-success{:type => "submit"} Postear
         #messages.tab-pane.fade.menu{:role => "tabpanel"} Mapa de Google
   .reset

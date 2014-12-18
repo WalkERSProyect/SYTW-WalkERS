@@ -23,4 +23,11 @@ $(document).ready(function()
   		return true;
   });
 
+  $("#btn-post").click(function() {
+    
+    tam = $("#posts").css("height");
+    //alert(tam);
+    $("#posts").scrollTop(tam * 1000);
+  });
+
 });
