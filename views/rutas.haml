@@ -1,11 +1,19 @@
 %h1 Rutas
 %button.btn.btn-default{:type => "button"}
   %a{:href => "./addruta"} Añadir ruta
-.list-group
-  - @rutas.each do |ruta|
-    %a.list-group-item{:href => "./ruta/#{ruta.id}"}
-      %h4.list-group-item-heading= ruta.nombre
-      %p.list-group-item-text= ruta.informacion
+
+.panel.panel-success
+  .panel-heading
+    %h3.panel-title Rutas
+  .panel-body
+    .row
+    - @rutas.each do |ruta|
+      .col-xs-3
+        %a.thumbnail{:href => "./ruta/#{ruta.id}"}
+          %img.img-responsive{:src => "#{ruta.imagen}"}
+          %p= ruta.nombre
+          %p Añadida el #{ruta.created_at.strftime("%d/%m/%Y")}
+
 %nav
   %ul.pager
     %li.disabled
