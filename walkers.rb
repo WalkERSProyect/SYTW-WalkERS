@@ -158,7 +158,7 @@ post '/login' do
       flash[:mensaje] = "El nombre de usuario y/o contraseña no son correctos."
       puts e.message
     end
-  rescue Exception => e
+  rescue Excepftion => e
     flash[:mensaje] = "El nombre de usuario y/o contraseña no son correctos."
     puts e.message
   end
