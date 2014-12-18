@@ -1,12 +1,10 @@
-ENV['RACK_ENV'] = 'test'
-require 'minitest/autorun'
-require 'rack/test'
-require 'test/unit'
-require_relative '../walkers.rb'
-require_relative '../model.rb'
 require 'coveralls'
 Coveralls.wear!
-
+ENV['RACK_ENV'] = 'test'
+require_relative '../walkers.rb'
+require 'rack/test'
+require 'rubygems'
+require 'rspec'
 
 include Test::Unit::Assertions
 
