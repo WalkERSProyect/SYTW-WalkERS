@@ -16,8 +16,14 @@
           Dificultad:
           %img#semaforo{:src => "../img/#{@dif}"}
             Puntuación: #{@ruta.puntuacion}
-            %form{:action => "./seguir_ruta", :class => "form-seguir_ruta", :method => "POST", :name => "form-seguir_ruta", :role => "form"}
-            %button.btn.btn-danger{:type => "button"} Me gusta
+            %form{:action => "/seguirruta", :class => "form-seguir_ruta", :method => "POST", :name => "form-seguir_ruta", :role => "form"}
+              %input{:name => "user_ruta", :style => "visibility:hidden;", :value => @ruta.username}
+              %input{:name => "ruta", :style => "visibility:hidden;", :value => @ruta.id}
+              %br
+              - if (@seguidor != nil)
+                Ya te gusta esta ruta
+              - else  
+                %button.btn.btn-danger{:type => "submit"} Me gusta
   #derecha
     #panel{:role => "tabpanel"}
       / Nav tabs

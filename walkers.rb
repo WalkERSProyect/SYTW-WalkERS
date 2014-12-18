@@ -198,13 +198,13 @@ post '/addruta' do
       puts session[:username]
       @ruta = Rutas.first_or_create(:nombre => params[:nombre], :username => session[:username], :dificultad => params[:dificultad], 
                                     :informacion => params[:descripcion], :imagen => params[:imagen])
+      redirect '/rutas'
     end
   rescue Exception => e
     flash[:mensajeRojo] = "No se ha podido añadir la ruta. Por favor, inténtelo de nuevo."
     puts e.message
     redirect '/addruta'
   end
-  redirect '/ruta/1'
 end
 
  
@@ -222,6 +222,8 @@ get '/ruta/:num' do
   contador = Visit.all(:rutas_id => params[:num])
   puts "Esta pagina tiene tantas visitas"
   puts contador.count
+  @seguidor = SeguirRuta.first(:id_usuario => session[:id], :id_ruta => params[:num])
+  #puts @seguidor.id_usuario
   haml :ruta
 end
 
@@ -233,12 +235,30 @@ post'/ruta/:num' do
   redirect "/ruta/#{params[:num]}"
 end
 
-post '/ruta/:num/seguir_ruta' do
-  puts "hola"
+post '/seguirruta' do
+  @seguir_ruta = SeguirRuta.first_or_create(:id_usuario => session[:id] , :id_ruta => params[:ruta].to_i)
+  redirect '/misrutas'
 end 
 
 get '/misrutas' do
-  haml :misrutas
+  if (!session[:user])
+    redirect '/'
+  else
+    @mostrar = false
+    @rutas = SeguirRuta.all()
+    for i in 0...SeguirRuta.count()
+      if ((session[:id] == @rutas[i].id_usuario) && (@rutas[i].id_ruta))
+        @mostrar = true  
+      end
+    end 
+      if (@mostrar == true)
+        haml :misrutas
+      else  
+        flash[:mensaje] = "El usuario no le gusta ninguna ruta"
+        redirect '/rutas'
+      end
+  end        
+    haml :misrutas
 end
 
 
@@ -250,10 +270,8 @@ get '/ultimas' do
   end 
 end
 
-get '/estadisticas/:num' do
-  
+get '/estadisticas/:num' do  
   haml :estadisticas
-
 end
 
 get '/amigos' do

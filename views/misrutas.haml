@@ -4,3 +4,7 @@
     %h3.panel-title MIS RUTAS 
   .panel-body
     .row
+      - for i in 0...SeguirRuta.count()
+        - if ((session[:id] == @rutas[i].id_usuario) && (@rutas[i].id_ruta))
+          %h4.list-group-item-text
+            = @rutas[i].id_ruta

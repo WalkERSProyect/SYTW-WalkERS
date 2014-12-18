@@ -33,7 +33,7 @@ class Rutas
 
 end
 
-class Seguir_Ruta
+class SeguirRuta
   include DataMapper::Resource
 
   property :id,           Serial
