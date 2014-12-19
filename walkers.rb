@@ -298,6 +298,17 @@ post '/seguirruta' do
   redirect '/misrutas'
 end 
 
+post '/eliminarruta' do
+  if (!session[:user])
+    redirect '/'
+  else
+    @noseguidor = SeguirRuta.first(:id_usuario => session[:id], :id_ruta => params[:ruta].to_i)
+    @noseguidor.destroy
+    flash[:mensaje] = "Ruta Eliminada de sus favoritos"
+    redirect '/misrutas'
+  end
+end 
+
 get '/misrutas' do
   @actual = 'misrutas'
   if (!session[:user])
