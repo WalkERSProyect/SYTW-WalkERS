@@ -293,6 +293,15 @@ get '/estadisticas/:num' do
   end
 end
 
+
+post '/estadisticas/:num' do
+  if (!session[:user])
+    redirect '/'
+  else
+    redirect "/estadisticas/#{params[:num]}"
+  end
+end
+
 post '/seguirruta' do
   @seguidor = SeguirRuta.first_or_create(:id_usuario => session[:id] , :id_ruta => params[:ruta].to_i)
   redirect '/misrutas'
@@ -308,6 +317,7 @@ post '/eliminarruta' do
     redirect '/misrutas'
   end
 end 
+
 
 get '/misrutas' do
   @actual = 'misrutas'
