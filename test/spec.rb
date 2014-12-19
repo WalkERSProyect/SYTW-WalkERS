@@ -64,6 +64,14 @@ describe "Rspec" do
 		last_response.body['WalkERS']
 	end
 
+	it 'post /addruta' do
+		post '/addruta', :nombre => "Teide", :username => "Sergio", :dificultad => "Baja",
+							:descripcion => "Muy bonito", :imagen => "imagen.jpg"
+
+		last_response.body['Rutas']
+	end
+
+
 	it '/misrutas' do
 		get '/rutas'
 		last_response.body['WalkERS']
