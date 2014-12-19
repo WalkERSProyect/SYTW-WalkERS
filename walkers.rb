@@ -200,7 +200,7 @@ post '/configuracion' do
     session[:username] = params[:usuario]
     session[:user] = params[:nombre]
     #@actualizar.save
-
+    flash[:mensaje] = "Datos actualizados correctamente."
   end
   redirect '/'
 end
