@@ -27,8 +27,8 @@ require_relative 'model'
 
 DataMapper.finalize
 
-#DataMapper.auto_migrate!
-DataMapper.auto_upgrade!
+DataMapper.auto_migrate!
+#DataMapper.auto_upgrade!
 
 enable :sessions
 set :session_secret, '*&(^#234a)'
