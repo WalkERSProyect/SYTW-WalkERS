@@ -327,7 +327,7 @@ get '/misrutas' do
       if (@mostrar == true)
         haml :misrutas    
       else
-        flash[:mensaje] = "El usuario no le gusta ninguna ruta"
+        #flash[:mensaje] = "El usuario no le gusta ninguna ruta"
         haml :misrutas  
       end
     end
