@@ -1,6 +1,6 @@
 SYTW-WalkERS
 ============
-#Sistemas y Tecnologías Web - Práctica 6: Chat usando Ajax y JQuery
+#Sistemas y Tecnologías Web - Proyecto WalkERS
 
 **Autores: Eduardo Javier Acuña Ledesma | Sergio Díaz González | Rushil Lakhani Lakhani**
 
@@ -40,6 +40,7 @@ Para comprobar test rspec `rake spec`.
 
 # Referencias
 
+- Apuntes de la asignatura Sistemas y Tecnologías Web de la ULL.
 
 
 *Sistemas y Tecnologías Web - Eduardo Javier Acuña Ledesma | Sergio Díaz González | Rushil Lakhani Lakhani*
