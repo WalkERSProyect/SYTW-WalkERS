@@ -82,7 +82,7 @@ get'/getUser' do
       erb :loginUser
     else
       puts "en el else"
-      session[:user] = session[:name]
+      session[:user] = @email.nombre
       session[:username] = @email.username
       session[:imagen] = @email.imagen
       redirect '/'
@@ -196,6 +196,11 @@ post '/configuracion' do
     @actualizar.update(:username => params[:usuario], :nombre => params[:nombre], 
                                          :apellidos => params[:apellidos], :email => params[:email], 
                                          :password => params[:pass1], :imagen => params[:imagen])
+
+    session[:username] = params[:usuario]
+    session[:user] = params[:nombre]
+    #@actualizar.save
+
   end
   redirect '/'
 end
