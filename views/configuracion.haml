@@ -22,19 +22,19 @@
               .form-group
                 %label.col-sm-2.control-label{:for => "nombre"} Nombre*
                 .col-sm-10
-                  %input#nombre.form-control{:autofocus => "", :name => "nombre", :value => @usuario.nombre, :required => "", :type => "text"}
+                  %input#nombre.form-control{:autofocus => "", :name => "nombre", :value => session[:user], :required => "", :type => "text"}
               .form-group
                 %label.col-sm-2.control-label{:for => "apellidos"} Apellidos*
                 .col-sm-10
-                  %input#apellidos.form-control{:name => "apellidos", :value => @usuario.apellidos, :required => "", :type => "text"}
+                  %input#apellidos.form-control{:name => "apellidos", :value => session[:apellidos], :required => "", :type => "text"}
               .form-group
                 %label.col-sm-2.control-label{:for => "apellidos"} Usuario*
                 .col-sm-10
-                  %input#usuario.form-control{:name => "usuario", :value => @usuario.username, :required => "", :type => "text"}
+                  %input#usuario.form-control{:name => "usuario", :value => session[:username], :required => "", :type => "text"}
               .form-group
                 %label.col-sm-2.control-label{:for => "email"} Email*
                 .col-sm-10
-                  %input#email.form-control{:name => "email", :value => @usuario.email, :required => "", :type => "email"}
+                  %input#email.form-control{:name => "email", :value => session[:email], :required => "", :type => "email"}
               .form-group
                 %label.col-sm-2.control-label{:for => "pass1"} Contraseña*
                 .col-sm-10
@@ -47,7 +47,7 @@
               .form-group
                 %label.col-sm-2.control-label{:for => "imagen"} Imagen
                 .col-sm-10
-                  %input#imagen.form-control{:name => "imagen", :value => @usuario.imagen, :type => "text"}
+                  %input#imagen.form-control{:name => "imagen", :value => session[:imagen], :type => "text"}
               .form-group
                 .col-sm-offset-2.col-sm-10
                   %button#btn-submit.btn.btn-lg.btn-success.btn-block{:onclick => "enviar()", :type => "submit"} Actualizar

@@ -164,6 +164,8 @@ post '/login' do
       session[:user] = @user.nombre
       session[:id] = @user.id
       session[:username] = @user.username
+      session[:apellidos] = @user.apellidos
+      session[:email] = @user.email
       session[:imagen] = @user.imagen
     else
       flash[:mensaje] = "El nombre de usuario y/o contraseña no son correctos."
@@ -180,9 +182,8 @@ get '/configuracion' do
   if (!session[:user])
     redirect '/'
   else
-    @usuario = Usuarios.first(:email => session[:email])
-    puts "El username es"
-    puts @usuario.username
+    #@usuario = Usuarios.first(:email => session[:email])
+    #puts @usuario.nombre
     haml :configuracion
   end
 end
