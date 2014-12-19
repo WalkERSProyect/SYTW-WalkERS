@@ -42,6 +42,10 @@ describe "Rspec" do
 		last_response.body['ÚLTIMAS RUTAS AÑADIDAS']
 	end
 
+	it '/ coincidencia' do
+		get '/configuracion'
+		last_response.body['Actualiza']
+	end
 	
 #[:usuario], :[:nombre], [:apellidos], [:email], [:pass1],[:imagen]
 
