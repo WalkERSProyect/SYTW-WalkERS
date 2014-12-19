@@ -20,7 +20,10 @@ Se ha implementado una red social sobre senderos:
 	- Añadir amigos.
 
 ###Visualización en Heroku
-También puedes ver la aplicación en Heroku pinchando [aquí](http://walkers.herokuapp.com//).
+También puede ver la aplicación en Heroku pinchando [aquí](http://walkers.herokuapp.com//).
+
+###Github
+Puede revisar nuestro proyecto en github pinchando [aquí](https://github.com/WalkERSProyect/SYTW-WalkERS).
 
 ###Instalación
 
