@@ -22,10 +22,13 @@ get '/auth/:name/callback' do
   
   #session[:name] = @auth['info'].name
   nombre_completo = @auth['info'].name.split
-  session[:user] = nombre_completo[0]
-  session[:apellidos] = nombre_completo[1,nombre_completo.length].join(" ")
 
-  session[:imagen] = @auth['info'].image
+  session[:name] = nombre_completo[0]
+  session[:surname] = nombre_completo[1,nombre_completo.length].join(" ")
+  session[:image] = @auth['info'].image
+  #session[:user] = nombre_completo[0]
+  #session[:apellidos] = nombre_completo[1,nombre_completo.length].join(" ")
+  #session[:imagen] = @auth['info'].image
   session[:url] = @auth['info'].urls.values[0]
   session[:email] = @auth['info'].email
   session[:logs] = ''
