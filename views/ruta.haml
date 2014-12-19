@@ -16,6 +16,14 @@
           Dificultad:
           %img#semaforo{:src => "../img/#{@dif}"}
             Puntuación: #{@ruta.puntuacion}
+
+            %form{:action => "/estadistica/#{@ruta.id}", :class => "form-estadistica", :method => "POST", :name => "form-estadistica", :role => "form"}
+              %br  
+                %button.btn.btn-danger{:type => "submit"} Estadistica
+                  
+
+
+
             - if (@seguidor != nil)
               %form{:action => "/eliminarruta", :class => "form-eliminar_ruta", :method => "POST", :name => "form-eliminar_ruta", :role => "form"}
                 %input{:name => "user_ruta", :style => "visibility:hidden;", :value => @ruta.username}
@@ -28,7 +36,6 @@
                 %input{:name => "ruta", :style => "visibility:hidden;", :value => @ruta.id}
                 %br  
                   %button.btn.btn-danger{:type => "submit"} Me gusta
-                  
   #derecha
     #panel{:role => "tabpanel"}
       / Nav tabs
