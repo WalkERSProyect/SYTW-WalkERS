@@ -265,6 +265,7 @@ get '/ruta/:num' do
     contador = Visit.all(:rutas_id => params[:num])
     puts "Esta pagina tiene tantas visitas"
     puts contador.count
+    @seguidor = SeguirRuta.first(:id_usuario => session[:id], :id_ruta => params[:num])
     haml :ruta
   end  
 end
@@ -282,13 +283,7 @@ post'/ruta/:num' do
   redirect "/ruta/#{params[:num]}"
 end
 
-get '/misrutas' do
-  if (!session[:user])
-    redirect '/'
-  else
-    haml :misrutas
-  end
-end
+
 
 get '/estadisticas/:num' do
   if (!session[:user])
@@ -299,7 +294,10 @@ get '/estadisticas/:num' do
 end
 
 post '/seguirruta' do
-  @seguir_ruta = SeguirRuta.first_or_create(:id_usuario => session[:id] , :id_ruta => params[:ruta].to_i)
+  @seguidor = SeguirRuta.first_or_create(:id_usuario => session[:id] , :id_ruta => params[:ruta].to_i)
+  puts "yuhu"
+  puts @seguidor.id_usuario
+  puts @seguidor.id_ruta
   redirect '/misrutas'
 end 
 
@@ -309,6 +307,7 @@ get '/misrutas' do
   else
     @mostrar = false
     @rutas = SeguirRuta.all()
+    puts "misrutas"
     @ruta_seg = Rutas.all()
     if (@rutas)
       for i in 0...SeguirRuta.count()
@@ -321,11 +320,13 @@ get '/misrutas' do
       else
         flash[:mensaje] = "El usuario no le gusta ninguna ruta"
         haml :misrutas  
-        #redirect '/misrutas'
       end
     end
   end          
 end
+
+
+
 
 get '/amigos' do
    @actual =  "amigos"
