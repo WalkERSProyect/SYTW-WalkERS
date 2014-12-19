@@ -3,7 +3,6 @@ ENV['RACK_ENV'] = 'test'
 require_relative '../walkers.rb'
 require 'test/unit'
 require 'rack/test'
-require 'selenium-webdriver'
 require 'rubygems'
 require 'rspec'
 require 'haml'
@@ -63,6 +62,14 @@ describe "Rspec" do
 		get '/addruta'
 		last_response.body['WalkERS']
 	end
+
+	it 'post /addruta' do
+		post '/addruta', :nombre => "Teide", :username => "Sergio", :dificultad => "Baja",
+							:descripcion => "Muy bonito", :imagen => "imagen.jpg"
+
+		last_response.body['Rutas']
+	end
+
 
 	it '/misrutas' do
 		get '/rutas'
