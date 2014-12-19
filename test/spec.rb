@@ -47,39 +47,27 @@ describe "Rspec" do
 		last_response.body['Actualiza']
 	end
 
-	it '/' do
-		get '/configuracion'
-		last_response.body['Actualiza']
+	it '/rutas' do
+		get '/rutas'
+		last_response.body['WalkERS']
 	end
-	
-#[:usuario], :[:nombre], [:apellidos], [:email], [:pass1],[:imagen]
-
-   # it "sesión" do
-      # get '/', {}, 'rack.session' => { :usuario => 'Eduardo' }
-     #  expect(last_response).to be_ok
-    #end
 
 
-	#it '/ coincidencia de nombre 3' do
-	#	get '/'
-	#	last_response.body['y']
-	#end
+	it '/addruta' do
+		get '/addruta'
+		last_response.body['WalkERS']
+	end
 
-	#it '/chat coincidencia de nombre 3' do
-	#	get '/'
-	#	last_response.body['Usuarios conectados']
-	#end
 
-	#it 'post' do
-	#	post '/', params = {:usuario => 'Sergio'}
-	#	get '/chat'
-	#	last_response.body['Diseñado']
-	#end
+	it '/addruta' do
+		get '/addruta'
+		last_response.body['WalkERS']
+	end
 
-	#it '/chat' do
-	#	get '/chat'
-	#	last_response.body['Bienvenido']
-	#end
+	it '/misrutas' do
+		get '/rutas'
+		last_response.body['WalkERS']
+	end
 
     
 

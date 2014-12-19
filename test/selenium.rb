@@ -32,19 +32,27 @@ end
 describe 'make API sign in whith a specific name' do
   it 'user register' do
     visit "#{url}/signup"
-    fill_in 'user', :with => 'Sergio'
+    fill_in 'usuario', :with => 'Sergio9'
     fill_in 'nombre', :with => 'Sergio'
-    click_on('Click para registrarte.')       
-    expect(page).to have_content("Sergio")     
+    fill_in 'apellidos', :with => 'Diaz'
+    fill_in 'email', :with => 'Sergio@hotmail.com'
+    fill_in 'pass1', :with => '1'
+    fill_in 'pass2', :with => '1'
+    fill_in 'imagen', :with => 'imagen.jpg'    
+    click_on('Registro')       
+    expect(page).to have_content("WalkERS")     
   end
 end
 
+
 describe 'make API login whith a specific name' do
   it 'user login' do
-  	click_on('Salir')
+  	visit "/logout"
     visit "#{url}/login"
-    fill_in 'usuario', :with => 'Ser'
+    fill_in 'usuario', :with => 'Sergio'
+    fill_in 'password', :with => '1'    
     click_on('Login')       
-    expect(page).to have_content("Ser")     
+    expect(page).to have_content("WalkERS")     
   end
 end
+

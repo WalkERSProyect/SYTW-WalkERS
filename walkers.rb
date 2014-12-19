@@ -292,9 +292,6 @@ end
 
 post '/seguirruta' do
   @seguidor = SeguirRuta.first_or_create(:id_usuario => session[:id] , :id_ruta => params[:ruta].to_i)
-  puts "yuhu"
-  puts @seguidor.id_usuario
-  puts @seguidor.id_ruta
   redirect '/misrutas'
 end 
 
@@ -338,10 +335,12 @@ get '/amigos' do
       haml :amigos
     else  
       flash[:mensaje] = "El usuario no tiene amigos"
-      redirect '/buscaramigos'
+      haml :buscaramigos
+      #redirect '/buscaramigos'
     end  
   end   
 end
+
 
 get '/buscaramigos' do
   @actual =  "amigos"
@@ -352,14 +351,15 @@ get '/buscaramigos' do
   end  
 end
 
-post '/buscaramigos' do 
+
+post '/amigos' do 
   @usuario = Usuarios.first(:username => params[:usuario]) # SELECT * FROM USUARIOS WHERE USERNAME = "params usuario"
   if (!@usuario)
     flash[:mensaje] = "No existe ningun usuario con ese nombre"
-    redirect '/buscaramigos'
+    redirect '/amigos'
   elsif (@usuario.username == session[:username])
     flash[:mensaje] = "El usuario que esta buscando es usted mismo"
-    redirect '/buscaramigos'   
+    redirect '/amigos'   
   else
     haml :buscaramigos
   end
