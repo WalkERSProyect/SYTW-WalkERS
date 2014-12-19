@@ -47,10 +47,28 @@ describe "Rspec" do
 		last_response.body['Actualiza']
 	end
 
-	it '/' do
-		get '/configuracion'
-		last_response.body['Actualiza']
+	it '/rutas' do
+		get '/rutas'
+		last_response.body['WalkERS']
 	end
+
+
+	it '/addruta' do
+		get '/addruta'
+		last_response.body['WalkERS']
+	end
+
+
+	it '/addruta' do
+		get '/addruta'
+		last_response.body['WalkERS']
+	end
+
+	it '/misrutas' do
+		get '/mis rutas'
+		last_response.body['WalkERS']
+	end
+
 	
 #[:usuario], :[:nombre], [:apellidos], [:email], [:pass1],[:imagen]
 
