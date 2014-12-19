@@ -79,7 +79,7 @@ get'/getUser' do
     #puts ", y estas es la sesion del name"+session[:name]
     if (!@email)
       puts "en el if"
-      erb :loginUser
+      haml :loginUser
     else
       puts "en el else"
       session[:user] = @email.nombre
