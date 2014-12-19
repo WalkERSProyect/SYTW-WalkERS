@@ -182,7 +182,10 @@ get '/configuracion' do
   if (!session[:user])
     redirect '/'
   else
-    #@usuario = Usuarios.first(:email => session[:email])
+    @usuario = Usuarios.first(:email => session[:email])
+    #if (!@usuario.password)
+    #  flash[:mensajeRojo] = "Se ha identificado con un proveedor externo. No puede modificar la información."
+    #end
     #puts @usuario.nombre
     haml :configuracion
   end
