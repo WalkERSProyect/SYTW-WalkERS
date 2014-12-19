@@ -5,10 +5,10 @@ task :server do
   sh "bundle exec ruby walkers.rb"
 end
 
-desc "run test examples"
-task :test do
-  sh "ruby ./test/test.rb"
-end
+#desc "run test examples"
+#task :test do
+#  sh "ruby ./test/test.rb"
+#end
 
 desc "run selenium examples"
 task :selenium do
