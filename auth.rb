@@ -22,10 +22,10 @@ get '/auth/:name/callback' do
   
   #session[:name] = @auth['info'].name
   nombre_completo = @auth['info'].name.split
-  session[:name] = nombre_completo[0]
-  session[:surname] = nombre_completo[1,nombre_completo.length].join(" ")
+  session[:user] = nombre_completo[0]
+  session[:apellidos] = nombre_completo[1,nombre_completo.length].join(" ")
 
-  session[:image] = @auth['info'].image
+  session[:imagen] = @auth['info'].image
   session[:url] = @auth['info'].urls.values[0]
   session[:email] = @auth['info'].email
   session[:logs] = ''
@@ -50,7 +50,7 @@ get '/auth/:name/callback' do
 end
 
 get '/auth/failure' do
-  #flash[:notice] =·
+  flash[:mensajeRojo] = "Fallo en la autenticación. Inténtelo de nuevo más tarde."
    # %Q{<div class="error-auth">Error: #{params[:message]}.</div>}
   #session[:logs] = "Error!!!"
   redirect '/'

@@ -20,7 +20,7 @@ Se ha implementado una red social sobre senderos:
 	- Añadir amigos.
 
 ###Visualización en Heroku
-También puedes ver la aplicación en Heroku pinchando [aquí](https://http://walkers.herokuapp.com//).
+También puedes ver la aplicación en Heroku pinchando [aquí](http://walkers.herokuapp.com//).
 
 ###Instalación
 

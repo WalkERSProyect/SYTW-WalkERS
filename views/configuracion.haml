@@ -1,53 +1,42 @@
-!!!
-%html
-  %head
-    %title WalkERS - Registro
-    %link{:href => "https://maxcdn.bootstrapcdn.com/bootstrap/3.3.1/css/bootstrap.min.css", :rel => "stylesheet"}
-    %link{:href => "./css/login.css", :rel => "stylesheet", :type => "text/css"}
-    %script{:src => "https://ajax.googleapis.com/ajax/libs/jquery/1.11.1/jquery.min.js"}
-    %script{:src => "https://maxcdn.bootstrapcdn.com/bootstrap/3.3.1/js/bootstrap.min.js"}
-    %script{:src => "../js/walkers.js", :type => "text/javascript"}
-  %body
-    / <h1>Registro</h1>
-    .container
-      #loginbox.mainbox.col-md-6.col-md-offset-3.col-sm-8.col-sm-offset-2
-        .panel.panel-info
-          .panel-heading
-            .panel-title
-              %a{:href => "./"} WalkERS
-          .panel-body
-            #mensaje-pass.alert.alert-danger.col-sm-12
-            %form#form-signup.form-horizontal{:action => "/configuracion", :method => "POST", :name => "form-signup", :role => "form"}
-              %h2.form-signin-heading Configuración
-              .form-group
-                %label.col-sm-2.control-label{:for => "nombre"} Nombre*
-                .col-sm-10
-                  %input#nombre.form-control{:autofocus => "", :name => "nombre", :value => session[:user], :required => "", :type => "text"}
-              .form-group
-                %label.col-sm-2.control-label{:for => "apellidos"} Apellidos*
-                .col-sm-10
-                  %input#apellidos.form-control{:name => "apellidos", :value => session[:apellidos], :required => "", :type => "text"}
-              .form-group
-                %label.col-sm-2.control-label{:for => "apellidos"} Usuario*
-                .col-sm-10
-                  %input#usuario.form-control{:name => "usuario", :value => session[:username], :required => "", :type => "text"}
-              .form-group
-                %label.col-sm-2.control-label{:for => "email"} Email*
-                .col-sm-10
-                  %input#email.form-control{:name => "email", :value => session[:email], :required => "", :type => "email"}
-              .form-group
-                %label.col-sm-2.control-label{:for => "pass1"} Contraseña*
-                .col-sm-10
-                  %input#pass1.form-control{:name => "pass1", :placeholder => "Escriba contraseña", :required => "", :type => "password"}
-              .form-group
-                / COMPROBAR QUE LA SEGUNDA CONTRASEÑA ES LA MISMA CON JS
-                %label.col-sm-2.control-label{:for => "pass2"} Repetir contraseña*
-                .col-sm-10
-                  %input#pass2.form-control{:name => "pass2", :placeholder => "Repetir contraseña", :required => "", :type => "password"}
-              .form-group
-                %label.col-sm-2.control-label{:for => "imagen"} Imagen
-                .col-sm-10
-                  %input#imagen.form-control{:name => "imagen", :value => session[:imagen], :type => "text"}
-              .form-group
-                .col-sm-offset-2.col-sm-10
-                  %button#btn-submit.btn.btn-lg.btn-success.btn-block{:onclick => "enviar()", :type => "submit"} Actualizar
+.container
+  #loginbox.mainbox.col-md-6.col-md-offset-3.col-sm-8.col-sm-offset-2
+    .panel.panel-info
+      .panel-heading
+        .panel-title
+          %a{:href => "./"} WalkERS
+      .panel-body
+        #mensaje-pass.alert.alert-danger.col-sm-12
+        %form#form-signup.form-horizontal{:action => "/configuracion", :method => "POST", :name => "form-signup", :role => "form"}
+          %h2.form-signin-heading Configuración
+          .form-group
+            %label.col-sm-2.control-label{:for => "nombre"} Nombre*
+            .col-sm-10
+              %input#nombre.form-control{:autofocus => "", :name => "nombre", :value => session[:user], :required => "", :type => "text"}
+          .form-group
+            %label.col-sm-2.control-label{:for => "apellidos"} Apellidos*
+            .col-sm-10
+              %input#apellidos.form-control{:name => "apellidos", :value => session[:apellidos], :required => "", :type => "text"}
+          .form-group
+            %label.col-sm-2.control-label{:for => "apellidos"} Usuario*
+            .col-sm-10
+              %input#usuario.form-control{:name => "usuario", :value => session[:username], :required => "", :type => "text"}
+          .form-group
+            %label.col-sm-2.control-label{:for => "email"} Email*
+            .col-sm-10
+              %input#email.form-control{:name => "email", :value => session[:email], :required => "", :type => "email"}
+          .form-group
+            %label.col-sm-2.control-label{:for => "pass1"} Contraseña*
+            .col-sm-10
+              %input#pass1.form-control{:name => "pass1", :placeholder => "Escriba contraseña", :required => "", :type => "password"}
+          .form-group
+            / COMPROBAR QUE LA SEGUNDA CONTRASEÑA ES LA MISMA CON JS
+            %label.col-sm-2.control-label{:for => "pass2"} Repetir contraseña*
+            .col-sm-10
+              %input#pass2.form-control{:name => "pass2", :placeholder => "Repetir contraseña", :required => "", :type => "password"}
+          .form-group
+            %label.col-sm-2.control-label{:for => "imagen"} Imagen
+            .col-sm-10
+              %input#imagen.form-control{:name => "imagen", :value => session[:imagen], :type => "text"}
+          .form-group
+            .col-sm-offset-2.col-sm-10
+              %button#btn-submit.btn.btn-lg.btn-success.btn-block{:onclick => "enviar()", :type => "submit"} Actualizar
