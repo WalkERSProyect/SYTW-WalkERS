@@ -51,7 +51,7 @@ class Comentarios
   property :id,           Serial
   property :username,     String
   property :ruta_id,      Integer
-  property :comentario,   Texsts
+  property :comentario,   Text
   property :created_at,   DateTime
 
 end
