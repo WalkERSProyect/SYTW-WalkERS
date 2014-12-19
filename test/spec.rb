@@ -46,6 +46,11 @@ describe "Rspec" do
 		get '/configuracion'
 		last_response.body['Actualiza']
 	end
+
+	it '/' do
+		get '/configuracion'
+		last_response.body['Actualiza']
+	end
 	
 #[:usuario], :[:nombre], [:apellidos], [:email], [:pass1],[:imagen]
 
