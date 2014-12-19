@@ -125,19 +125,17 @@ post '/signup' do
   begin
     @usuario = Usuarios.first(:username => params[:usuario])
     if (!@usuario)
-      if (!params[:imagen])
+      if (params[:imagen] == '')
         imagen = "http://i.imgur.com/lEZ3n1E.jpg"
       else
         imagen = params[:imagen]
       end
       @objeto = Usuarios.first_or_create(:username => params[:usuario], :nombre => params[:nombre], 
                                          :apellidos => params[:apellidos], :email => params[:email], 
-                                         :password => params[:pass1], :imagen => params[:imagen])
+                                         :password => params[:pass1], :imagen => imagen)
       session[:user] = params[:nombre]
       session[:username] = params[:usuario]
-      session[:imagen] = params[:imagen]
-      puts "¿Hay username?"
-      puts session[:username]
+      session[:imagen] = imagen
       flash[:mensaje] = "¡Enhorabuena! Se ha registrado correctamente."
     else
       flash[:mensaje] = "El nombre de usuario ya existe. Por favor, elija otro."
@@ -197,11 +195,11 @@ post '/configuracion' do
     @actualizar.update(:username => params[:usuario], :nombre => params[:nombre], 
                                          :apellidos => params[:apellidos], :email => params[:email], 
                                          :password => params[:pass1], :imagen => params[:imagen])
-    
 
     session[:username] = params[:usuario]
     session[:user] = params[:nombre]
     #@actualizar.save
+
   end
   redirect '/'
 end
@@ -248,8 +246,6 @@ post '/addruta' do
   end
 end
 
- 
-
 get '/ruta/:num' do
   if (!session[:user])
     redirect '/'
@@ -284,8 +280,6 @@ post'/ruta/:num' do
   redirect "/ruta/#{params[:num]}"
 end
 
-
-
 get '/estadisticas/:num' do
   if (!session[:user])
     redirect '/'
@@ -303,6 +297,7 @@ post '/seguirruta' do
 end 
 
 get '/misrutas' do
+  @actual = 'misrutas'
   if (!session[:user])
     redirect '/'
   else
@@ -326,16 +321,12 @@ get '/misrutas' do
   end          
 end
 
-
-
-
 get '/amigos' do
-   @actual =  "amigos"
    if (!session[:user])
     redirect '/'
   else
-   @mostrar = false
-  @amigo = Amigos.all() # SELECT * FROM AMIGOS
+    @mostrar = false
+    @amigo = Amigos.all() # SELECT * FROM AMIGOS
     for i in 0...Amigos.count()
       if ((session[:id] == @amigo[i].id_usuario) && (@amigo[i].nombre))
           @mostrar = true
@@ -351,6 +342,7 @@ get '/amigos' do
 end
 
 get '/buscaramigos' do
+  @actual =  "amigos"
   if (!session[:user])
     redirect '/'
   else
