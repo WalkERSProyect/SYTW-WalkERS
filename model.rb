@@ -22,7 +22,7 @@ class Rutas
   property :id,           Serial
   property :username,     String
   property :nombre,       String
-  property :informacion,  String
+  property :informacion,  Text
   property :dificultad,   Integer
   property :puntuacion, 	Integer
   property :votos, 			  Integer
