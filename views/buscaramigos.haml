@@ -1,6 +1,6 @@
 %link{:href => "./css/buscar.css", :rel => "stylesheet", :type => "text/css"}
 %h1 Aqui podra añadir o buscar a un amigo
-%form.form-buscar{:action => "/buscaramigos", :method => "POST", :name => "form-buscar", :role => "form"}
+%form.form-buscar{:action => "/amigos", :method => "POST", :name => "form-buscar", :role => "form"}
   %h3.form-buscar-heading Introduzca el nombre del usuario a buscar:
   %label.sr-only{:for => "inputUsuario"} Usuario
   %input#usuario.form-control{:autofocus => "", :name => "usuario", :placeholder => "Usuario", :required => "", :type => "text"}
