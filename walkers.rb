@@ -87,9 +87,9 @@ get'/getUser' do
       session[:imagen] = @email.imagen
       redirect '/'
     end 
-    rescue Exception => e
-      flash[:mensaje] = "El nombre de usuario y/o contraseña no son correctos."
-       puts e.message  
+  rescue Exception => e
+    flash[:mensaje] = "El nombre de usuario y/o contraseña no son correctos."
+    puts e.message  
   end
 end
 
@@ -97,21 +97,21 @@ post '/getUser' do
   begin
     @usuario = Usuarios.first(:username => params[:usuario])
     if (!@usuario)
-      @objeto = Usuarios.first_or_create(:username => params[:usuario], :nombre => session[:name], :apellidos => session[:surname], :imagen => session[:image], :email => session[:email])
-      session[:user] = session[:name]
+      @objeto = Usuarios.first_or_create(:username => params[:usuario], :nombre => session[:user], :apellidos => session[:apellidos], :imagen => session[:imagen], :email => session[:email])
+      #session[:user] = session[:name]
       session[:username] = params[:usuario]
-      session[:imagen] = session[:image]
-      puts "Esta es la imagen en /getUser"
-      puts session[:imagen]
+      #session[:imagen] = session[:image]
+      #puts "Esta es la imagen en /getUser"
+      #puts session[:imagen]
 
-      puts "Esta es la image (SIN E) en /getUser"
-      puts session[:image]
+      #puts "Esta es la image (SIN E) en /getUser"
+      #puts session[:image]
 
-      puts "¿Hay username?"
-      puts session[:username]
+      #puts "¿Hay username?"
+      #puts session[:username]
       flash[:mensaje] = "¡Enhorabuena! Se ha registrado correctamente."
     else
-      flash[:mensaje] = "El nombre de usuario ya existe. Por favor, elija otro."
+      flash[:mensajeRojo] = "El nombre de usuario ya existe. Por favor, elija otro."
       redirect '/getUser'
     end
   rescue Exception => e
@@ -204,6 +204,7 @@ post '/configuracion' do
   end
   redirect '/'
 end
+
 get '/rutas' do
   @actual = "rutas";
   if (!session[:user])
