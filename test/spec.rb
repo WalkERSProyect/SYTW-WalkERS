@@ -71,8 +71,8 @@ describe "Rspec" do
 	end
 
 
-	it '/misrutas' do
-		get '/rutas'
+	it '/amigos' do
+		get '/amigos'
 		last_response.body['WalkERS']
 	end
 

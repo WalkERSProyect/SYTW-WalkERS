@@ -5,6 +5,7 @@ require_relative '../walkers.rb'
 require 'rack/test'
 require 'rubygems'
 require 'rspec'
+require 'test/unit'
 
 include Test::Unit::Assertions
 

@@ -298,6 +298,17 @@ post '/seguirruta' do
   redirect '/misrutas'
 end 
 
+post '/eliminarruta' do
+  if (!session[:user])
+    redirect '/'
+  else
+    @noseguidor = SeguirRuta.first(:id_usuario => session[:id], :id_ruta => params[:ruta].to_i)
+    @noseguidor.destroy
+    flash[:mensaje] = "Ruta Eliminada de sus favoritos"
+    redirect '/misrutas'
+  end
+end 
+
 get '/misrutas' do
   @actual = 'misrutas'
   if (!session[:user])
@@ -339,7 +350,7 @@ get '/amigos' do
     else  
       flash[:mensaje] = "El usuario no tiene amigos"
       haml :buscaramigos
-      #redirect '/buscaramigos'
+      redirect '/buscaramigos'
     end  
   end   
 end
@@ -359,10 +370,10 @@ post '/amigos' do
   @usuario = Usuarios.first(:username => params[:usuario]) # SELECT * FROM USUARIOS WHERE USERNAME = "params usuario"
   if (!@usuario)
     flash[:mensaje] = "No existe ningun usuario con ese nombre"
-    redirect '/amigos'
+    redirect '/buscaramigos'
   elsif (@usuario.username == session[:username])
     flash[:mensaje] = "El usuario que esta buscando es usted mismo"
-    redirect '/amigos'   
+    redirect '/buscaramigos'   
   else
     haml :buscaramigos
   end
